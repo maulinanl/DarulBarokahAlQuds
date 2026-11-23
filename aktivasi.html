@@ -2,401 +2,426 @@
 <html lang="id" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pengajuan Aktivasi Akun | Pondok Pesantren Darul Barokah Al - Quds</title>
-  <meta name="description"
-    content="Ajukan aktivasi akun Web Monitoring untuk wali santri dan ustadz/ustadzah Pondok Pesantren Darul Barokah Al-Quds." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengajuan Aktivasi Akun | Pondok Pesantren Darul Barokah Al - Quds</title>
+    <meta name="description"
+        content="Ajukan aktivasi akun Web Monitoring untuk wali santri dan ustadz/ustadzah Pondok Pesantren Darul Barokah Al-Quds." />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN (konfigurasi sama dengan index.html) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'] },
-          colors: {
-            ponpes: {
-              bg: '#EDF2EF',
-              surface: '#F6F9F7',
-              tint: '#DCE6E1',
-              card: '#C4D3CC',
-              cardHover: '#B9CBC2',
-              sectionAlt: '#D6E2DC',
-              primary: '#15573E',
-              primaryDark: '#0F4430',
-              deep: '#0A3324',
-              text: '#163026',
-              muted: '#4C645A',
-              gold: '#B8913A',
+    <!-- Tailwind CSS CDN (konfigurasi sama dengan index.html) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'] },
+                    colors: {
+                        ponpes: {
+                            bg: '#EDF2EF',
+                            surface: '#F6F9F7',
+                            tint: '#DCE6E1',
+                            card: '#C4D3CC',
+                            cardHover: '#B9CBC2',
+                            sectionAlt: '#D6E2DC',
+                            primary: '#15573E',
+                            primaryDark: '#0F4430',
+                            deep: '#0A3324',
+                            text: '#163026',
+                            muted: '#4C645A',
+                            gold: '#B8913A',
+                        }
+                    },
+                    boxShadow: {
+                        soft: '0 12px 36px -14px rgba(21,87,62,.35)',
+                        lift: '0 24px 60px -20px rgba(15,68,48,.45)',
+                    }
+                }
             }
-          },
-          boxShadow: {
-            soft: '0 12px 36px -14px rgba(21,87,62,.35)',
-            lift: '0 24px 60px -20px rgba(15,68,48,.45)',
-          }
-        }
-      }
-    };
-  </script>
+        };
+    </script>
 
-  <!-- CSS bersama (pola, input form, dll) -->
-  <link rel="stylesheet" href="style.css" />
+    <!-- CSS bersama (pola, input form, dll) -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="bg-ponpes-bg text-ponpes-text antialiased selection:bg-ponpes-primary selection:text-white">
 
-  <div class="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+    <div class="min-h-screen grid grid-cols-1 lg:grid-cols-2">
 
-    <!-- =================================================================
+        <!-- =================================================================
          PANEL KIRI: BRANDING + INFO MODUL
     ================================================================== -->
-    <aside class="relative overflow-hidden bg-ponpes-primary text-white lg:sticky lg:top-0 lg:h-screen flex flex-col px-6 sm:px-12 lg:px-14 py-9 lg:py-12">
-      <div class="absolute inset-0 pattern-dark pointer-events-none"></div>
-      <svg class="absolute -right-28 -bottom-28 w-[460px] h-[460px] text-white/10 pointer-events-none" viewBox="0 0 400 400"
-        fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="200" cy="200" r="190" />
-        <circle cx="200" cy="200" r="120" />
-        <circle cx="200" cy="200" r="50" />
-        <rect x="60" y="60" width="280" height="280" />
-        <rect x="60" y="60" width="280" height="280" transform="rotate(45 200 200)" />
-      </svg>
-
-      <div class="relative flex flex-col flex-1">
-        <!-- Logo -->
-        <a href="index.html" class="inline-flex items-center gap-3.5 self-start group" aria-label="Kembali ke beranda">
-          <div class="w-12 h-12 rounded-full bg-white/10 border-2 border-white/70 flex items-center justify-center group-hover:scale-105 transition-transform">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-2.5 2.5-5 4.5-5 8v2h10v-2c0-3.5-2.5-5.5-5-8z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 21h16M6 13v8M18 13v8M10 21v-4a2 2 0 114 0v4" />
+        <aside
+            class="relative overflow-hidden bg-ponpes-primary text-white lg:sticky lg:top-0 lg:h-screen flex flex-col px-6 sm:px-12 lg:px-14 py-9 lg:py-12">
+            <div class="absolute inset-0 pattern-dark pointer-events-none"></div>
+            <svg class="absolute -right-28 -bottom-28 w-[460px] h-[460px] text-white/10 pointer-events-none"
+                viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="200" cy="200" r="190" />
+                <circle cx="200" cy="200" r="120" />
+                <circle cx="200" cy="200" r="50" />
+                <rect x="60" y="60" width="280" height="280" />
+                <rect x="60" y="60" width="280" height="280" transform="rotate(45 200 200)" />
             </svg>
-          </div>
-          <div class="leading-tight">
-            <span class="block text-xs font-medium text-white/70">Pondok Pesantren</span>
-            <span class="block text-base font-extrabold tracking-tight">DARUL BAROKAH AL - QUDS</span>
-          </div>
-        </a>
 
-        <div class="mt-12 lg:mt-24 max-w-xl">
-          <h1 id="heroTitle" class="text-4xl lg:text-[44px] font-extrabold leading-tight tracking-tight">Akses Informasi Santri</h1>
-          <p id="heroDesc" class="mt-4 text-base lg:text-[17px] text-white/85 leading-relaxed"></p>
-        </div>
+            <div class="relative flex flex-col flex-1">
+                <!-- Logo -->
+                <a href="index.html" class="inline-flex items-center gap-3.5 self-start group"
+                    aria-label="Kembali ke beranda">
+                    <div class="w-12 h-12">
+                        <img src="assets/logo-bw.png">
+                    </div>
+                    <div class="leading-tight">
+                        <span class="block text-xs font-medium text-white/70">Pondok Pesantren</span>
+                        <span class="block text-base font-extrabold tracking-tight">DARUL BAROKAH AL - QUDS</span>
+                    </div>
+                </a>
 
-        <div class="mt-9 max-w-xl rounded-3xl bg-ponpes-card text-ponpes-text p-6 shadow-lift">
-          <p id="modTitle" class="text-xs font-bold uppercase tracking-widest text-ponpes-primary"></p>
-          <div id="modGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
-        </div>
+                <div class="mt-12 lg:mt-24 max-w-xl">
+                    <h1 id="heroTitle" class="text-4xl lg:text-[44px] font-extrabold leading-tight tracking-tight">Akses
+                        Informasi Santri</h1>
+                    <p id="heroDesc" class="mt-4 text-base lg:text-[17px] text-white/85 leading-relaxed"></p>
+                </div>
 
-        <p class="mt-10 lg:mt-auto pt-8 text-sm text-white/65">Pondok Pesantren Darul Barokah Al-Quds</p>
-      </div>
-    </aside>
+                <div class="mt-9 max-w-xl rounded-3xl bg-ponpes-card text-ponpes-text p-6 shadow-lift">
+                    <p id="modTitle" class="text-xs font-bold uppercase tracking-widest text-ponpes-primary"></p>
+                    <div id="modGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+                </div>
 
-    <!-- =================================================================
+                <p class="mt-10 lg:mt-auto pt-8 text-sm text-white/65">Pondok Pesantren Darul Barokah Al-Quds</p>
+            </div>
+        </aside>
+
+        <!-- =================================================================
          PANEL KANAN: FORM PENGAJUAN
     ================================================================== -->
-    <main class="bg-ponpes-cardHover px-5 sm:px-10 lg:px-14 py-10 lg:py-12">
-      <div class="w-full max-w-[660px] mx-auto">
+        <main class="bg-ponpes-cardHover px-5 sm:px-10 lg:px-14 py-10 lg:py-12">
+            <div class="w-full max-w-[660px] mx-auto">
 
-        <!-- Pemberitahuan -->
-        <div class="bg-ponpes-bg rounded-2xl p-5 flex items-start gap-3.5 shadow-sm">
-          <span class="w-6 h-6 text-ponpes-primary shrink-0 mt-0.5" data-icon="info"></span>
-          <div>
-            <p class="text-sm font-bold text-ponpes-primary">Pemberitahuan Penting</p>
-            <p id="noticeText" class="text-[13.5px] text-ponpes-muted leading-relaxed mt-1"></p>
-          </div>
-        </div>
+                <!-- Pemberitahuan -->
+                <div class="bg-ponpes-bg rounded-2xl p-5 flex items-start gap-3.5 shadow-sm">
+                    <span class="w-6 h-6 text-ponpes-primary shrink-0 mt-0.5" data-icon="info"></span>
+                    <div>
+                        <p class="text-sm font-bold text-ponpes-primary">Pemberitahuan Penting</p>
+                        <p id="noticeText" class="text-[13.5px] text-ponpes-muted leading-relaxed mt-1"></p>
+                    </div>
+                </div>
 
-        <!-- Judul + tab peran -->
-        <div id="headingWrap" class="mt-9">
-          <h2 class="text-3xl font-extrabold text-ponpes-primary tracking-tight">Pengajuan Aktivasi Akun</h2>
-          <p id="formDesc" class="text-[15px] text-ponpes-muted leading-relaxed mt-2"></p>
-        </div>
+                <!-- Judul + tab peran -->
+                <div id="headingWrap" class="mt-9">
+                    <h2 class="text-3xl font-extrabold text-ponpes-primary tracking-tight">Pengajuan Aktivasi Akun</h2>
+                    <p id="formDesc" class="text-[15px] text-ponpes-muted leading-relaxed mt-2"></p>
+                </div>
 
-        <div id="tabsWrap" role="tablist" aria-label="Pilih jenis akun" class="mt-6 grid grid-cols-2 gap-2 p-1.5 bg-ponpes-card rounded-xl">
-          <button type="button" role="tab" data-role="wali" id="tabWali"></button>
-          <button type="button" role="tab" data-role="ustadz" id="tabUstadz"></button>
-        </div>
+                <div id="tabsWrap" role="tablist" aria-label="Pilih jenis akun"
+                    class="mt-6 grid grid-cols-2 gap-2 p-1.5 bg-ponpes-card rounded-xl">
+                    <button type="button" role="tab" data-role="wali" id="tabWali"></button>
+                    <button type="button" role="tab" data-role="ustadz" id="tabUstadz"></button>
+                </div>
 
-        <!-- ===================== FORM WALI SANTRI ===================== -->
-        <form id="form-wali" data-role="wali" novalidate class="mt-6 space-y-5">
-          <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">A</span>
-              <h3 class="text-lg font-bold text-ponpes-primary">Data Santri Terdaftar</h3>
+                <!-- ===================== FORM WALI SANTRI ===================== -->
+                <form id="form-wali" data-role="wali" novalidate class="mt-6 space-y-5">
+                    <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">A</span>
+                            <h3 class="text-lg font-bold text-ponpes-primary">Data Santri Terdaftar</h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="field">
+                                <label class="field-label" for="w_nisn">Nomor Induk Siswa Nasional (NISN) <span
+                                        class="text-red-700">*</span></label>
+                                <div class="relative">
+                                    <span class="field-icon" data-icon="idcard"></span>
+                                    <input class="input" id="w_nisn" name="nisn" type="text" inputmode="numeric"
+                                        maxlength="10" autocomplete="off" data-type="digits" data-label="NISN" required
+                                        placeholder="Contoh: 0009321234" />
+                                </div>
+                                <p class="field-hint">Gunakan NISN resmi santri yang tertera pada kartu pelajar.</p>
+                                <p class="field-error hidden" id="w_nisn_err" role="alert"></p>
+                            </div>
+
+                            <div class="field">
+                                <label class="field-label" for="w_namaSantri">Nama Lengkap Santri <span
+                                        class="text-red-700">*</span></label>
+                                <div class="relative">
+                                    <span class="field-icon" data-icon="cap"></span>
+                                    <input class="input" id="w_namaSantri" name="namaSantri" type="text"
+                                        autocomplete="off" data-type="name" data-label="Nama santri" required
+                                        placeholder="Sesuai data pendaftaran pondok" />
+                                </div>
+                                <p class="field-error hidden" id="w_namaSantri_err" role="alert"></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">B</span>
+                            <h3 class="text-lg font-bold text-ponpes-primary">Data Wali Santri Pemohon</h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="field">
+                                <label class="field-label" for="w_namaWali">Nama Lengkap Wali <span
+                                        class="text-red-700">*</span></label>
+                                <div class="relative">
+                                    <span class="field-icon" data-icon="user"></span>
+                                    <input class="input" id="w_namaWali" name="namaWali" type="text" autocomplete="name"
+                                        data-type="name" data-label="Nama wali" required
+                                        placeholder="Nama lengkap ayah/ibu/wali" />
+                                </div>
+                                <p class="field-error hidden" id="w_namaWali_err" role="alert"></p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="field">
+                                    <label class="field-label" for="w_hubungan">Hubungan Keluarga <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="users"></span>
+                                        <select class="input" id="w_hubungan" name="hubungan" data-type="select"
+                                            data-label="Hubungan keluarga" required>
+                                            <option value="">Pilih hubungan</option>
+                                            <option>Ayah Kandung</option>
+                                            <option>Ibu Kandung</option>
+                                            <option>Wali / Kerabat</option>
+                                        </select>
+                                    </div>
+                                    <p class="field-error hidden" id="w_hubungan_err" role="alert"></p>
+                                </div>
+
+                                <div class="field">
+                                    <label class="field-label" for="w_whatsapp">Nomor WhatsApp <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="phone"></span>
+                                        <input class="input" id="w_whatsapp" name="whatsapp" type="tel" inputmode="tel"
+                                            autocomplete="tel" data-type="phone" data-label="Nomor WhatsApp" required
+                                            placeholder="081234567890" />
+                                    </div>
+                                    <p class="field-error hidden" id="w_whatsapp_err" role="alert"></p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="field">
+                                    <label class="field-label" for="w_password">Kata Sandi Akun <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="lock"></span>
+                                        <input class="input has-toggle" id="w_password" name="password" type="password"
+                                            autocomplete="new-password" data-type="password" data-label="Kata sandi"
+                                            required placeholder="Minimal 8 karakter" />
+                                        <button type="button" class="pw-toggle" data-toggle-password="w_password"
+                                            aria-label="Tampilkan kata sandi"><span data-icon="eye"></span></button>
+                                    </div>
+                                    <p class="field-hint">Kombinasi huruf dan angka.</p>
+                                    <p class="field-error hidden" id="w_password_err" role="alert"></p>
+                                </div>
+
+                                <div class="field">
+                                    <label class="field-label" for="w_konfirmasi">Konfirmasi Sandi <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="lock"></span>
+                                        <input class="input has-toggle" id="w_konfirmasi" name="konfirmasi"
+                                            type="password" autocomplete="new-password" data-type="confirm"
+                                            data-match="w_password" data-label="Konfirmasi sandi" required
+                                            placeholder="Ulangi kata sandi" />
+                                        <button type="button" class="pw-toggle" data-toggle-password="w_konfirmasi"
+                                            aria-label="Tampilkan konfirmasi sandi"><span
+                                                data-icon="eye"></span></button>
+                                    </div>
+                                    <p class="field-error hidden" id="w_konfirmasi_err" role="alert"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <p class="form-error hidden" role="alert"></p>
+                    <button type="submit" data-submit
+                        class="w-full inline-flex items-center justify-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark disabled:opacity-70 disabled:cursor-wait text-white font-bold text-base py-4 rounded-xl shadow-soft transition-all cursor-pointer">
+                        <span
+                            class="btn-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        <span class="btn-label">Ajukan Aktivasi Akun Sekarang</span>
+                    </button>
+                    <p class="text-center text-[12.5px] text-ponpes-muted leading-relaxed">Data digunakan hanya untuk
+                        verifikasi oleh administrator pondok.</p>
+                </form>
+
+                <!-- ===================== FORM USTADZ / USTADZAH ===================== -->
+                <form id="form-ustadz" data-role="ustadz" novalidate class="hidden mt-6 space-y-5">
+                    <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">A</span>
+                            <h3 class="text-lg font-bold text-ponpes-primary">Data Asatidz Terdaftar</h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="field">
+                                <label class="field-label" for="u_niy">NIY (Nomor Induk Yayasan) <span
+                                        class="text-red-700">*</span></label>
+                                <div class="relative">
+                                    <span class="field-icon" data-icon="idcard"></span>
+                                    <input class="input" id="u_niy" name="niy" type="text" autocomplete="off"
+                                        data-type="staffid" data-label="NIY" required placeholder="Contoh: 2021.0045" />
+                                </div>
+                                <p class="field-hint">Gunakan NIY yang tertera pada kartu pengajar atau surat tugas.</p>
+                                <p class="field-error hidden" id="u_niy_err" role="alert"></p>
+                            </div>
+
+                            <div class="field">
+                                <label class="field-label" for="u_namaLengkap">Nama Lengkap<span
+                                        class="text-red-700">*</span></label>
+                                <div class="relative">
+                                    <span class="field-icon" data-icon="user"></span>
+                                    <input class="input" id="u_namaLengkap" name="namaLengkap" type="text"
+                                        autocomplete="name" data-type="name" data-label="Nama lengkap" required
+                                        placeholder="Sesuai data kepegawaian pondok" />
+                                </div>
+                                <p class="field-error hidden" id="u_namaLengkap_err" role="alert"></p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="field">
+                                    <label class="field-label" for="u_email">Email Aktif <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="mail"></span>
+                                        <input class="input" id="u_email" name="email" type="email" autocomplete="email"
+                                            data-type="email" data-label="Email" required
+                                            placeholder="nama@email.com" />
+                                    </div>
+                                    <p class="field-error hidden" id="u_email_err" role="alert"></p>
+                                </div>
+
+                                <div class="field">
+                                    <label class="field-label" for="u_whatsapp">Nomor WhatsApp <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="phone"></span>
+                                        <input class="input" id="u_whatsapp" name="whatsapp" type="tel" inputmode="tel"
+                                            autocomplete="tel" data-type="phone" data-label="Nomor WhatsApp" required
+                                            placeholder="081234567890" />
+                                    </div>
+                                    <p class="field-error hidden" id="u_whatsapp_err" role="alert"></p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="field">
+                                    <label class="field-label" for="u_password">Kata Sandi Akun <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="lock"></span>
+                                        <input class="input has-toggle" id="u_password" name="password" type="password"
+                                            autocomplete="new-password" data-type="password" data-label="Kata sandi"
+                                            required placeholder="Minimal 8 karakter" />
+                                        <button type="button" class="pw-toggle" data-toggle-password="u_password"
+                                            aria-label="Tampilkan kata sandi"><span data-icon="eye"></span></button>
+                                    </div>
+                                    <p class="field-hint">Kombinasi huruf dan angka.</p>
+                                    <p class="field-error hidden" id="u_password_err" role="alert"></p>
+                                </div>
+
+                                <div class="field">
+                                    <label class="field-label" for="u_konfirmasi">Konfirmasi Sandi <span
+                                            class="text-red-700">*</span></label>
+                                    <div class="relative">
+                                        <span class="field-icon" data-icon="lock"></span>
+                                        <input class="input has-toggle" id="u_konfirmasi" name="konfirmasi"
+                                            type="password" autocomplete="new-password" data-type="confirm"
+                                            data-match="u_password" data-label="Konfirmasi sandi" required
+                                            placeholder="Ulangi kata sandi" />
+                                        <button type="button" class="pw-toggle" data-toggle-password="u_konfirmasi"
+                                            aria-label="Tampilkan konfirmasi sandi"><span
+                                                data-icon="eye"></span></button>
+                                    </div>
+                                    <p class="field-error hidden" id="u_konfirmasi_err" role="alert"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <p class="form-error hidden" role="alert"></p>
+                    <button type="submit" data-submit
+                        class="w-full inline-flex items-center justify-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark disabled:opacity-70 disabled:cursor-wait text-white font-bold text-base py-4 rounded-xl shadow-soft transition-all cursor-pointer">
+                        <span
+                            class="btn-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        <span class="btn-label">Ajukan Aktivasi Akun Sekarang</span>
+                    </button>
+                    <p class="text-center text-[12.5px] text-ponpes-muted leading-relaxed">Data digunakan hanya untuk
+                        verifikasi oleh administrator pondok.</p>
+                </form>
+
+                <!-- ===================== TAMPILAN SUKSES ===================== -->
+                <section id="successPanel" tabindex="-1" aria-live="polite"
+                    class="hidden mt-2 bg-ponpes-bg rounded-3xl p-8 sm:p-10 text-center shadow-lift outline-none">
+                    <div
+                        class="mx-auto w-16 h-16 rounded-full bg-ponpes-primary text-white flex items-center justify-center shadow-soft">
+                        <span class="w-8 h-8" data-icon="check"></span>
+                    </div>
+                    <h2 class="mt-6 text-2xl font-extrabold text-ponpes-primary">Pengajuan Berhasil Dikirim</h2>
+                    <p class="mt-2 text-[15px] text-ponpes-muted leading-relaxed">
+                        Pengajuan atas nama <strong id="successName" class="text-ponpes-text"></strong> sedang menunggu
+                        verifikasi administrator.
+                    </p>
+
+                    <div class="mt-6 inline-flex flex-col items-center rounded-2xl bg-ponpes-tint px-8 py-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-ponpes-muted">Nomor
+                            Pengajuan</span>
+                        <span id="successRef"
+                            class="mt-1 text-xl font-extrabold text-ponpes-primary tracking-wider"></span>
+                    </div>
+
+                    <ol class="mt-7 text-left space-y-3 max-w-md mx-auto text-[14.5px] text-ponpes-text/90">
+                        <li class="flex items-start gap-3"><span
+                                class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span
+                                id="stepOne"></span></li>
+                        <li class="flex items-start gap-3"><span
+                                class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span>Hasil
+                                verifikasi dikirim ke WhatsApp <strong id="successPhone"></strong>.</span></li>
+                        <li class="flex items-start gap-3"><span
+                                class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span>Setelah
+                                disetujui, masuk ke sistem dengan kata sandi yang Anda buat.</span></li>
+                    </ol>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                        <a id="successLogin" href="index.html?login=wali"
+                            class="inline-flex items-center justify-center gap-2 bg-ponpes-primary hover:bg-ponpes-primaryDark text-white font-bold text-[15px] px-7 py-3.5 rounded-xl shadow-soft transition-colors">
+                            Menuju Halaman Masuk
+                        </a>
+                        <button type="button" id="againBtn"
+                            class="px-7 py-3.5 rounded-xl border-2 border-ponpes-primary/40 hover:border-ponpes-primary text-ponpes-primary font-semibold text-[15px] cursor-pointer transition-colors">
+                            Ajukan Akun Lain
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Tautan bawah -->
+                <div id="bottomLinks" class="mt-8 flex flex-col items-center gap-2 text-sm text-ponpes-text/85">
+                    <p>Sudah memiliki akun terverifikasi?
+                        <a id="loginLink" href="index.html?login=wali"
+                            class="font-bold text-ponpes-primary hover:underline">Masuk ke Sistem →</a>
+                    </p>
+                    <a href="index.html" class="text-ponpes-muted hover:text-ponpes-primary transition-colors">← Kembali
+                        ke beranda</a>
+                </div>
             </div>
+        </main>
+    </div>
 
-            <div class="space-y-5">
-              <div class="field">
-                <label class="field-label" for="w_nisn">Nomor Induk Siswa Nasional (NISN) <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="idcard"></span>
-                  <input class="input" id="w_nisn" name="nisn" type="text" inputmode="numeric" maxlength="10" autocomplete="off"
-                    data-type="digits" data-label="NISN" required placeholder="Contoh: 0009321234" />
-                </div>
-                <p class="field-hint">Gunakan NIS resmi santri yang tertera pada kartu pelajar atau buku mutaba'ah.</p>
-                <p class="field-error hidden" id="w_nisn_err" role="alert"></p>
-              </div>
-
-              <div class="field">
-                <label class="field-label" for="w_namaSantri">Nama Lengkap Santri <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="cap"></span>
-                  <input class="input" id="w_namaSantri" name="namaSantri" type="text" autocomplete="off"
-                    data-type="name" data-label="Nama santri" required placeholder="Sesuai data pendaftaran pondok" />
-                </div>
-                <p class="field-error hidden" id="w_namaSantri_err" role="alert"></p>
-              </div>
-            </div>
-          </section>
-
-          <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">B</span>
-              <h3 class="text-lg font-bold text-ponpes-primary">Data Wali Santri Pemohon</h3>
-            </div>
-
-            <div class="space-y-5">
-              <div class="field">
-                <label class="field-label" for="w_namaWali">Nama Lengkap Wali <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="user"></span>
-                  <input class="input" id="w_namaWali" name="namaWali" type="text" autocomplete="name"
-                    data-type="name" data-label="Nama wali" required placeholder="Nama lengkap ayah/ibu/wali" />
-                </div>
-                <p class="field-error hidden" id="w_namaWali_err" role="alert"></p>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="field">
-                  <label class="field-label" for="w_hubungan">Hubungan Keluarga <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="users"></span>
-                    <select class="input" id="w_hubungan" name="hubungan" data-type="select" data-label="Hubungan keluarga" required>
-                      <option value="">Pilih hubungan</option>
-                      <option>Ayah Kandung</option>
-                      <option>Ibu Kandung</option>
-                      <option>Wali / Kerabat</option>
-                    </select>
-                  </div>
-                  <p class="field-error hidden" id="w_hubungan_err" role="alert"></p>
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="w_whatsapp">Nomor WhatsApp <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="phone"></span>
-                    <input class="input" id="w_whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"
-                      data-type="phone" data-label="Nomor WhatsApp" required placeholder="081234567890" />
-                  </div>
-                  <p class="field-error hidden" id="w_whatsapp_err" role="alert"></p>
-                </div>
-              </div>
-              <p class="field-hint -mt-2">Nomor aktif akan menerima notifikasi otomatis ketika akun diverifikasi oleh Ustadz/Sekretariat.</p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="field">
-                  <label class="field-label" for="w_password">Kata Sandi Akun <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="lock"></span>
-                    <input class="input has-toggle" id="w_password" name="password" type="password" autocomplete="new-password"
-                      data-type="password" data-label="Kata sandi" required placeholder="Minimal 8 karakter" />
-                    <button type="button" class="pw-toggle" data-toggle-password="w_password" aria-label="Tampilkan kata sandi"><span data-icon="eye"></span></button>
-                  </div>
-                  <p class="field-hint">Kombinasi huruf dan angka.</p>
-                  <p class="field-error hidden" id="w_password_err" role="alert"></p>
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="w_konfirmasi">Konfirmasi Sandi <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="lock"></span>
-                    <input class="input has-toggle" id="w_konfirmasi" name="konfirmasi" type="password" autocomplete="new-password"
-                      data-type="confirm" data-match="w_password" data-label="Konfirmasi sandi" required placeholder="Ulangi kata sandi" />
-                    <button type="button" class="pw-toggle" data-toggle-password="w_konfirmasi" aria-label="Tampilkan konfirmasi sandi"><span data-icon="eye"></span></button>
-                  </div>
-                  <p class="field-error hidden" id="w_konfirmasi_err" role="alert"></p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <p class="form-error hidden" role="alert"></p>
-          <button type="submit" data-submit
-            class="w-full inline-flex items-center justify-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark disabled:opacity-70 disabled:cursor-wait text-white font-bold text-base py-4 rounded-xl shadow-soft transition-all cursor-pointer">
-            <span class="btn-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-            <span class="btn-label">Ajukan Aktivasi Akun Sekarang</span>
-            <span class="btn-icon w-5 h-5" data-icon="send"></span>
-          </button>
-          <p class="text-center text-[12.5px] text-ponpes-muted leading-relaxed">Data digunakan hanya untuk verifikasi oleh administrator pondok.</p>
-        </form>
-
-        <!-- ===================== FORM USTADZ / USTADZAH ===================== -->
-        <form id="form-ustadz" data-role="ustadz" novalidate class="hidden mt-6 space-y-5">
-          <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">A</span>
-              <h3 class="text-lg font-bold text-ponpes-primary">Data Asatidz Terdaftar</h3>
-            </div>
-
-            <div class="space-y-5">
-              <div class="field">
-                <label class="field-label" for="u_niy">NIY (Nomor Induk Yayasan) <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="idcard"></span>
-                  <input class="input" id="u_niy" name="niy" type="text" autocomplete="off"
-                    data-type="staffid" data-label="NIY" required placeholder="Contoh: 2021.0045" />
-                </div>
-                <p class="field-hint">Gunakan NIY yang tertera pada kartu pengajar atau surat tugas.</p>
-                <p class="field-error hidden" id="u_niy_err" role="alert"></p>
-              </div>
-
-              <div class="field">
-                <label class="field-label" for="u_namaLengkap">Nama Lengkap (beserta gelar) <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="user"></span>
-                  <input class="input" id="u_namaLengkap" name="namaLengkap" type="text" autocomplete="name"
-                    data-type="name" data-label="Nama lengkap" required placeholder="Sesuai data kepegawaian pondok" />
-                </div>
-                <p class="field-error hidden" id="u_namaLengkap_err" role="alert"></p>
-              </div>
-            </div>
-          </section>
-
-          <section class="bg-ponpes-bg rounded-2xl p-6 sm:p-7 shadow-sm">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center">B</span>
-              <h3 class="text-lg font-bold text-ponpes-primary">Data Pemohon &amp; Akun</h3>
-            </div>
-
-            <div class="space-y-5">
-              <div class="field">
-                <label class="field-label" for="u_peran">Peran / Jabatan <span class="text-red-700">*</span></label>
-                <div class="relative">
-                  <span class="field-icon" data-icon="briefcase"></span>
-                  <select class="input" id="u_peran" name="peran" data-type="select" data-label="Peran" required>
-                    <option value="">Pilih peran / jabatan</option>
-                    <option>Pengampu Halaqah Tahfidz</option>
-                    <option>Guru Mata Pelajaran</option>
-                    <option>Musyrif / Wali Asrama</option>
-                    <option>Staf Sekretariat</option>
-                  </select>
-                </div>
-                <p class="field-error hidden" id="u_peran_err" role="alert"></p>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="field">
-                  <label class="field-label" for="u_email">Email Aktif <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="mail"></span>
-                    <input class="input" id="u_email" name="email" type="email" autocomplete="email"
-                      data-type="email" data-label="Email" required placeholder="nama@email.com" />
-                  </div>
-                  <p class="field-error hidden" id="u_email_err" role="alert"></p>
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="u_whatsapp">Nomor WhatsApp <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="phone"></span>
-                    <input class="input" id="u_whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"
-                      data-type="phone" data-label="Nomor WhatsApp" required placeholder="081234567890" />
-                  </div>
-                  <p class="field-error hidden" id="u_whatsapp_err" role="alert"></p>
-                </div>
-              </div>
-              <p class="field-hint -mt-2">Nomor aktif akan menerima notifikasi otomatis ketika akun diverifikasi oleh administrator.</p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="field">
-                  <label class="field-label" for="u_password">Kata Sandi Akun <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="lock"></span>
-                    <input class="input has-toggle" id="u_password" name="password" type="password" autocomplete="new-password"
-                      data-type="password" data-label="Kata sandi" required placeholder="Minimal 8 karakter" />
-                    <button type="button" class="pw-toggle" data-toggle-password="u_password" aria-label="Tampilkan kata sandi"><span data-icon="eye"></span></button>
-                  </div>
-                  <p class="field-hint">Kombinasi huruf dan angka.</p>
-                  <p class="field-error hidden" id="u_password_err" role="alert"></p>
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="u_konfirmasi">Konfirmasi Sandi <span class="text-red-700">*</span></label>
-                  <div class="relative">
-                    <span class="field-icon" data-icon="lock"></span>
-                    <input class="input has-toggle" id="u_konfirmasi" name="konfirmasi" type="password" autocomplete="new-password"
-                      data-type="confirm" data-match="u_password" data-label="Konfirmasi sandi" required placeholder="Ulangi kata sandi" />
-                    <button type="button" class="pw-toggle" data-toggle-password="u_konfirmasi" aria-label="Tampilkan konfirmasi sandi"><span data-icon="eye"></span></button>
-                  </div>
-                  <p class="field-error hidden" id="u_konfirmasi_err" role="alert"></p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <p class="form-error hidden" role="alert"></p>
-          <button type="submit" data-submit
-            class="w-full inline-flex items-center justify-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark disabled:opacity-70 disabled:cursor-wait text-white font-bold text-base py-4 rounded-xl shadow-soft transition-all cursor-pointer">
-            <span class="btn-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-            <span class="btn-label">Ajukan Aktivasi Akun Sekarang</span>
-            <span class="btn-icon w-5 h-5" data-icon="send"></span>
-          </button>
-          <p class="text-center text-[12.5px] text-ponpes-muted leading-relaxed">Data digunakan hanya untuk verifikasi oleh administrator pondok.</p>
-        </form>
-
-        <!-- ===================== TAMPILAN SUKSES ===================== -->
-        <section id="successPanel" tabindex="-1" aria-live="polite"
-          class="hidden mt-2 bg-ponpes-bg rounded-3xl p-8 sm:p-10 text-center shadow-lift outline-none">
-          <div class="mx-auto w-16 h-16 rounded-full bg-ponpes-primary text-white flex items-center justify-center shadow-soft">
-            <span class="w-8 h-8" data-icon="check"></span>
-          </div>
-          <h2 class="mt-6 text-2xl font-extrabold text-ponpes-primary">Pengajuan Berhasil Dikirim</h2>
-          <p class="mt-2 text-[15px] text-ponpes-muted leading-relaxed">
-            Pengajuan atas nama <strong id="successName" class="text-ponpes-text"></strong> sedang menunggu verifikasi administrator.
-          </p>
-
-          <div class="mt-6 inline-flex flex-col items-center rounded-2xl bg-ponpes-tint px-8 py-4">
-            <span class="text-xs font-bold uppercase tracking-widest text-ponpes-muted">Nomor Pengajuan</span>
-            <span id="successRef" class="mt-1 text-xl font-extrabold text-ponpes-primary tracking-wider"></span>
-          </div>
-
-          <ol class="mt-7 text-left space-y-3 max-w-md mx-auto text-[14.5px] text-ponpes-text/90">
-            <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span id="stepOne"></span></li>
-            <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span>Hasil verifikasi dikirim ke WhatsApp <strong id="successPhone"></strong>.</span></li>
-            <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-ponpes-primary text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span>Setelah disetujui, masuk ke sistem dengan kata sandi yang Anda buat.</span></li>
-          </ol>
-
-          <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a id="successLogin" href="index.html?login=wali"
-              class="inline-flex items-center justify-center gap-2 bg-ponpes-primary hover:bg-ponpes-primaryDark text-white font-bold text-[15px] px-7 py-3.5 rounded-xl shadow-soft transition-colors">
-              Menuju Halaman Masuk
-            </a>
-            <button type="button" id="againBtn"
-              class="px-7 py-3.5 rounded-xl border-2 border-ponpes-primary/40 hover:border-ponpes-primary text-ponpes-primary font-semibold text-[15px] cursor-pointer transition-colors">
-              Ajukan Akun Lain
-            </button>
-          </div>
-        </section>
-
-        <!-- Tautan bawah -->
-        <div id="bottomLinks" class="mt-8 flex flex-col items-center gap-2 text-sm text-ponpes-text/85">
-          <p>Sudah memiliki akun terverifikasi?
-            <a id="loginLink" href="index.html?login=wali" class="font-bold text-ponpes-primary hover:underline">Masuk ke Sistem →</a>
-          </p>
-          <a href="index.html" class="text-ponpes-muted hover:text-ponpes-primary transition-colors">← Kembali ke beranda</a>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <script src="aktivasi.js" defer></script>
+    <script src="aktivasi.js" defer></script>
 </body>
 
 </html>
