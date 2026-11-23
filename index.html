@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pondok Pesantren Darul Barokah Al - Quds | Profil Resmi</title>
+    <meta name="description"
+        content="Membentuk Generasi Qur'ani yang Berilmu, Berprestasi, dan Berakhlak Mulia. Website resmi Pondok Pesantren Darul Barokah Al-Quds." />
+
+    <!-- Aktifkan animasi reveal hanya jika JavaScript berjalan -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ponpes: {
+                            bg: '#EDF2EF',
+                            surface: '#F6F9F7',
+                            tint: '#DCE6E1',
+                            card: '#C4D3CC',
+                            cardHover: '#B9CBC2',
+                            sectionAlt: '#D6E2DC',
+                            primary: '#15573E',
+                            primaryDark: '#0F4430',
+                            deep: '#0A3324',
+                            text: '#163026',
+                            muted: '#4C645A',
+                            gold: '#B8913A',
+                        }
+                    },
+                    boxShadow: {
+                        soft: '0 12px 36px -14px rgba(21,87,62,.35)',
+                        lift: '0 24px 60px -20px rgba(15,68,48,.45)',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- CSS terpisah -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body
+    class="bg-ponpes-bg text-ponpes-text antialiased selection:bg-ponpes-primary selection:text-white overflow-x-hidden">
+
+    <!-- =====================================================================
+       0. TOP BAR INFORMASI (desktop)
+  ====================================================================== -->
+    <div class="hidden lg:block bg-ponpes-deep text-white/85 text-[13px]">
+        <div class="max-w-7xl mx-auto px-8 flex items-center justify-between py-2.5">
+            <div class="flex items-center gap-7">
+                <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 text-ponpes-gold" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Kaliwungu, Kabupaten Kudus, Jawa Tengah
+                </span>
+                <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 text-ponpes-gold" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    +62 812-2622-8665
+                </span>
+                <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 text-ponpes-gold" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    darulbarokahquds@gmail.com
+                </span>
+            </div>
+            <div class="inline-flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-ponpes-gold animate-pulse"></span>
+                <span>Penerimaan Santri Baru TA 2026/2027 telah dibuka</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+       1. NAVBAR / HEADER NAVIGASI
+  ====================================================================== -->
+    <header id="siteHeader"
+        class="sticky top-0 z-40 bg-ponpes-bg/90 backdrop-blur-lg border-b border-ponpes-tint transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <div class="flex items-center justify-between h-[76px]">
+                <!-- Logo -->
+                <a href="#beranda" class="flex items-center gap-3.5 group">
+                    <div class="w-12 h-12">
+                        <img src="assets/logo.png">
+                    </div>
+                    <div class="leading-tight">
+                        <span class="block text-xs font-medium text-ponpes-muted">Pondok Pesantren</span>
+                        <span class="block text-base lg:text-lg font-extrabold text-ponpes-primary tracking-tight">Darul
+                            Barokah Al - Quds</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <div class="hidden lg:flex items-center gap-10">
+                    <nav class="flex items-center gap-8 text-[15px] font-semibold text-ponpes-text/85">
+                        <a href="#beranda" class="nav-link" data-spy="beranda">Beranda</a>
+                        <a href="#profil" class="nav-link" data-spy="profil">Profil</a>
+                        <a href="#program" class="nav-link" data-spy="program">Program</a>
+                        <a href="#fasilitas" class="nav-link" data-spy="fasilitas">Fasilitas</a>
+                        <a href="#alumni" class="nav-link" data-spy="alumni">Alumni</a>
+                        <a href="#kontak" class="nav-link" data-spy="kontak">Kontak</a>
+                    </nav>
+
+                    <button type="button" data-open-login
+                        class="inline-flex items-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark text-white text-[15px] font-semibold px-6 py-3 rounded-xl shadow-soft transition-all cursor-pointer active:scale-95">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3" />
+                        </svg>
+                        <span>Login Portal</span>
+                    </button>
+                </div>
+
+                <!-- Tombol Mobile / Tablet -->
+                <div class="flex lg:hidden items-center gap-2">
+                    <button type="button" data-open-login
+                        class="bg-ponpes-primary text-white text-sm font-semibold px-4 py-2.5 rounded-xl cursor-pointer">
+                        Login Portal
+                    </button>
+                    <button type="button" id="mobileMenuBtn" aria-label="Menu"
+                        class="p-2.5 rounded-xl bg-ponpes-tint text-ponpes-text cursor-pointer">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu"
+            class="hidden lg:hidden bg-ponpes-surface border-t border-ponpes-tint px-5 pt-3 pb-5 space-y-1">
+            <a href="#beranda"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Beranda</a>
+            <a href="#profil"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Profil</a>
+            <a href="#program"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Program</a>
+            <a href="#fasilitas"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Fasilitas</a>
+            <a href="#alumni"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Alumni</a>
+            <a href="#kontak"
+                class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-ponpes-tint">Kontak</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- =====================================================================
+         2. HERO SECTION (BERANDA)
+    ====================================================================== -->
+        <section id="beranda" class="relative overflow-hidden pt-14 pb-28 lg:pt-20 lg:pb-36">
+            <!-- Dekorasi latar -->
+            <div class="absolute inset-0 pattern-light opacity-80 pointer-events-none"></div>
+            <div
+                class="absolute -top-32 -left-24 w-[480px] h-[480px] rounded-full bg-ponpes-tint blur-3xl opacity-80 pointer-events-none">
+            </div>
+            <div
+                class="absolute top-20 right-0 w-[420px] h-[420px] rounded-full bg-ponpes-card/60 blur-3xl pointer-events-none">
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
+
+                    <!-- Kolom Kiri -->
+                    <div class="lg:col-span-7 space-y-7 reveal">
+                        <div
+                            class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-ponpes-surface border border-ponpes-card text-ponpes-primary text-[13px] font-semibold shadow-sm">
+                            <svg class="w-5 h-7 text-ponpes-primary" fill="none" stroke="currentColor"
+                                stroke-width="2.2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            <span>Pondok Pesantren Berbasis Tahfidz &amp; Karakter Islami</span>
+                        </div>
+
+                        <h1
+                            class="text-4xl sm:text-5xl xl:text-[58px] font-extrabold text-ponpes-primary leading-[1.1] tracking-tight">
+                            Membentuk Generasi Qur'ani yang Berilmu, Berprestasi, dan Berakhlak Mulia.
+                        </h1>
+
+                        <p class="text-ponpes-muted text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Pondok Pesantren Darul Barokah Al Quds menghadirkan pendidikan yang mengintegrasikan
+                            pembelajaran Al-Qur'an, pengembangan prestasi akademik, serta pembiasaan nilai-nilai Islam
+                            dalam kehidupan sehari-hari.
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-1">
+                            <button type="button" data-open-psb
+                                class="inline-flex items-center gap-2.5 bg-ponpes-primary hover:bg-ponpes-primaryDark text-white font-semibold text-[15px] px-8 py-4 rounded-xl shadow-soft transition-all cursor-pointer hover:-translate-y-0.5">
+                                <span>Informasi Pendaftaran Santri</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </button>
+                            <a href="#profil"
+                                class="bg-transparent hover:bg-ponpes-tint text-ponpes-primary border-2 border-ponpes-primary/30 hover:border-ponpes-primary font-semibold text-[15px] px-8 py-[14px] rounded-xl transition-all">
+                                Profil Pondok Kami
+                            </a>
+                        </div>
+
+                        <!-- 3 Mini Feature -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                            <div
+                                class="flex items-center gap-3.5 p-4 rounded-2xl bg-ponpes-surface/80 border border-ponpes-tint shadow-sm">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="text-sm font-bold">Tahfidz Qur’an dan Sains</p>
+                                    <p class="text-xs text-ponpes-muted mt-1">Halaqah intensif</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-3.5 p-4 rounded-2xl bg-ponpes-surface/80 border border-ponpes-tint shadow-sm">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 14l9-5-9-5-9 5 9 5z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                    </svg>
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="text-sm font-bold">Pembiasaan Nilai Islami</p>
+                                    <p class="text-xs text-ponpes-muted mt-1">Adab dan kemandirian</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-3.5 p-4 rounded-2xl bg-ponpes-surface/80 border border-ponpes-tint shadow-sm">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                </div>
+                                <div class="leading-tight">
+                                    <p class="text-sm font-bold">Unggul dalam Prestasi</p>
+                                    <p class="text-xs text-ponpes-muted mt-1">Mennggali minat &amp; bakat</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Foto + floating badge/card -->
+                    <div class="lg:col-span-5 relative reveal" data-delay="2">
+                        <!-- Bingkai dekoratif di belakang foto -->
+                        <div
+                            class="absolute -top-5 -right-5 w-full h-full rounded-[32px] border-2 border-ponpes-primary/20 hidden sm:block">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-40 h-40 rounded-full bg-ponpes-gold/15 blur-2xl"></div>
+
+                        <!-- Badge -->
+                        <div
+                            class="absolute top-5 left-5 z-10 bg-ponpes-surface/95 backdrop-blur px-4 py-2 rounded-full shadow-soft border border-ponpes-tint flex items-center gap-2">
+                            <svg class="w-4 h-4 text-ponpes-primary" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z" />
+                            </svg>
+
+                            <span class="text-xs font-bold text-ponpes-text">Kudus, Jawa Tengah</span>
+                        </div>
+
+                        <div class="relative rounded-[28px] overflow-hidden shadow-lift bg-ponpes-card aspect-[4/4.7]">
+                            <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1000&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/800x940/15573E/FFFFFF?text=Santri+Mengaji+Al-Quran';"
+                                alt="Santri Pondok Pesantren Darul Barokah Al-Quds sedang mengaji"
+                                class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-ponpes-deep/55 via-transparent to-transparent">
+                            </div>
+
+                            <!-- Floating card -->
+                            <div
+                                class="absolute bottom-5 left-5 right-5 bg-ponpes-surface/95 backdrop-blur p-4 rounded-2xl shadow-lift flex items-start gap-3.5">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-[15px] font-bold">Pembinaan Tahfidz &amp; Ilmu</h3>
+                                    <p class="text-[13px] text-ponpes-muted leading-snug mt-1">
+                                        Pendampingan belajar yang terarah dalam lingkungan pesantren yang nyaman.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         2b. STRIP STATISTIK RINGKAS
+    ====================================================================== -->
+        <section class="relative -mt-16 lg:-mt-20 z-10">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div
+                    class="reveal bg-ponpes-surface rounded-3xl shadow-lift border border-ponpes-tint grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ponpes-tint">
+                    <div class="p-6 lg:p-8 text-center">
+                        <p class="text-3xl lg:text-4xl font-extrabold text-ponpes-primary">30 Juz</p>
+                        <p class="text-sm text-ponpes-muted mt-1.5">Target hafalan Al-Qur'an</p>
+                    </div>
+                    <div class="p-6 lg:p-8 text-center">
+                        <p class="text-3xl lg:text-4xl font-extrabold text-ponpes-primary">2 Jenjang</p>
+                        <p class="text-sm text-ponpes-muted mt-1.5">SMP/MTs &amp; SMA/MA </p>
+                    </div>
+                    <div class="p-6 lg:p-8 text-center">
+                        <p class="text-3xl lg:text-4xl font-extrabold text-ponpes-primary">Terpadu</p>
+                        <p class="text-sm text-ponpes-muted mt-1.5">Tahfidz, akademik &amp; adab</p>
+                    </div>
+                    <div class="p-6 lg:p-8 text-center">
+                        <p class="text-3xl lg:text-4xl font-extrabold text-ponpes-primary">2026/2027</p>
+                        <p class="text-sm text-ponpes-muted mt-1.5">Pendaftaran santri baru dibuka</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         3. TENTANG KAMI (PROFIL)
+    ====================================================================== -->
+        <section id="profil" class="py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
+
+                    <!-- Foto Masjid -->
+                    <div class="lg:col-span-5 relative reveal">
+                        <div class="absolute -top-5 -left-5 w-2/3 h-2/3 rounded-[32px] bg-ponpes-card/70"></div>
+                        <div class="relative rounded-[28px] overflow-hidden shadow-lift bg-ponpes-card aspect-[4/4.6]">
+                            <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1000&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/800x920/15573E/FFFFFF?text=Masjid+Pondok+Pesantren';"
+                                alt="Masjid Pondok Pesantren Darul Barokah Al-Quds"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div
+                            class="absolute -bottom-5 right-4 sm:-right-5 bg-ponpes-primary text-white px-5 py-4 rounded-2xl shadow-lift flex items-center gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div class="leading-tight">
+                                <span class="block text-xs font-normal text-white/80">Pondok Pesantren</span>
+                                <span class="block text-sm font-bold">Darul Barokah Al - Quds</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teks Profil -->
+                    <div class="lg:col-span-7 space-y-6 reveal" data-delay="2">
+                        <span
+                            class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                            <span class="w-8 h-0.5 bg-ponpes-gold"></span>Tentang Kami
+                        </span>
+                        <h2
+                            class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary leading-tight tracking-tight">
+                            Lembaga Pendidikan Islam yang Membentuk Generasi Qur'ani dan Berprestasi
+                        </h2>
+                        <p class="text-ponpes-muted text-base lg:text-[17px] leading-relaxed">
+                            Pondok Pesantren Darul Barokah Al Quds merupakan lembaga pendidikan Islam yang berfokus pada
+                            pembentukan santri Qur'ani, pengembangan prestasi akademik, dan penanaman nilai-nilai akhlak
+                            Islami. Melalui pembelajaran Al-Qur'an, pendampingan akademik, serta pembiasaan ibadah dan
+                            perilaku positif, pondok berupaya membimbing santri agar tumbuh menjadi pribadi yang
+                            berilmu, mandiri, dan bertanggung jawab.
+                        </p>
+
+                        <div class="space-y-3.5 pt-2">
+                            <div
+                                class="flex items-center gap-4 p-4 rounded-2xl bg-ponpes-surface border border-ponpes-tint shadow-sm hover:shadow-soft hover:-translate-y-0.5 transition-all">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold">Pembelajaran Al-Qur'an Intensif</h3>
+                                    <p class="text-sm text-ponpes-muted mt-0.5">Membimbing santri memahami, membaca, dan
+                                        menghafal Al-Qur'an.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-4 p-4 rounded-2xl bg-ponpes-surface border border-ponpes-tint shadow-sm hover:shadow-soft hover:-translate-y-0.5 transition-all">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold">Pengembangan Prestasi Akademik</h3>
+                                    <p class="text-sm text-ponpes-muted mt-0.5">Mendukung kemampuan belajar melalui
+                                        pembimbingan mata pelajaran.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-4 p-4 rounded-2xl bg-ponpes-surface border border-ponpes-tint shadow-sm hover:shadow-soft hover:-translate-y-0.5 transition-all">
+                                <div
+                                    class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold">Pembinaan Akhlak Islami</h3>
+                                    <p class="text-sm text-ponpes-muted mt-0.5">Membiasakan ibadah, kedisiplinan,
+                                        kejujuran, dan tanggung jawab.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         4. VISI & MISI
+    ====================================================================== -->
+        <section class="py-8 lg:py-12">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="relative overflow-hidden rounded-[32px] bg-ponpes-card p-7 sm:p-10 lg:p-14 reveal">
+                    <div class="absolute inset-0 pattern-light pointer-events-none"></div>
+
+                    <div class="relative">
+                        <div class="mb-9 max-w-2xl">
+                            <span
+                                class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                                <span class="w-8 h-0.5 bg-ponpes-gold"></span>Arah &amp; Tujuan Lembaga
+                            </span>
+                            <h2 class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 tracking-tight">
+                                Visi &amp; Misi Pondok Pesantren</h2>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Visi -->
+                            <div class="bg-ponpes-bg rounded-3xl p-7 lg:p-10 shadow-sm">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+                                    <div class="lg:col-span-3 flex lg:flex-col items-center lg:items-start gap-4">
+                                        <div
+                                            class="w-14 h-14 rounded-2xl bg-ponpes-primary text-white flex items-center justify-center shrink-0 shadow-soft">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-extrabold leading-snug">Visi Pondok<br
+                                                class="hidden lg:block" /> Pesantren</h3>
+                                    </div>
+
+                                    <div class="lg:col-span-9 space-y-6">
+                                        <p class="text-lg lg:text-2xl font-bold text-ponpes-primary leading-relaxed">
+                                            "Terwujudnya santri Qur'ani dan unggul dalam prestasi serta masuk perguruan
+                                            tinggi favorit."
+                                        </p>
+
+                                        <div
+                                            class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-6 border-t border-ponpes-card text-sm text-ponpes-muted">
+                                            <div class="bg-ponpes-surface rounded-2xl p-5">
+                                                <p class="font-bold text-ponpes-primary text-base mb-3">1. Santri yang
+                                                    Qur'ani</p>
+                                                <ul class="space-y-2 list-disc list-outside pl-4 leading-relaxed">
+                                                    <li>Memahami Al-Qur'an dengan baik dan benar berbasis amsilati.</li>
+                                                    <li>Terbiasa membaca Al-Qur'an dengan baik dan benar.</li>
+                                                    <li>Menghafal Al-Qur'an dengan baik dan benar sesuai tingkatan.</li>
+                                                    <li>Menerapkan Al-Qur'an dalam kehidupan sehari-hari.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-ponpes-surface rounded-2xl p-5">
+                                                <p class="font-bold text-ponpes-primary text-base mb-3">2. Unggul dalam
+                                                    Prestasi</p>
+                                                <ul class="space-y-2 list-disc list-outside pl-4 leading-relaxed">
+                                                    <li>Memperoleh prestasi akademik di lembaga formal melalui
+                                                        pembimbingan klinis prestasi.</li>
+                                                    <li>Memperoleh prestasi non akademik di lembaga formal melalui
+                                                        bimbingan.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="bg-ponpes-surface rounded-2xl p-5">
+                                                <p class="font-bold text-ponpes-primary text-base mb-3">3. Masuk
+                                                    Perguruan Tinggi</p>
+                                                <ul class="space-y-2 list-disc list-outside pl-4 leading-relaxed">
+                                                    <li>Bimbel Mandiri Kelas 10.</li>
+                                                    <li>Kerjasama Bimbel (UTBK) Kelas 11 & 12 di Pondok.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Misi -->
+                            <div class="bg-ponpes-bg rounded-3xl p-7 lg:p-10 shadow-sm">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+                                    <div class="lg:col-span-3 flex lg:flex-col items-center lg:items-start gap-4">
+                                        <div
+                                            class="w-14 h-14 rounded-2xl bg-ponpes-primary text-white flex items-center justify-center shrink-0 shadow-soft">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-extrabold leading-snug">Misi Pondok<br
+                                                class="hidden lg:block" /> Pesantren</h3>
+                                    </div>
+
+                                    <div
+                                        class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 text-sm text-ponpes-muted">
+                                        <div class="bg-ponpes-surface rounded-2xl p-5 flex items-start gap-3.5">
+                                            <span
+                                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0">1</span>
+                                            <p class="leading-relaxed">Menumbuhkan pemahaman, penghayatan hafalan dan
+                                                pengamalan Al-Qur'an dalam kehidupan sehari-hari melalui pembiasaan.</p>
+                                        </div>
+                                        <div class="bg-ponpes-surface rounded-2xl p-5 flex items-start gap-3.5">
+                                            <span
+                                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
+                                            <p class="leading-relaxed">Mengembangkan prestasi akademik dan non akademik
+                                                melalui pembimbingan.</p>
+                                        </div>
+                                        <div class="bg-ponpes-surface rounded-2xl p-5 flex items-start gap-3.5">
+                                            <span
+                                                class="w-8 h-8 rounded-lg bg-ponpes-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0">3</span>
+                                            <p class="leading-relaxed">Mewujudkan santri yang masuk perguruan tinggi
+                                                favorit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         5. PROGRAM UNGGULAN
+    ====================================================================== -->
+        <section id="program" class="py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="max-w-3xl mb-12 reveal">
+                    <span
+                        class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                        <span class="w-8 h-0.5 bg-ponpes-gold"></span>Program Pendidikan
+                    </span>
+                    <h2
+                        class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 leading-tight tracking-tight">
+                        Program Unggulan untuk Membangun Generasi Berkualitas
+                    </h2>
+                    <p class="text-ponpes-muted text-base lg:text-[17px] mt-4 leading-relaxed">
+                        Berbagai program pendidikan dirancang untuk mengembangkan kemampuan Al-Qur'an, meningkatkan prestasi akademik, serta membentuk karakter santri yang berlandaskan nilai-nilai Islam.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Card 1 -->
+                    <div
+                        class="group reveal bg-ponpes-card hover:bg-ponpes-cardHover transition-all duration-300 rounded-3xl p-4 flex flex-col sm:flex-row items-stretch gap-5 hover:shadow-lift">
+                        <div
+                            class="w-full sm:w-52 h-48 sm:h-auto sm:min-h-[210px] rounded-2xl overflow-hidden shrink-0 bg-ponpes-tint">
+                            <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=700&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x320/15573E/FFFFFF?text=Tahfidz+Al-Quran';"
+                                alt="Tahfidz Al-Qur'an"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="py-2 pr-2 space-y-2.5 self-center">
+                            <span
+                                class="inline-block text-[11px] font-bold tracking-widest uppercase text-ponpes-primary bg-ponpes-surface/80 px-2.5 py-1 rounded-md">Program
+                                01</span>
+                            <h3 class="text-xl font-bold">Tahfidz & Sains</h3>
+                            <p class="text-[15px] text-ponpes-text/80 leading-relaxed">
+                                Program pembinaan hafalan Al-Qur'an melalui halaqoh Maghrib dan Subuh, disertai pengembangan kemampuan akademik dan sains.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="group reveal bg-ponpes-card hover:bg-ponpes-cardHover transition-all duration-300 rounded-3xl p-4 flex flex-col sm:flex-row items-stretch gap-5 hover:shadow-lift"
+                        data-delay="1">
+                        <div
+                            class="w-full sm:w-52 h-48 sm:h-auto sm:min-h-[210px] rounded-2xl overflow-hidden shrink-0 bg-ponpes-tint">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x320/15573E/FFFFFF?text=Perguruan+Tinggi';"
+                                alt="Persiapan Perguruan Tinggi"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="py-2 pr-2 space-y-2.5 self-center">
+                            <span
+                                class="inline-block text-[11px] font-bold tracking-widest uppercase text-ponpes-primary bg-ponpes-surface/80 px-2.5 py-1 rounded-md">Program
+                                02</span>
+                            <h3 class="text-xl font-bold">Persiapan Perguruan Tinggi</h3>
+                            <p class="text-[15px] text-ponpes-text/80 leading-relaxed">
+                                Bimbingan belajar mandiri kelas 10 serta kerja sama bimbingan belajar untuk kelas 11 dan 12 di pondok.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="group reveal bg-ponpes-card hover:bg-ponpes-cardHover transition-all duration-300 rounded-3xl p-4 flex flex-col sm:flex-row items-stretch gap-5 hover:shadow-lift">
+                        <div
+                            class="w-full sm:w-52 h-48 sm:h-auto sm:min-h-[210px] rounded-2xl overflow-hidden shrink-0 bg-ponpes-tint">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x320/15573E/FFFFFF?text=Klinik+Prestasi';"
+                                alt="Klinik Prestasi"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="py-2 pr-2 space-y-2.5 self-center">
+                            <span
+                                class="inline-block text-[11px] font-bold tracking-widest uppercase text-ponpes-primary bg-ponpes-surface/80 px-2.5 py-1 rounded-md">Program
+                                03</span>
+                            <h3 class="text-xl font-bold">Klinik Prestasi</h3>
+                            <p class="text-[15px] text-ponpes-text/80 leading-relaxed">
+                                Pendampingan dan penguatan mata pelajaran sesuai jurusan untuk membantu meningkatkan kemampuan akademik santri.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="group reveal bg-ponpes-card hover:bg-ponpes-cardHover transition-all duration-300 rounded-3xl p-4 flex flex-col sm:flex-row items-stretch gap-5 hover:shadow-lift"
+                        data-delay="1">
+                        <div
+                            class="w-full sm:w-52 h-48 sm:h-auto sm:min-h-[210px] rounded-2xl overflow-hidden shrink-0 bg-ponpes-tint">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80"
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x320/15573E/FFFFFF?text=Pembinaan+Adab';"
+                                alt="Pembinaan Karakter dan Adab"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="py-2 pr-2 space-y-2.5 self-center">
+                            <span
+                                class="inline-block text-[11px] font-bold tracking-widest uppercase text-ponpes-primary bg-ponpes-surface/80 px-2.5 py-1 rounded-md">Program
+                                04</span>
+                            <h3 class="text-xl font-bold">Pembiasaan Nilai Islami</h3>
+                            <p class="text-[15px] text-ponpes-text/80 leading-relaxed">
+                                Pembiasaan sholat berjamaah, sholat sunnah, tahajud, serta penerapan nilai 5S, kejujuran, disiplin, tanggung jawab, dan kepedulian.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         6. JADWAL HARIAN
+    ====================================================================== -->
+        <section class="py-8 lg:py-12">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="max-w-3xl mb-10 reveal">
+                    <span
+                        class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                        <span class="w-8 h-0.5 bg-ponpes-gold"></span>Kehidupan Santri
+                    </span>
+                    <h2
+                        class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 leading-tight tracking-tight">
+                        Sehari Menjadi Bagian dari Keluarga Darul Barokah
+                    </h2>
+                    <p class="text-ponpes-muted text-base lg:text-[17px] mt-4 leading-relaxed">
+                        Aktivitas harian santri dirancang seimbang antara ibadah, pembelajaran, pengembangan diri, dan
+                        waktu istirahat yang teratur.
+                    </p>
+                </div>
+
+                <div class="relative overflow-hidden rounded-[32px] bg-ponpes-card p-6 sm:p-9 lg:p-12 reveal">
+                    <div class="absolute inset-0 pattern-light pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="flex items-center gap-3.5 mb-7">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shadow-soft">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold">Jadwal Kegiatan Harian</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-9 items-center">
+                            <!-- 8 slot jadwal -->
+                            <div class="lg:col-span-7 space-y-2.5">
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">03.30
+                                            - 04.00</span>
+                                        <span class="text-[15px] font-semibold">Bangun tidur dan persiapan Sholat Tahajud.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Persiapan</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">04.00
+                                            - 04.30</span>
+                                        <span class="text-[15px] font-semibold">Dzikir, murojaah, dan Sholat Subuh.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Ibadah</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">04.30
+                                            - 05.30</span>
+                                        <span class="text-[15px] font-semibold">Halaqoh Al-Qur'an.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Tahfidz</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">05.30
+                                            - 06.00</span>
+                                        <span class="text-[15px] font-semibold">Sarapan.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Sarapan</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">06.30
+                                            - 14.30</span>
+                                        <span class="text-[15px] font-semibold">Kegiatan pembelajaran di madrasah.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Akademik</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">14.30
+                                            - 18.00</span>
+                                        <span class="text-[15px] font-semibold">Kembali ke pondok, istirahat, dan kegiatan sore.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Istirahat</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">18.00
+                                            - 20.00</span>
+                                        <span class="text-[15px] font-semibold">Sholat berjamaah, halaqoh, dan makan malam.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Al-Qur'an</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between gap-3 bg-ponpes-bg px-4 py-3 rounded-xl hover:translate-x-1 transition-transform">
+                                    <div class="flex items-center gap-4 min-w-0">
+                                        <span
+                                            class="bg-ponpes-primary text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 w-[118px] text-center">20.00
+                                            - 22.00</span>
+                                        <span class="text-[15px] font-semibold">Bimbingan belajar dan kegiatan malam.</span>
+                                    </div>
+                                    <span
+                                        class="hidden sm:inline text-xs font-medium text-ponpes-muted shrink-0">Belajar</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid foto 2x2 -->
+                            <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                                <div class="rounded-2xl overflow-hidden aspect-[4/4.6] bg-ponpes-tint shadow-soft">
+                                    <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=600&q=80"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x460/15573E/FFFFFF?text=Halaqah+Pagi';"
+                                        alt="Halaqah Pagi Santri" class="w-full h-full object-cover" />
+                                </div>
+                                <div class="rounded-2xl overflow-hidden aspect-[4/4.6] bg-ponpes-tint shadow-soft mt-8">
+                                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x460/15573E/FFFFFF?text=KBM+Kelas';"
+                                        alt="Kegiatan Belajar Kelas" class="w-full h-full object-cover" />
+                                </div>
+                                <div class="rounded-2xl overflow-hidden aspect-[4/4.6] bg-ponpes-tint shadow-soft">
+                                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x460/15573E/FFFFFF?text=Kajian+Kitab';"
+                                        alt="Kajian Kitab" class="w-full h-full object-cover" />
+                                </div>
+                                <div class="rounded-2xl overflow-hidden aspect-[4/4.6] bg-ponpes-tint shadow-soft mt-8">
+                                    <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=600&q=80"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/400x460/15573E/FFFFFF?text=Belajar+Mandiri';"
+                                        alt="Belajar Mandiri Malam" class="w-full h-full object-cover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         7. FASILITAS (CAROUSEL)
+    ====================================================================== -->
+        <section id="fasilitas" class="py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
+                    <div class="max-w-3xl">
+                        <span
+                            class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                            <span class="w-8 h-0.5 bg-ponpes-gold"></span>Sarana &amp; Prasarana
+                        </span>
+                        <h2
+                            class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 leading-tight tracking-tight">
+                            Fasilitas Penunjang Pendidikan dan Kehidupan Santri
+                        </h2>
+                        <p class="text-ponpes-muted text-base lg:text-[17px] mt-4 leading-relaxed">
+                            Lingkungan pondok dilengkapi berbagai fasilitas untuk mendukung kenyamanan santri dalam belajar, beribadah, dan menjalani aktivitas sehari-hari.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-4 shrink-0">
+                        <div id="fasilitasDots" class="flex items-center gap-1.5"></div>
+                        <button type="button" id="fasilitasPrev" aria-label="Fasilitas Sebelumnya"
+                            class="w-12 h-12 rounded-full bg-ponpes-tint hover:bg-ponpes-primary hover:text-white text-ponpes-primary flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button type="button" id="fasilitasNext" aria-label="Fasilitas Berikutnya"
+                            class="w-12 h-12 rounded-full bg-ponpes-primary hover:bg-ponpes-primaryDark text-white flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-soft">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="fasilitasViewport" class="slider-viewport">
+                    <div id="fasilitasTrack" class="slider-track">
+                        <!-- Slide 1 -->
+                        <div
+                            class="fasilitas-slide group shrink-0 w-[85%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] rounded-3xl bg-ponpes-surface border border-ponpes-card/75 p-3 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="rounded-2xl overflow-hidden aspect-[4/3.4] bg-ponpes-card">
+                                <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x510/15573E/FFFFFF?text=Asrama+Santri';"
+                                    alt="Asrama Santri" draggable="false"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <div class="px-2 pt-4 pb-2 flex-1">
+                                <h3 class="text-lg font-bold">Asrama Santri</h3>
+                                <p class="text-sm text-ponpes-muted leading-relaxed mt-1.5">Gedung tiga lantai dengan pembagian kamar santri putra dan putri.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div
+                            class="fasilitas-slide group shrink-0 w-[85%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] rounded-3xl bg-ponpes-surface border border-ponpes-card/75 p-3 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="rounded-2xl overflow-hidden aspect-[4/3.4] bg-ponpes-card">
+                                <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?auto=format&fit=crop&w=800&q=80"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x510/15573E/FFFFFF?text=Kantin+%26+Dapur+Sehat';"
+                                    alt="Kantin dan Dapur Sehat" draggable="false"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <div class="px-2 pt-4 pb-2 flex-1">
+                                <h3 class="text-lg font-bold">Dapur &amp; Ruang Makan yang Luas</h3>
+                                <p class="text-sm text-ponpes-muted leading-relaxed mt-1.5">Ruang makan yang nyaman dan dilengkapi dengan fasilitas yang memadai untuk menunjang kebutuhan makan santri.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div
+                            class="fasilitas-slide group shrink-0 w-[85%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] rounded-3xl bg-ponpes-surface border border-ponpes-card/75 p-3 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="rounded-2xl overflow-hidden aspect-[4/3.4] bg-ponpes-card">
+                                <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=800&q=80"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x510/15573E/FFFFFF?text=Masjid+Jami+Pesantren';"
+                                    alt="Musholla" draggable="false"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <div class="px-2 pt-4 pb-2 flex-1">
+                                <h3 class="text-lg font-bold">Musholla</h3>
+                                <p class="text-sm text-ponpes-muted leading-relaxed mt-1.5">Tempat santri melaksanakan ibadah berjamaah, mengaji, &amp; mengikuti kegiatan keagamaan.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div
+                            class="fasilitas-slide group shrink-0 w-[85%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] rounded-3xl bg-ponpes-surface border border-ponpes-card/75 p-3 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <div class="rounded-2xl overflow-hidden aspect-[4/3.4] bg-ponpes-card">
+                                <img src="assets/toilet.jpg"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x510/15573E/FFFFFF?text=Kamar+Mandi+%26+Tempat+Wudu';"
+                                    alt="Kamar Mandi dan Tempat Wudu" draggable="false"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <div class="px-2 pt-4 pb-2 flex-1">
+                                <h3 class="text-lg font-bold">Kamar Mandi &amp; Tempat Wudu</h3>
+                                <p class="text-sm text-ponpes-muted leading-relaxed mt-1.5">Fasilitas sanitasi dan bersuci untuk menunjang kebersihan serta kebutuhan harian santri.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         8. TESTIMONI ALUMNI (CAROUSEL)
+    ====================================================================== -->
+        <section id="alumni" class="py-16 lg:py-24 bg-ponpes-sectionAlt/60">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
+                    <div class="max-w-3xl">
+                        <span
+                            class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                            <span class="w-8 h-0.5 bg-ponpes-gold"></span>Testimoni Alumni
+                        </span>
+                        <h2
+                            class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 leading-tight tracking-tight">
+                            Cerita Mereka, Bagian dari Perjalanan Kami.
+                        </h2>
+                        <p class="text-ponpes-muted text-base lg:text-[17px] mt-4 leading-relaxed">
+                            Pengalaman dan kesan para alumni selama menjadi bagian dari keluarga besar Pondok Pesantren Darul Barokah Al Quds.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button type="button" id="alumniPrev" aria-label="Testimoni Sebelumnya"
+                            class="w-12 h-12 rounded-full bg-ponpes-surface hover:bg-ponpes-primary hover:text-white text-ponpes-primary flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button type="button" id="alumniNext" aria-label="Testimoni Berikutnya"
+                            class="w-12 h-12 rounded-full bg-ponpes-primary hover:bg-ponpes-primaryDark text-white flex items-center justify-center transition-all active:scale-90 cursor-pointer shadow-soft">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="alumniViewport" class="slider-viewport">
+                    <div id="alumniTrack" class="slider-track">
+                        <!-- Alumni 1 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Pembinaan tahfidz dan pembiasaan bahasa Arab di pondok menjadi bekal utama saya
+                                    hingga dapat melanjutkan studi di Universitas Al-Azhar, Kairo."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    AA</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Ahmad Husein Ali</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">Universitas
+                                        Al-Azhar, Kairo</p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2022</span>
+                            </div>
+                        </div>
+
+                        <!-- Alumni 2 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Keseimbangan antara muraja'ah Al-Qur'an dan program persiapan perguruan tinggi
+                                    sangat membantu saya meraih cita-cita di bangku kuliah."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    DA</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Diska Almas Rona</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">Universitas Brawijaya</p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2023</span>
+                            </div>
+                        </div>
+
+                        <!-- Alumni 3 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Nilai kedisiplinan, kemandirian, dan adab yang ditanamkan selama di asrama sangat
+                                    membentuk karakter saya hingga saat ini."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    DS</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Daffa Syarif</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">Universitas Negeri Semarang</p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2021</span>
+                            </div>
+                        </div>
+
+                        <!-- Alumni 4 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Lingkungan yang hangat dan bimbingan ustadzah yang penuh perhatian menjadikan
+                                    pesantren sebagai tempat terbaik untuk bertumbuh."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    NA</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Nabila Amalia</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">Universitas
+                                        Diponegoro</p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2024</span>
+                            </div>
+                        </div>
+
+                        <!-- Alumni 5 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Klinik Prestasi melatih saya berpikir kritis dan percaya diri mengikuti berbagai
+                                    kompetisi sains hingga tingkat nasional."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    MF</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Muhammad Farhan</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">Universitas Gadjah
+                                        Mada</p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2022</span>
+                            </div>
+                        </div>
+
+                        <!-- Alumni 6 -->
+                        <div
+                            class="alumni-slide shrink-0 w-[88%] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)] bg-ponpes-surface border border-ponpes-card rounded-3xl p-7 shadow-sm hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between gap-6">
+                            <div class="space-y-5">
+                                <svg class="w-9 h-9 text-ponpes-gold/70" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9.17 6C6.3 7.3 4 10.1 4 14v4h6v-6H6.6c.3-2 1.5-3.4 3.3-4.1L9.17 6zm9 0C15.3 7.3 13 10.1 13 14v4h6v-6h-3.4c.3-2 1.5-3.4 3.3-4.1L18.17 6z" />
+                                </svg>
+                                <p class="text-[15px] text-ponpes-text/85 leading-relaxed">
+                                    "Hafalan Al-Qur'an yang terjaga bersama halaqah harian menjadi sumber ketenangan dan
+                                    keberkahan dalam menuntut ilmu."
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3.5 pt-5 border-t border-ponpes-tint">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shadow-soft shrink-0">
+                                    KH</div>
+                                <div class="leading-tight min-w-0">
+                                    <h3 class="text-[15px] font-bold">Khadijah Humaira</h3>
+                                    <p class="text-[13px] font-semibold text-ponpes-primary mt-0.5">UIN Sunan Kalijaga
+                                    </p>
+                                </div>
+                                <span
+                                    class="ml-auto px-2.5 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold shrink-0">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="alumniDots" class="flex items-center justify-center gap-1.5 mt-2"></div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         9. CTA BANNER PENDAFTARAN
+    ====================================================================== -->
+        <section class="py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div
+                    class="relative overflow-hidden rounded-[32px] bg-ponpes-primary text-white p-8 sm:p-12 lg:p-16 reveal">
+                    <div class="absolute inset-0 pattern-dark pointer-events-none"></div>
+                    <div
+                        class="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-white/10 blur-3xl pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute -left-16 -bottom-24 w-72 h-72 rounded-full bg-ponpes-gold/20 blur-3xl pointer-events-none">
+                    </div>
+
+                    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-7 space-y-5">
+                            <div
+                                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-ponpes-primary text-xs font-bold">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>Penerimaan Santri Baru TA 2026/2027</span>
+                            </div>
+
+                            <h2 class="text-3xl lg:text-[42px] font-extrabold leading-tight tracking-tight">
+                                Menjadi Bagian dari Keluarga Besar Darul Barokah Al - Quds
+                            </h2>
+
+                            <p class="text-white/85 text-base lg:text-lg leading-relaxed max-w-2xl">
+                                Pendaftaran Santri Baru Tahun Ajaran 2027/2028 kini telah dibuka. Dapatkan informasi lengkap mengenai syarat administratif, alur tes baca Al-Qur’an, serta jadwal observasi dan wawancara calon santri dan wali.
+                            </p>
+
+                            <div class="flex flex-wrap items-center gap-4 pt-2">
+                                <button type="button" data-open-psb
+                                    class="inline-flex items-center gap-2.5 bg-white hover:bg-ponpes-bg text-ponpes-primary font-bold text-[15px] px-7 py-4 rounded-xl transition-all cursor-pointer hover:-translate-y-0.5 shadow-lift">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <span>Informasi Pendaftaran Santri</span>
+                                </button>
+                                <a href="#kontak"
+                                    class="inline-flex items-center gap-2.5 border-2 border-white/40 hover:bg-white/10 text-white font-semibold text-[15px] px-7 py-[14px] rounded-xl transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <span>Hubungi Sekretariat PSB</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Ringkasan alur -->
+                        <div class="lg:col-span-5">
+                            <div
+                                class="bg-white/10 backdrop-blur rounded-3xl border border-white/20 p-6 sm:p-7 space-y-4">
+                                <p class="text-sm font-bold uppercase tracking-widest text-white/80">Alur Singkat
+                                    Pendaftaran</p>
+                                <div class="flex items-start gap-3.5">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-white text-ponpes-primary font-extrabold text-sm flex items-center justify-center shrink-0">1</span>
+                                    <p class="text-[15px] leading-relaxed text-white/90">Pengisian formulir &amp;
+                                        kelengkapan berkas calon santri</p>
+                                </div>
+                                <div class="flex items-start gap-3.5">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-white text-ponpes-primary font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
+                                    <p class="text-[15px] leading-relaxed text-white/90">Tes baca Al-Qur'an &amp;
+                                        wawancara</p>
+                                </div>
+                                <div class="flex items-start gap-3.5">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-white text-ponpes-primary font-extrabold text-sm flex items-center justify-center shrink-0">3</span>
+                                    <p class="text-[15px] leading-relaxed text-white/90">Daftar ulang &amp; aktivasi
+                                        akun Web Monitoring wali santri</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         10. KONTAK
+    ====================================================================== -->
+        <section id="kontak" class="py-20 lg:py-28 bg-ponpes-card/70">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+
+                    <div class="lg:col-span-5 space-y-7 reveal">
+                        <div>
+                            <span
+                                class="inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] uppercase text-ponpes-primary">
+                                <span class="w-8 h-0.5 bg-ponpes-gold"></span>Hubungi Kami
+                            </span>
+                            <h2
+                                class="text-3xl lg:text-[40px] font-extrabold text-ponpes-primary mt-3 leading-tight tracking-tight">
+                                Sekretariat &amp; Layanan Kunjungan
+                            </h2>
+                            <p class="text-ponpes-text/85 text-base lg:text-[17px] mt-4 leading-relaxed">
+                                Untuk mengetahui lebih lanjut mengenai Pondok Pesantren Darul Barokah Al Quds, silakan
+                                hubungi kami melalui informasi kontak berikut.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-ponpes-bg rounded-2xl p-5 flex items-start gap-4 shadow-sm">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-ponpes-primary">Alamat Pondok</h3>
+                                    <p class="text-[15px] text-ponpes-text/85 leading-relaxed mt-1">
+                                        Jl. Ds. Prambatan Kidul, Karang Wetan, Prambatan Kidul, Kec. Kaliwungu,
+                                        Kabupaten Kudus, Jawa Tengah 59332
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-ponpes-bg rounded-2xl p-5 flex items-start gap-4 shadow-sm">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-ponpes-primary text-white flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-ponpes-primary">Narahubung</h3>
+                                    <ul class="text-[15px] text-ponpes-text/85 leading-relaxed mt-1 space-y-0.5">
+                                        <li>Admin 1 : +62 812-2622-8665</li>
+                                        <li>Admin 2 : +62 896-9594-5583</li>
+                                        <li>Admin 3 : +62 856-4011-8030</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 reveal" data-delay="2">
+                        <div
+                            class="relative rounded-3xl overflow-hidden bg-ponpes-tint shadow-lift h-80 lg:h-full lg:min-h-[460px] border-4 border-ponpes-bg">
+                            <iframe title="Peta Lokasi Pondok Pesantren Darul Barokah Al Quds"
+                                src="https://maps.google.com/maps?q=-6.8095067,110.8190732&hl=id&z=17&output=embed"
+                                class="w-full h-full border-0" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <a href="https://maps.app.goo.gl/Y8EYyKEXmNEQKZq58" target="_blank"
+                                rel="noopener noreferrer"
+                                class="absolute bottom-4 left-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-ponpes-surface/95 hover:bg-white text-ponpes-primary text-[13px] font-bold shadow-soft border border-ponpes-card/60 transition-colors">
+                                <span>Buka di Google Maps ↗</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================================
+       11. FOOTER
+  ====================================================================== -->
+    <footer class="relative bg-ponpes-deep text-white/80 overflow-hidden">
+        <div class="absolute inset-0 pattern-dark pointer-events-none"></div>
+        <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
+                <div class="md:col-span-5 space-y-5">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12">
+                        <img src="assets/logo-bw.png">
+                    </div>
+                        <div class="leading-tight">
+                            <span class="block text-xs font-medium text-white/60">Pondok Pesantren</span>
+                            <span class="block text-lg font-extrabold text-white uppercase tracking-tight">Darul Barokah
+                                Al - Quds</span>
+                        </div>
+                    </div>
+                    <p class="text-[15px] leading-relaxed max-w-sm">
+                        Mencetak generasi qurani yang berakhlak mulia, berwawasan mendalam, dan menjunjung tinggi adab
+                        keilmuan Islam.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 space-y-4">
+                    <h4 class="text-base font-bold text-white">Navigasi</h4>
+                    <ul class="space-y-2.5 text-[15px]">
+                        <li><a href="#beranda" class="hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#profil" class="hover:text-white transition-colors">Profil</a></li>
+                        <li><a href="#program" class="hover:text-white transition-colors">Program</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white transition-colors">Fasilitas</a></li>
+                        <li><a href="#alumni" class="hover:text-white transition-colors">Alumni</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-5 space-y-4">
+                    <h4 class="text-base font-bold text-white">Hubungi Kami</h4>
+                    <ul class="space-y-3.5 text-[15px]">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-ponpes-gold shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Jl. Ds. Prambatan Kidul, Karang Wetan, Prambatan Kidul, Kec. Kaliwungu, Kabupaten
+                                Kudus, Jawa Tengah 59332</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-ponpes-gold shrink-0" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+62 812-2622-8665</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-ponpes-gold shrink-0" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>darulbarokahquds@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-ponpes-gold shrink-0" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                            <span>@darulbarokahalquds</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-white/15 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-white/60">
+                <p>© 2026 Pondok Pesantren Darul Barokah Al-Quds. Hak cipta dilindungi.</p>
+                <p>Kaliwungu, Kudus, Jawa Tengah</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tombol kembali ke atas -->
+    <button type="button" id="backToTop" aria-label="Kembali ke atas"
+        class="fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-ponpes-primary hover:bg-ponpes-primaryDark text-white shadow-lift flex items-center justify-center cursor-pointer transition-all duration-300 opacity-0 pointer-events-none translate-y-3">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <!-- =====================================================================
+       12. MODAL PORTAL LOGIN & ROLE-BASED REDIRECT (WALI SANTRI / USTADZ)
+  ====================================================================== -->
+    <div id="loginModal"
+        class="modal-backdrop hidden fixed inset-0 z-50 bg-ponpes-deep/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-ponpes-surface rounded-3xl max-w-lg w-full p-7 sm:p-9 shadow-2xl border border-ponpes-card relative">
+            <button type="button" id="closeLoginBtn" aria-label="Tutup Modal"
+                class="absolute top-5 right-5 w-9 h-9 rounded-full bg-ponpes-tint hover:bg-ponpes-card text-ponpes-text flex items-center justify-center cursor-pointer text-sm">✕</button>
+
+            <div class="mb-6">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold uppercase tracking-wider mb-2.5">
+                    Portal Monitoring Terpadu
+                </span>
+                <h3 class="text-2xl font-extrabold">Masuk ke Web Monitoring</h3>
+                <p class="text-sm text-ponpes-muted mt-1.5 leading-relaxed">
+                    Akses otomatis diteruskan ke dashboard monitoring Wali Santri atau Ustadz/Ustadzah sesuai akun Anda.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 p-1.5 bg-ponpes-tint rounded-xl mb-5">
+                <button type="button" id="tabWali"
+                    class="py-2.5 px-3 rounded-lg text-sm font-bold bg-ponpes-primary text-white transition-all cursor-pointer">Wali
+                    Santri</button>
+                <button type="button" id="tabUstadz"
+                    class="py-2.5 px-3 rounded-lg text-sm font-bold text-ponpes-text/75 hover:text-ponpes-text transition-all cursor-pointer">Ustadz
+                    / Ustadzah</button>
+            </div>
+
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label id="identifierLabel" class="block text-sm font-bold mb-1.5">Nomor Induk Santri (NIS)</label>
+                    <input type="text" id="identifierInput" required placeholder="Contoh: 20260145 atau 08123456789"
+                        class="w-full px-4 py-3 rounded-xl bg-white border border-ponpes-card text-sm sm:text-[15px] focus:outline-none focus:border-ponpes-primary focus:ring-4 focus:ring-ponpes-primary/10 transition" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-1.5">Kata Sandi</label>
+                    <input type="password" id="passwordInput" required placeholder="Masukkan kata sandi"
+                        class="w-full px-4 py-3 rounded-xl bg-white border border-ponpes-card text-sm sm:text-[15px] focus:outline-none focus:border-ponpes-primary focus:ring-4 focus:ring-ponpes-primary/10 transition" />
+                </div>
+
+                <!-- <div class="flex items-center justify-between text-[13px] text-ponpes-muted">
+                    <span>Simulasi pengalihan akses:</span>
+                    <button type="button" id="fillDemoBtn"
+                        class="text-ponpes-primary font-bold hover:underline cursor-pointer">Isi Akun Demo</button>
+                </div> -->
+
+                <button type="submit"
+                    class="w-full bg-ponpes-primary hover:bg-ponpes-primaryDark text-white font-bold text-[15px] py-3.5 rounded-xl shadow-soft transition-all cursor-pointer">
+                    Masuk
+                </button>
+            </form>
+
+            <p class="mt-5 text-center text-[13px] text-ponpes-muted">
+                Belum memiliki akun?
+                <a id="activationLink" href="aktivasi.html?role=wali"
+                    class="text-ponpes-primary font-bold hover:underline">Ajukan Aktivasi Akun</a>
+            </p>
+
+            <div id="redirectStatusBox"
+                class="hidden mt-5 p-4 rounded-xl bg-ponpes-tint border border-ponpes-primary/20 space-y-1.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-4 h-4 border-2 border-ponpes-primary border-t-transparent rounded-full animate-spin">
+                    </div>
+                    <p id="redirectTitle" class="text-sm font-bold text-ponpes-primary">Memverifikasi Akun...</p>
+                </div>
+                <p id="redirectDesc" class="text-[13px] leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+       13. MODAL INFORMASI PENDAFTARAN SANTRI BARU (PSB)
+  ====================================================================== -->
+    <div id="psbModal"
+        class="modal-backdrop hidden fixed inset-0 z-50 bg-ponpes-deep/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-ponpes-surface rounded-3xl max-w-xl w-full p-7 sm:p-9 shadow-2xl border border-ponpes-card relative max-h-[92vh] overflow-y-auto">
+            <button type="button" data-close-psb aria-label="Tutup Modal PSB"
+                class="absolute top-5 right-5 w-9 h-9 rounded-full bg-ponpes-tint hover:bg-ponpes-card text-ponpes-text flex items-center justify-center cursor-pointer text-sm">✕</button>
+
+            <span
+                class="inline-block px-3 py-1 rounded-full bg-ponpes-tint text-ponpes-primary text-[11px] font-bold uppercase tracking-wider mb-2.5">PSB
+                TA 2026/2027</span>
+            <h3 class="text-2xl font-extrabold">Informasi Pendaftaran Santri Baru</h3>
+            <p class="text-sm text-ponpes-muted mt-1.5 mb-5 leading-relaxed">
+                Pendaftaran dibuka untuk jenjang SMP/MTs dan SMA/MA Tahfidz Boarding School.
+            </p>
+
+            <div class="space-y-3">
+                <div class="p-4 rounded-2xl bg-white border border-ponpes-tint flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shrink-0">1</span>
+                    <div>
+                        <p class="font-bold text-[15px]">Pengisian Formulir &amp; Berkas</p>
+                        <p class="text-[13px] text-ponpes-muted mt-0.5 leading-relaxed">Melengkapi biodata calon santri,
+                            KK, Akta Kelahiran, dan rapor terakhir.</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-ponpes-tint flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shrink-0">2</span>
+                    <div>
+                        <p class="font-bold text-[15px]">Tes Baca Al-Qur'an &amp; Wawancara</p>
+                        <p class="text-[13px] text-ponpes-muted mt-0.5 leading-relaxed">Dilaksanakan secara luring di
+                            pesantren atau daring bagi pendaftar luar daerah.</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-ponpes-tint flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-ponpes-primary text-white font-bold text-sm flex items-center justify-center shrink-0">3</span>
+                    <div>
+                        <p class="font-bold text-[15px]">Daftar Ulang &amp; Aktivasi Akun Wali</p>
+                        <p class="text-[13px] text-ponpes-muted mt-0.5 leading-relaxed">Setelah daftar ulang, wali
+                            santri dapat mengajukan aktivasi akun Web Monitoring untuk diverifikasi administrator.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex gap-3">
+                <a href="#kontak" data-close-psb
+                    class="flex-1 text-center bg-ponpes-primary hover:bg-ponpes-primaryDark text-white font-bold text-[15px] py-3.5 px-4 rounded-xl shadow-soft transition-colors">
+                    Hubungi Sekretariat PSB
+                </a>
+                <button type="button" data-close-psb
+                    class="px-6 py-3.5 rounded-xl bg-ponpes-tint hover:bg-ponpes-card text-ponpes-text font-semibold text-[15px] cursor-pointer">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript terpisah -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>
