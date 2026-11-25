@@ -966,3 +966,1332 @@ table.tbl {
         overflow-x: auto;
     }
 }
+
+/* ---------- Dashboard utama ---------- */
+.banner {
+    position: relative;
+    overflow: hidden;
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: var(--radius-card);
+    padding: 34px 30px;
+    margin-bottom: 20px;
+}
+
+.banner small {
+    display: block;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.banner h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 4px 0 6px;
+}
+
+.banner p {
+    font-size: 14px;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 220px;
+    height: 220px;
+    opacity: .12;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2'%3E%3Ccircle cx='50' cy='50' r='40'/%3E%3Crect x='22' y='22' width='56' height='56'/%3E%3Crect x='22' y='22' width='56' height='56' transform='rotate(45 50 50)'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.grid.dash {
+    grid-template-columns: 1.7fr 1fr;
+    align-items: start;
+}
+
+.grid.dash>.card {
+    margin-top: 0;
+}
+
+.stats {
+    margin-bottom: 16px;
+}
+
+.pay-box {
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pay-box small {
+    font-size: 12px;
+}
+
+.pay-box strong {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.pay-box strong span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pay-box .ring {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #CFE3DA;
+    color: var(--c-primary-dark);
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.pay-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 14px;
+}
+
+.pay-line b {
+    font-weight: 700;
+}
+
+.pay-line.bad b {
+    color: var(--c-alfa);
+}
+
+.ann {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.ann li {
+    background: var(--c-chip);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.ann .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11.5px;
+}
+
+.ann h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-primary-dark);
+    margin: 6px 0 4px;
+}
+
+.ann p {
+    font-size: 12.5px;
+}
+
+.chip.draft {
+    background: #DDE8E2;
+    color: var(--c-text);
+    min-width: 0;
+}
+
+.chip.pub {
+    min-width: 0;
+    font-size: 11.5px;
+}
+
+@media (max-width: 1100px) {
+    .grid.dash {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grid.dash {
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.grid.dash .tbl td,
+.grid.dash .tbl th {
+    white-space: nowrap;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.grid.dash .recap {
+    gap: 10px;
+}
+
+.grid.dash .recap div {
+    padding: 12px;
+}
+
+.grid.dash .recap strong {
+    font-size: 22px;
+}
+
+.stat small {
+    white-space: nowrap;
+}
+
+.stat {
+    padding: 12px;
+}
+
+.stat em {
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.banner p {
+    max-width: 760px;
+}
+
+/* ==========================================================================
+   Data Santri (daftar, tambah, edit, detail)
+   ========================================================================== */
+.fi {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c-primary-dark);
+    display: flex;
+    pointer-events: none;
+}
+
+.fi .dot {
+    margin: 0 4px;
+    width: 9px;
+    height: 9px;
+    background: var(--c-primary);
+}
+
+.input.bad {
+    border-color: var(--c-danger);
+    background: #FBE9E7;
+}
+
+.err {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--c-danger);
+    margin-top: 6px;
+}
+
+.btn svg.i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Statistik 3 kartu (versi besar) */
+.stats.three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stat.wide {
+    height: 108px;
+    padding: 16px 22px;
+    border-radius: 16px;
+}
+
+.stat.wide small {
+    font-size: 12.5px;
+}
+
+.stat.wide .num {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.stat.wide .num strong {
+    display: inline;
+    font-size: 36px;
+    margin: 0;
+}
+
+.stat.wide .num em {
+    font-size: 12.5px;
+}
+
+.stat.wide .ico {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+}
+
+.stat.wide .ico svg.i {
+    width: 28px;
+    height: 28px;
+}
+
+/* Kartu tabel penuh (header, toolbar, tabel, footer hijau) */
+.card.flush {
+    padding: 0;
+    overflow: hidden;
+}
+
+.card.flush>.card-head {
+    padding: 24px 32px 14px;
+    margin: 0;
+    align-items: flex-end;
+    border-bottom: 1px solid #9CCDBA;
+}
+
+.card.flush>.card-head h3 {
+    font-size: 18px;
+}
+
+.head-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn.sm2 {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 13px;
+}
+
+.toolbar2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+}
+
+.toolbar2 .search {
+    position: relative;
+    flex: 1;
+}
+
+.toolbar2 .search .input {
+    height: 38px;
+    padding-left: 40px;
+    font-size: 13.5px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background: var(--c-field);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--c-primary-dark);
+    border: 0;
+    white-space: nowrap;
+}
+
+.pill svg.i {
+    width: 14px;
+    height: 14px;
+}
+
+.pill select {
+    background: none;
+    border: 0;
+    font: inherit;
+    font-weight: 700;
+    color: var(--c-primary-dark);
+    cursor: pointer;
+    outline: none;
+    padding-right: 4px;
+}
+
+button.pill {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button.pill:hover {
+    background: #AFCAC2;
+}
+
+.tbl.alt1 tbody tr:nth-child(odd) td {
+    background: var(--c-row-alt);
+}
+
+.tbl.alt1 tbody tr:nth-child(even) td {
+    background: #fff;
+}
+
+.tbl.alt1 tbody tr:hover td {
+    background: #DDEBE3;
+}
+
+.tbl.alt1 thead th {
+    padding: 18px 12px;
+}
+
+.tbl.alt1 tbody td {
+    padding: 14px 12px;
+}
+
+.tbl td.nis {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.tbl td.name a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tbl td.name a:hover {
+    color: var(--c-primary);
+    text-decoration: underline;
+}
+
+.tbl td.name small {
+    font-size: 12px;
+}
+
+.chip.st {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--c-hadir-bg);
+    color: var(--c-primary-dark);
+}
+
+.chip.st::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.chip.st.off {
+    background: var(--c-alfa-bg);
+    color: var(--c-alfa);
+}
+
+.chip.st.mut {
+    background: var(--c-izin-bg);
+    color: var(--c-izin);
+}
+
+.edit-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--c-primary);
+    color: #fff;
+    display: inline-grid;
+    place-items: center;
+}
+
+.edit-btn svg.i {
+    width: 13px;
+    height: 13px;
+}
+
+.edit-btn:hover {
+    background: var(--c-primary-dark);
+}
+
+.tfoot {
+    background: var(--c-primary);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 32px;
+    font-size: 12.5px;
+}
+
+.tfoot .pages {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.tfoot .pages button {
+    height: 30px;
+    min-width: 30px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--c-surface);
+    color: var(--c-primary-dark);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.tfoot .pages button.on {
+    background: #BFD1C9;
+}
+
+.tfoot .pages button:disabled {
+    opacity: .55;
+    cursor: default;
+}
+
+/* Kartu profil santri (edit & detail) */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.profile .av {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 34px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 18px -8px rgba(21, 87, 62, .6);
+    flex-shrink: 0;
+}
+
+.profile .av i {
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--c-primary-dark);
+    border: 2px solid var(--c-surface);
+    display: grid;
+    place-items: center;
+}
+
+.profile .av i svg.i {
+    width: 11px;
+    height: 11px;
+}
+
+.profile .who {
+    flex: 1;
+}
+
+.profile h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--c-primary);
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.profile .meta {
+    font-size: 12.5px;
+    margin-top: 6px;
+}
+
+.profile .tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--c-primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+}
+
+.tag svg.i {
+    width: 13px;
+    height: 13px;
+}
+
+.chip.small {
+    min-width: 0;
+    padding: 3px 10px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.form-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--c-line);
+    padding-top: 22px;
+    margin-top: 4px;
+}
+
+.form-foot .upd {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.form-foot .upd svg.i {
+    width: 14px;
+    height: 14px;
+}
+
+.form-foot .form-actions {
+    padding: 0;
+}
+
+.form-actions .btn {
+    height: 48px;
+    padding: 0 28px;
+}
+
+/* Detail santri */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: var(--c-field);
+    border-radius: 8px;
+    padding: 9px 12px;
+    min-height: 36px;
+}
+
+.info-row span {
+    font-size: 12px;
+}
+
+.info-row b {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-row b svg.i {
+    width: 15px;
+    height: 15px;
+}
+
+.card h3.t {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--c-primary-dark);
+    margin-bottom: 16px;
+}
+
+.stats3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.s3 {
+    background: var(--c-surface);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 170px;
+}
+
+.s3 .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.s3 small {
+    font-size: 12.5px;
+    text-transform: uppercase;
+}
+
+.s3 strong {
+    display: block;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--c-primary-dark);
+    line-height: 1.1;
+    margin: 2px 0;
+}
+
+.s3 p {
+    font-size: 12.5px;
+}
+
+.s3 .ico {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--c-primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.s3 .ico svg.i {
+    width: 26px;
+    height: 26px;
+}
+
+.s3 .box {
+    background: var(--c-field);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.s3 .prog {
+    height: 7px;
+    border-radius: 999px;
+    background: #CFE3DA;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.s3 .prog i {
+    display: block;
+    height: 100%;
+    background: var(--c-primary-dark);
+    border-radius: 999px;
+}
+
+.s3 .scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.grid.detail {
+    grid-template-columns: 1.75fr 1fr;
+    align-items: start;
+    margin-top: 16px;
+}
+
+.grid.detail>div>.card+.card {
+    margin-top: 16px;
+}
+
+.pay-detail {
+    background: var(--c-primary);
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.pay-detail .r {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    padding: 4px 0;
+}
+
+.pay-detail .r b {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.pay-detail .lunas {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #CFE3DA;
+    color: var(--c-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 999px;
+}
+
+.pay-detail .lunas svg.i {
+    width: 14px;
+    height: 14px;
+}
+
+.pay-detail .in {
+    background: #DCEBE3;
+    color: var(--c-text);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-top: 8px;
+}
+
+.pay-detail .in .r {
+    font-size: 11.5px;
+    padding: 2px 0;
+}
+
+.pay-detail .in .r b {
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.center {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.wali {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--c-field);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.wali .ico {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--c-primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+}
+
+.wali b {
+    display: block;
+    color: var(--c-primary-dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.wali span {
+    font-size: 12px;
+    color: var(--c-primary-dark);
+}
+
+.kv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    padding: 9px 4px 0;
+}
+
+.kv b {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tbl.plain-head thead th {
+    font-size: 12.5px;
+    padding: 14px 10px;
+}
+
+.tbl.plain-head tbody td {
+    padding: 12px 10px;
+    font-size: 12.5px;
+}
+
+.tbl.plain-head td.l {
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tbl .chip.sm {
+    min-width: 0;
+    padding: 2px 12px;
+    font-size: 11.5px;
+}
+
+.card.flush .tbl-pad {
+    padding: 0 16px 16px;
+}
+
+@media (max-width: 1100px) {
+
+    .stats.three,
+    .stats3 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid.detail {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 860px) {
+    .toolbar2 {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+    }
+
+    .tfoot {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-foot {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+    }
+}
+
+/* ==========================================================================
+   Pengelolaan Akun (daftar bertab, pengajuan aktivasi, panel tinjauan, verifikasi)
+   ========================================================================== */
+.chip.st.wait {
+    background: #FFF3D6;
+    color: #8A5A00;
+}
+
+.btn .cnt {
+    background: #fff;
+    color: var(--c-primary-dark);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 8px;
+    margin-left: 2px;
+}
+
+.btn.danger {
+    background: transparent;
+    color: var(--c-danger);
+    border-color: var(--c-danger);
+}
+
+.btn.danger:hover {
+    background: rgba(180, 35, 24, .08);
+}
+
+.btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* Tab peran */
+.tabs {
+    display: flex;
+    padding: 0 32px;
+    border-bottom: 1px solid #9CCDBA;
+    margin-top: 4px;
+}
+
+.tabs button {
+    height: 34px;
+    padding: 0 34px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--c-primary-dark);
+    background: transparent;
+    border: 1px solid #9CCDBA;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    margin-right: -1px;
+    transition: background .2s;
+}
+
+.tabs button:hover {
+    background: rgba(23, 107, 81, .08);
+}
+
+.tabs button.on {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+}
+
+.card.flush>.card-head.nb {
+    border-bottom: 0;
+    padding-bottom: 6px;
+}
+
+/* Panel tinjauan (drawer) */
+.drawer {
+    position: fixed;
+    top: 92px;
+    right: 14px;
+    width: 410px;
+    max-width: calc(100vw - 28px);
+    max-height: calc(100vh - 108px);
+    overflow: auto;
+    background: var(--c-surface);
+    border-radius: 16px;
+    box-shadow: 0 22px 54px -14px rgba(15, 68, 48, .5);
+    padding: 22px 24px 24px;
+    z-index: 40;
+    transform: translateX(115%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1), opacity .2s, visibility .3s;
+}
+
+.drawer.open {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer .hd {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.drawer .av {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--c-primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.drawer h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--c-primary-dark);
+    line-height: 1.2;
+}
+
+.drawer .x {
+    margin-left: auto;
+    align-self: flex-start;
+    background: none;
+    border: 0;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    color: var(--c-text);
+    border-radius: 8px;
+}
+
+.drawer .x:hover {
+    background: rgba(23, 107, 81, .1);
+}
+
+.drawer h4 {
+    font-size: 12.5px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 20px 0 8px;
+}
+
+.drawer .box {
+    background: var(--c-field);
+    border-radius: 10px;
+    padding: 8px 14px;
+}
+
+.drawer .box .kv {
+    padding: 7px 0;
+    font-size: 12.5px;
+}
+
+.drawer .box .kv b {
+    font-size: 12.5px;
+    text-align: right;
+}
+
+.drawer .acts {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.drawer .go {
+    height: 46px;
+    border-radius: 10px;
+    background: #0F4430;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 13.5px;
+    border: 0;
+}
+
+.drawer .go:hover {
+    background: #0A3324;
+}
+
+.drawer .go svg.i {
+    width: 16px;
+    height: 16px;
+}
+
+.drawer .cl {
+    height: 46px;
+    border-radius: 10px;
+    background: #CFE8D8;
+    color: var(--c-primary-dark);
+    font-weight: 600;
+    font-size: 13.5px;
+    border: 0;
+}
+
+.drawer .cl:hover {
+    background: #C0DCCB;
+}
+
+.mono {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+.tbl tbody tr.sel td {
+    background: #CFE3DA !important;
+}
+
+/* Pemeriksaan otomatis */
+.checks {
+    display: grid;
+    gap: 10px;
+}
+
+.check {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: var(--c-field);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.check .ic {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+.check .ic svg.i {
+    width: 16px;
+    height: 16px;
+}
+
+.check.ok .ic {
+    background: var(--c-primary);
+}
+
+.check.fail .ic {
+    background: var(--c-danger);
+}
+
+.check.warn .ic {
+    background: #C28A00;
+}
+
+.check b {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.check span {
+    font-size: 12px;
+}
+
+.callout {
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+.callout.ok {
+    background: var(--c-hadir-bg);
+    color: var(--c-primary-dark);
+}
+
+.callout.fail {
+    background: #FBE9E7;
+    color: var(--c-danger);
+}
+
+.decision {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.decision .btn {
+    height: 46px;
+    padding: 0 24px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 51, 36, .5);
+    display: none;
+    place-items: center;
+    z-index: 60;
+    padding: 16px;
+}
+
+.modal.open {
+    display: grid;
+}
+
+.modal .dlg {
+    background: var(--c-surface);
+    border-radius: 16px;
+    padding: 24px;
+    width: min(480px, 100%);
+    box-shadow: 0 30px 70px -20px rgba(10, 51, 36, .6);
+}
+
+.modal h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--c-primary-dark);
+}
+
+.modal p.sub {
+    font-size: 13px;
+    margin: 6px 0 14px;
+}
+
+.modal .form-actions {
+    padding-top: 16px;
+}
+
+.modal .form-actions .btn {
+    height: 42px;
+}
+
+.pwrow {
+    display: flex;
+    gap: 10px;
+}
+
+.pwrow .field {
+    flex: 1;
+}
+
+.chk {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.chk input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--c-primary);
+}
+
+/* Perbaikan: kartu statistik 4 kolom & posisi panel tinjauan */
+.stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat.wide.c4 {
+    padding: 14px 16px;
+    height: 104px;
+}
+
+.stat.wide.c4>div:first-child {
+    min-width: 0;
+}
+
+.stat.wide.c4 small {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.stat.wide.c4 .num strong {
+    font-size: 36px;
+}
+
+.stat.wide.c4 em {
+    display: block;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.stat.wide.c4 .ico {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.stat.wide.c4 .ico svg.i {
+    width: 20px;
+    height: 20px;
+}
+
+.drawer {
+    top: auto;
+    bottom: 14px;
+    max-height: min(660px, calc(100vh - 100px));
+}
+
+@media (max-width: 1100px) {
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.grid>.card+.card {
+    margin-top: 0;
+}

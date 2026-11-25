@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengelolaan Akun | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="akun" data-crumb="Pengelolaan Akun">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pengelolaan Akun Pengguna</h2>
+                <p>Kelola informasi, kredensial, dan status hak akses akun pengguna sistem monitoring (Administrator,
+                    Ustadz/<br>Ustadzah, dan Wali Santri).</p>
+            </div>
+            <a class="btn" href="pengajuan-aktivasi.html"><span data-i="usercheck"></span> Verifikasi <span class="cnt"
+                    id="vcnt"></span></a>
+        </div>
+        <div class="stats">
+            <div class="stat wide c4">
+                <div><small>TOTAL AKUN</small>
+                    <div class="num"><strong>128</strong></div><em>Akun terdaftar di sistem</em>
+                </div>
+                <div class="ico" data-i="users"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>AKUN AKTIF</small>
+                    <div class="num"><strong>115</strong></div><em>Dapat mengakses sistem</em>
+                </div>
+                <div class="ico" data-i="shield"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>MENUNGGU VERIFIKASI</small>
+                    <div class="num"><strong id="stWait">8</strong></div><em>Pengajuan verifikasi</em>
+                </div>
+                <div class="ico" data-i="hourglass"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>AKUN NONAKTIF</small>
+                    <div class="num"><strong>5</strong></div><em>Akses login ditangguhkan</em>
+                </div>
+                <div class="ico" data-i="userx"></div>
+            </div>
+        </div>
+        <div class="card flush">
+            <div class="card-head nb">
+                <div>
+                    <h3>Daftar Akun Pengguna</h3>
+                    <p>Informasi lengkap, verifikasi status, dan relasi santri terkait.</p>
+                </div>
+                <div class="head-actions">
+                    <button class="btn sm2" onclick="window.print()"><span data-i="print"></span> Cetak</button>
+                    <a class="btn sm2" id="addBtn" href="#"><span data-i="plus"></span> <span id="addLbl"></span></a>
+                </div>
+            </div>
+            <div class="tabs" id="tabs"><button data-t="asatidz">Asatidz</button><button
+                    data-t="santri">Santri</button><button data-t="wali">Wali Santri</button></div>
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"></div>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
+                        <option value="">Semua Status</option>
+                        <option>Aktif</option>
+                        <option>Nonaktif</option>
+                        <option>Menunggu</option>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
+            </div>
+            <table class="tbl alt1">
+                <thead id="head"></thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script>
+
+        var P = 5, page = 1, TAB = new URLSearchParams(location.search).get('tab');
+        function tgl(i) { return tglPendek(i); }
+        function akunSantriSt(s) { return s.status === 'Aktif' ? 'Aktif' : 'Nonaktif'; }
+        var CFG = {
+            asatidz: {
+                unit: 'asatidz', ph: 'Cari nama atau NIY asatidz...', add: ['Tambah Asatidz', 'pengelolaan-akun-form.html?role=asatidz'],
+                head: [['No.', '', 60], ['NIY', ''], ['Nama Asatidz', 'l'], ['Jenis Kelamin', ''], ['Status Akun', ''], ['Tanggal Terdaftar', ''], ['Aksi', '', 70]],
+                rows: function () {
+                    return ASATIDZ.map(function (a) {
+                        var e = 'pengelolaan-akun-form.html?role=asatidz&id=' + a.niy; return {
+                            q: (a.nama + ' ' + a.niy).toLowerCase(), st: a.status, edit: e,
+                            cells: [['nis', a.niy], ['name', '<a href="' + e + '">' + a.nama + '</a><small>' + a.jabatan + '</small>'], ['', a.jk === 'L' ? 'Laki-laki' : 'Perempuan'], ['', akunChip(a.status)], ['', tgl(a.daftar)]]
+                        };
+                    });
+                }
+            },
+            santri: {
+                unit: 'santri', ph: 'Cari nama atau NIS santri...', add: ['Tambah Santri', 'data-santri-tambah.html'],
+                head: [['No.', '', 60], ['NIS', ''], ['Nama Santri', 'l'], ['Jenis Kelamin', ''], ['Status', ''], ['Tanggal Terdaftar', ''], ['Aksi', '', 70]],
+                rows: function () {
+                    return SANTRI.map(function (s) {
+                        var e = 'data-santri-edit.html?nis=' + s.nis; return {
+                            q: (s.nama + ' ' + s.nis).toLowerCase(), st: akunSantriSt(s), edit: e,
+                            cells: [['nis', s.nis], ['name', '<a href="data-santri-detail.html?nis=' + s.nis + '">' + s.nama + '</a><small>' + s.kamar + '</small>'], ['', s.jk === 'L' ? 'Laki-laki' : 'Perempuan'], ['', akunChip(akunSantriSt(s))], ['', tgl(s.daftar)]]
+                        };
+                    });
+                }
+            },
+            wali: {
+                unit: 'wali santri', ph: 'Cari nama wali atau nama santri...', add: ['Tambah Wali', 'pengelolaan-akun-form.html?role=wali'],
+                head: [['No.', '', 60], ['Nama Wali Santri', 'l'], ['Santri Terkait', 'l'], ['No. WhatsApp', ''], ['Status Akses', ''], ['Tanggal Aktivasi', ''], ['Aksi', '', 70]],
+                rows: function () {
+                    return WALI.map(function (w) {
+                        var e = 'pengelolaan-akun-form.html?role=wali&id=' + w.nis; return {
+                            q: (w.nama + ' ' + w.santri).toLowerCase(), st: w.status, edit: e,
+                            cells: [['name', '<a href="' + e + '">' + w.nama + '</a><small>' + w.hub + '</small>'], ['name', '<a href="data-santri-detail.html?nis=' + w.nis + '">' + w.santri + '</a><small>NIS ' + w.nis + '</small>'], ['', w.wa], ['', akunChip(w.status)], ['', tgl(w.aktivasi)]]
+                        };
+                    });
+                }
+            }
+        };
+        if (!CFG[TAB]) TAB = 'santri';
+        function filtered() {
+            var q = document.getElementById('q').value.toLowerCase(), s = document.getElementById('st').value;
+            return CFG[TAB].rows().filter(function (r) { return (!q || r.q.indexOf(q) > -1) && (!s || r.st === s); });
+        }
+        function draw() {
+            var c = CFG[TAB], all = c.rows().length, d = filtered(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            document.getElementById('head').innerHTML = '<tr>' + c.head.map(function (x) { return '<th' + (x[1] === 'l' ? ' style="text-align:left"' : '') + (x[2] ? ' style="width:' + x[2] + 'px"' : '') + '>' + x[0] + '</th>'; }).join('') + '</tr>';
+            cur.forEach(function (r, i) {
+                h += '<tr><td>' + (from + i + 1) + '</td>' + r.cells.map(function (x) { return '<td' + (x[0] ? ' class="' + x[0] + '"' : '') + '>' + x[1] + '</td>'; }).join('') +
+                    '<td><a class="edit-btn" href="' + r.edit + '" aria-label="Ubah"><span data-i="edit"></span></a></td></tr>';
+            });
+            document.getElementById('rows').innerHTML = h || '<tr><td colspan="7">Data tidak ditemukan</td></tr>';
+            document.getElementById('q').placeholder = c.ph;
+            document.getElementById('addLbl').textContent = c.add[0]; document.getElementById('addBtn').href = c.add[1];
+            document.getElementById('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + all + '</b> ' + c.unit;
+            document.getElementById('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '\u2013' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> ' + c.unit : 'Tidak ada data';
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            b += '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
+            document.getElementById('pages').innerHTML = b;
+            document.querySelectorAll('#tabs button').forEach(function (t) { t.classList.toggle('on', t.dataset.t === TAB); });
+            fillIcons();
+        }
+        document.getElementById('tabs').onclick = function (e) {
+            var t = e.target.closest('button'); if (!t) return; TAB = t.dataset.t; page = 1;
+            document.getElementById('q').value = ''; document.getElementById('st').value = ''; history.replaceState(null, '', '?tab=' + TAB); draw();
+        };
+        document.getElementById('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        document.getElementById('q').oninput = function () { page = 1; draw(); };
+        document.getElementById('st').onchange = function () { page = 1; draw(); };
+        document.getElementById('reset').onclick = function () { document.getElementById('q').value = ''; document.getElementById('st').value = ''; page = 1; draw(); };
+        var wait = getPengajuan().filter(function (p) { return p.status === 'Menunggu Verifikasi'; }).length;
+        document.getElementById('vcnt').textContent = wait; document.getElementById('stWait').textContent = wait;
+        draw();
+
+    </script>
+</body>
+
+</html>

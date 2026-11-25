@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengajuan Aktivasi Akun | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="akun" data-crumb="Pengelolaan Akun / Pengajuan Aktivasi">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pengajuan Aktivasi Akun</h2>
+                <p>Kelola dan periksa permohonan akses mandiri dari wali santri dan asatidz dengan validasi keterikatan
+                    Nomor Induk<br>(NISN/NIY) sebelum otorisasi diberikan.</p>
+            </div>
+            <a class="btn" href="pengelolaan-akun.html"><span data-i="back"></span> Kembali</a>
+        </div>
+        <div class="stats">
+            <div class="stat wide c4">
+                <div><small>TOTAL PENGAJUAN</small>
+                    <div class="num"><strong id="s1"></strong></div><em>Pengajuan tercatat di sistem</em>
+                </div>
+                <div class="ico" data-i="folder"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>MENUNGGU VERIFIKASI</small>
+                    <div class="num"><strong id="s2"></strong></div><em>Pengajuan verifikasi</em>
+                </div>
+                <div class="ico" data-i="hourglass"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>DISETUJUI</small>
+                    <div class="num"><strong id="s3"></strong></div><em>Akses portal aktif</em>
+                </div>
+                <div class="ico" data-i="shield"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>DITOLAK</small>
+                    <div class="num"><strong id="s4"></strong></div><em>Data identitas tidak sinkron</em>
+                </div>
+                <div class="ico" data-i="xcircle"></div>
+            </div>
+        </div>
+        <div class="card flush">
+            <div class="card-head">
+                <div>
+                    <h3>Daftar Pengajuan Aktivasi</h3>
+                    <p>Daftar permohonan akses mandiri akun wali santri dan asatidz yang membutuhkan validasi.</p>
+                </div>
+            </div>
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                        placeholder="Cari nama pemohon, santri, atau NISN/NIY..."></div>
+                <label class="pill"><span data-i="filter"></span>Jenis: <select id="jn">
+                        <option value="">Semua</option>
+                        <option value="wali">Wali Santri</option>
+                        <option value="asatidz">Asatidz</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
+                        <option value="">Semua Status</option>
+                        <option>Menunggu Verifikasi</option>
+                        <option>Disetujui</option>
+                        <option>Ditolak</option>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
+            </div>
+            <table class="tbl alt1">
+                <thead>
+                    <tr>
+                        <th style="width:56px">No.</th>
+                        <th style="text-align:left">Nama Pemohon</th>
+                        <th style="text-align:left">Nama Santri</th>
+                        <th>NISN / NIY</th>
+                        <th>Hubungan</th>
+                        <th>Tanggal Pengajuan</th>
+                        <th>Status</th>
+                        <th style="width:60px">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
+            </div>
+        </div>
+
+        <aside class="drawer" id="drawer" aria-label="Tinjauan pengajuan" aria-hidden="true"></aside>
+    </main>
+
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script>
+
+        var P = 5, page = 1, sel = null;
+        function filtered() {
+            var q = document.getElementById('q').value.toLowerCase(), j = document.getElementById('jn').value, s = document.getElementById('st').value;
+            return getPengajuan().filter(function (p) {
+                var sn = p.tipe === 'wali' ? (santriByNisn(p.nisn) || {}).nama || '' : '';
+                return (!q || (p.nama + ' ' + sn + ' ' + (p.nisn || p.niy)).toLowerCase().indexOf(q) > -1) && (!j || p.tipe === j) && (!s || p.status === s);
+            });
+        }
+        function draw() {
+            var all = getPengajuan(), d = filtered(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            function n(st) { return all.filter(function (p) { return p.status === st; }).length; }
+            document.getElementById('s1').textContent = all.length; document.getElementById('s2').textContent = n('Menunggu Verifikasi');
+            document.getElementById('s3').textContent = n('Disetujui'); document.getElementById('s4').textContent = n('Ditolak');
+            cur.forEach(function (p, i) {
+                var s = p.tipe === 'wali' ? santriByNisn(p.nisn) : null;
+                h += '<tr data-ref="' + p.ref + '" class="' + (sel === p.ref ? 'sel' : '') + '"><td>' + (from + i + 1) + '</td>' +
+                    '<td class="name"><a href="#' + p.ref + '" data-open="' + p.ref + '">' + p.nama + '</a><small>' + (p.tipe === 'wali' ? 'Wali Santri' : 'Asatidz') + '</small></td>' +
+                    '<td class="name">' + (s ? s.nama + '<small>' + s.kamar + '</small>' : '<span style="font-weight:400">' + (p.tipe === 'wali' ? 'Tidak ditemukan' : '-') + '</span>') + '</td>' +
+                    '<td class="nis">' + (p.nisn || p.niy) + '</td><td>' + p.hub + '</td><td>' + tglPendek(p.waktu.slice(0, 10)) + '</td><td>' + akunChip(p.status) + '</td>' +
+                    '<td><a class="edit-btn" href="#' + p.ref + '" data-open="' + p.ref + '" aria-label="Tinjau ' + p.nama + '"><span data-i="edit"></span></a></td></tr>';
+            });
+            document.getElementById('rows').innerHTML = h || '<tr><td colspan="8">Data tidak ditemukan</td></tr>';
+            document.getElementById('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + all.length + '</b> pengajuan';
+            document.getElementById('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '\u2013' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> pengajuan' : 'Tidak ada data';
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            b += '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
+            document.getElementById('pages').innerHTML = b; fillIcons();
+        }
+        function kv(a, b2) { return '<div class="kv"><span>' + a + '</span><b>' + b2 + '</b></div>'; }
+        function openDrawer(ref) {
+            var p = findPengajuan(ref); sel = p.ref; var s = p.tipe === 'wali' ? santriByNisn(p.nisn) : null, a = p.tipe === 'asatidz' ? asatidzByNiy(p.niy) : null, h;
+            h = '<div class="hd"><div class="av">' + inisial(p.nama.replace(/^Ustadzah? /, '')) + '</div><div><h3>' + p.nama + '</h3>' + akunChip(p.status).replace('chip st', 'chip st small') + '</div><button class="x" id="dx" aria-label="Tutup"><span data-i="close"></span></button></div>';
+            h += '<h4>Identitas Pemohon Akun</h4><div class="box">' + kv('Nama Lengkap', p.nama) + kv('Nomor WhatsApp', '<span data-i="chat" style="display:inline-flex;vertical-align:middle;margin-right:4px"></span><span class="mono">' + p.wa + '</span>');
+            if (p.tipe === 'wali') h += kv('Hubungan Wali', p.hub); else h += kv('Email', p.email) + kv('Peran', 'Asatidz');
+            h += kv('Waktu Pengajuan', tglPendek(p.waktu.slice(0, 10)) + ' \u2022 ' + p.waktu.slice(11) + ' WIB') + '</div>';
+            if (p.tipe === 'wali') {
+                h += '<h4>Data Santri Terkait di Database</h4><div class="box">' + (s ? kv('Nama Santri', s.nama) + kv('NIS Santri', '<span class="mono">' + s.nis + '</span>') + kv('Kamar / Asrama', s.kamar + ' (' + (s.jk === 'L' ? 'Putra' : 'Putri') + ')') + kv('Status Akademik', '<span class="chip st small' + (s.status === 'Aktif' ? '' : s.status === 'Mutasi' ? ' mut' : ' off') + '" style="background:#fff">' + (s.status === 'Aktif' ? 'Aktif Belajar' : s.status) + '</span>') : '<div class="kv"><span style="color:var(--c-danger);font-weight:600">NISN ' + p.nisn + ' tidak ditemukan di database santri.</span></div>') + '</div>';
+            } else {
+                h += '<h4>Data Asatidz Terkait di Database</h4><div class="box">' + (a ? kv('Nama', a.nama) + kv('NIY', '<span class="mono">' + a.niy + '</span>') + kv('Jabatan', a.jabatan) + kv('Halaqah', a.halaqah) : '<div class="kv"><span style="color:var(--c-danger);font-weight:600">NIY ' + p.niy + ' tidak ditemukan.</span></div>') + '</div>';
+            }
+            h += '<div class="acts"><a class="go" href="pengajuan-aktivasi-detail.html?ref=' + p.ref + '">' + (p.status === 'Menunggu Verifikasi' ? 'Lihat Detail &amp; Verifikasi Lengkap' : 'Lihat Detail Pengajuan') + ' <span data-i="arrow"></span></a><button class="cl" id="dc" type="button">Tutup Tinjauan</button></div>';
+            var d = document.getElementById('drawer'); d.innerHTML = h; d.classList.add('open'); d.setAttribute('aria-hidden', 'false'); fillIcons();
+            document.getElementById('dx').onclick = document.getElementById('dc').onclick = closeDrawer; draw();
+        }
+        function closeDrawer() { sel = null; var d = document.getElementById('drawer'); d.classList.remove('open'); d.setAttribute('aria-hidden', 'true'); draw(); }
+        document.getElementById('rows').onclick = function (e) { var o = e.target.closest('[data-open]'); if (o) { e.preventDefault(); openDrawer(o.dataset.open); } };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+        document.getElementById('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        ['q', 'jn', 'st'].forEach(function (i) { document.getElementById(i).oninput = function () { page = 1; draw(); }; });
+        document.getElementById('reset').onclick = function () { ['q', 'jn', 'st'].forEach(function (i) { document.getElementById(i).value = ''; }); page = 1; draw(); };
+        draw();
+        if (location.hash.length > 3) openDrawer(location.hash.slice(1));
+
+    </script>
+</body>
+
+</html>

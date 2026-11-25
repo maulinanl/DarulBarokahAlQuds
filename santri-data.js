@@ -1,0 +1,19 @@
+/* Data contoh santri (dipakai halaman Data Santri). Ganti dengan data dari backend nanti. */
+(function () {
+    var BLN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    window.SANTRI = [
+        { nis: '2024001', nisn: '0009321234', nama: 'Ahmad Fauzan', jk: 'L', lahir: '2008-05-15', daftar: '2024-01-12', status: 'Aktif', kamar: 'Kamar Al-Ghazali 02', halaqah: 'Halaqah Ustadz Ridwan', kota: 'Jember, Jawa Timur', alamat: 'Dsn. Krajan RT 02/RW 01, Desa Sukorejo, Kec. Bangsalsari, Kab. Jember, Jawa Timur', wali: 'Ahmad Subagyo', hub: 'Ayah Kandung', wa: '0812-3456-7890' },
+        { nis: '2024002', nisn: '0009321235', nama: 'Siti Aisyah', jk: 'P', lahir: '2009-03-02', daftar: '2024-01-15', status: 'Aktif', kamar: 'Kamar Khadijah 01', halaqah: 'Halaqah Ustadzah Salma', kota: 'Kudus, Jawa Tengah', alamat: 'Jl. Melati No. 12, Kaliwungu, Kab. Kudus, Jawa Tengah', wali: 'Siti Aminah', hub: 'Ibu Kandung', wa: '0813-2200-1144' },
+        { nis: '2024003', nisn: '0009321236', nama: 'Muhammad Rizky', jk: 'L', lahir: '2008-11-20', daftar: '2024-01-15', status: 'Aktif', kamar: 'Kamar Al-Farabi 04', halaqah: 'Halaqah Ustadz Ridwan', kota: 'Pati, Jawa Tengah', alamat: 'Dsn. Sidomulyo RT 03/RW 02, Kec. Margorejo, Kab. Pati, Jawa Tengah', wali: 'Rizal Hidayat', hub: 'Ayah Kandung', wa: '0812-7788-9012' },
+        { nis: '2024004', nisn: '0009321237', nama: 'Zaidan Ali', jk: 'L', lahir: '2007-08-09', daftar: '2024-02-01', status: 'Aktif', kamar: 'Kamar Al-Ghazali 02', halaqah: 'Halaqah Ustadz Hasan', kota: 'Semarang, Jawa Tengah', alamat: 'Jl. Pandanaran No. 5, Kota Semarang, Jawa Tengah', wali: 'Ali Mustofa', hub: 'Ayah Kandung', wa: '0857-1100-2233' },
+        { nis: '2024005', nisn: '0009321238', nama: 'Fatimah Zahra', jk: 'P', lahir: '2009-12-25', daftar: '2024-02-01', status: 'Aktif', kamar: 'Kamar Khadijah 01', halaqah: 'Halaqah Ustadzah Salma', kota: 'Demak, Jawa Tengah', alamat: 'Desa Bintoro RT 01/RW 04, Kab. Demak, Jawa Tengah', wali: 'Nur Hidayah', hub: 'Ibu Kandung', wa: '0821-4455-6677' },
+        { nis: '2024006', nisn: '0009321239', nama: 'Umar Abdillah', jk: 'L', lahir: '2008-02-18', daftar: '2024-02-10', status: 'Tidak Aktif', kamar: 'Kamar Al-Farabi 04', halaqah: 'Halaqah Ustadz Hasan', kota: 'Jepara, Jawa Tengah', alamat: 'Desa Mayong Lor RT 05/RW 01, Kab. Jepara, Jawa Tengah', wali: 'Abdillah', hub: 'Ayah Kandung', wa: '0852-3300-1122' },
+        { nis: '2024007', nisn: '0009321240', nama: 'Hasan Basri', jk: 'L', lahir: '2007-06-30', daftar: '2024-02-12', status: 'Mutasi', kamar: 'Kamar Al-Ghazali 03', halaqah: 'Halaqah Ustadz Ridwan', kota: 'Rembang, Jawa Tengah', alamat: 'Desa Pamotan RT 02/RW 02, Kab. Rembang, Jawa Tengah', wali: 'Basri Ahmad', hub: 'Ayah Kandung', wa: '0878-9900-1234' }
+    ];
+    window.tglPanjang = function (iso) { var d = new Date(iso + 'T00:00:00'); return d.getDate() + ' ' + BLN[d.getMonth()] + ' ' + d.getFullYear(); };
+    window.tglPendek = function (iso) { var d = new Date(iso + 'T00:00:00'); return String(d.getDate()).padStart(2, '0') + ' ' + BLN[d.getMonth()].slice(0, 3) + ' ' + d.getFullYear(); };
+    window.umur = function (iso) { var l = new Date(iso + 'T00:00:00'), n = new Date(), a = n.getFullYear() - l.getFullYear(); if (n.getMonth() < l.getMonth() || (n.getMonth() === l.getMonth() && n.getDate() < l.getDate())) a--; return a; };
+    window.inisial = function (n) { return n.split(' ').slice(0, 2).map(function (x) { return x[0]; }).join('').toUpperCase(); };
+    window.getSantri = function () { var q = new URLSearchParams(location.search).get('nis'); return SANTRI.filter(function (s) { return s.nis === q; })[0] || SANTRI[0]; };
+    window.statusChip = function (st) { return '<span class="chip st' + (st === 'Tidak Aktif' ? ' off' : st === 'Mutasi' ? ' mut' : '') + '">' + st + '</span>'; };
+})();

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Data Santri | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="santri" data-crumb="Data Santri / Tambah Data Santri">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Tambah Data Santri</h2>
+                <p>Tambahkan informasi santri baru ke dalam sistem monitoring dan administrasi pondok pesantren.</p>
+            </div><a class="btn" href="data-santri.html"><span data-i="back"></span> Kembali</a>
+        </div>
+
+        <form class="card" id="f" novalidate>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Identitas Pokok Santri</h3>
+                        <p>Data identitas resmi santri sesuai akta dan dokumen kependudukan</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="nis">Nomor Induk Santri (NIS) <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="idcard"></span><input id="nis" class="input"
+                                placeholder="Contoh: 2024008" inputmode="numeric" maxlength="7"></div>
+                        <p class="hint" id="nisHint">Format: YYYY (tahun) + 3 digit nomor urut (contoh: <b>2024008</b>).
+                        </p>
+                    </div>
+                    <div><label class="label" for="nama">Nama Lengkap Santri <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="user"></span><input id="nama" class="input"
+                                placeholder="Masukkan nama lengkap sesuai ijazah/akta"></div>
+                        <p class="hint">Gunakan huruf kapital di awal setiap kata sesuai dokumen resmi.</p>
+                    </div>
+                    <div><label class="label" for="jk">Jenis Kelamin <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="gender"></span><select id="jk" class="input">
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="L">Laki - Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select></div>
+                    </div>
+                    <div><label class="label" for="lahir">Tanggal Lahir <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="cal"></span><input id="lahir" type="date"
+                                class="input"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Alamat &amp; Domisili Asal</h3>
+                        <p>Informasi daerah asal untuk penempatan asrama dan kelompok wali</p>
+                    </div>
+                </div>
+                <label class="label" for="alamat">Alamat Lengkap Domisili <i>*</i></label>
+                <input id="alamat" class="input plain"
+                    placeholder="Contoh: Dsn. Krajan RT 02/RW 01, Desa Sukorejo, Kec. Bangsalsari, Kab. Jember, Jawa Timur">
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">C</div>
+                    <div>
+                        <h3>Status Keaktifan Santri</h3>
+                        <p>Status keaktifan awal di lingkungan pondok pesantren</p>
+                    </div>
+                </div>
+                <div style="max-width:416px"><label class="label" for="status">Status Santri <i>*</i></label>
+                    <div class="field"><span class="fi"><i class="dot"></i></span><select id="status" class="input">
+                            <option value="Aktif">Aktif (Terdaftar &amp; Mengikuti Kegiatan Pondok)</option>
+                            <option>Tidak Aktif</option>
+                            <option>Mutasi</option>
+                        </select></div>
+                    <p class="hint">Santri baru otomatis memiliki status aktif agar langsung terhubung ke modul
+                        kehadiran harian dan tahfidz Al-Qur'an.</p>
+                </div>
+            </div>
+            <div class="form-actions"><a class="btn outline" href="data-santri.html">Batal</a><button class="btn"
+                    type="submit"><span data-i="save"></span> Simpan Data Santri</button></div>
+        </form>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script>
+
+        function val() {
+            var ok = true, nis = document.getElementById('nis');
+            document.querySelectorAll('.err').forEach(function (e) { e.remove(); });
+            document.querySelectorAll('.input.bad').forEach(function (e) { e.classList.remove('bad'); });
+            function bad(id, msg) { var el = document.getElementById(id); el.classList.add('bad'); var p = document.createElement('p'); p.className = 'err'; p.textContent = msg; el.closest('.field') ? el.closest('.field').after(p) : el.after(p); ok = false; }
+            if (!/^\d{7}$/.test(nis.value)) bad('nis', 'NIS harus 7 digit: tahun (4 digit) + nomor urut (3 digit).');
+            else if (SANTRI.some(function (s) { return s.nis === nis.value && s.nis !== window.ORIG_NIS; })) bad('nis', 'NIS sudah terdaftar.');
+            if (!document.getElementById('nama').value.trim()) bad('nama', 'Nama lengkap wajib diisi.');
+            if (!document.getElementById('jk').value) bad('jk', 'Pilih jenis kelamin.');
+            if (!document.getElementById('lahir').value) bad('lahir', 'Tanggal lahir wajib diisi.');
+            if (!document.getElementById('alamat').value.trim()) bad('alamat', 'Alamat domisili wajib diisi.');
+            return ok;
+        }
+
+        document.getElementById('f').onsubmit = function (e) {
+            e.preventDefault(); if (!val()) return;
+            toast('Data santri berhasil disimpan'); setTimeout(function () { location.href = 'data-santri.html'; }, 900);
+        };
+
+    </script>
+</body>
+
+</html>

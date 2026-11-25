@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="dashboard" data-crumb="Dashboard">
+    <main id="app" class="content" style="padding-top:24px">
+        <div class="banner">
+            <small>Sistem Informasi Terpadu Darul Barokah Al-Quds</small>
+            <h2>Selamat Datang, Administrator!</h2>
+            <p>Pantau aktivitas dan perkembangan santri serta kelola informasi pondok melalui dashboard ini secara
+                terpadu dan amanah.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div><small>Total Santri</small><strong>120</strong><em>Santri terdaftar</em></div>
+                <div class="ico" data-i="santri"></div>
+            </div>
+            <div class="stat">
+                <div><small>Kehadiran Hari Ini</small><strong>108</strong><em>Santri hadir di halaqah</em></div>
+                <div class="ico" data-i="hadir"></div>
+            </div>
+            <div class="stat">
+                <div><small>Catatan Pembelajaran</small><strong>36</strong><em>Catatan mengaji bulan ini</em></div>
+                <div class="ico" data-i="quran"></div>
+            </div>
+            <div class="stat">
+                <div><small>Pembayaran SPP</small><strong>18</strong><em>Santri belum bayar bulan ini</em></div>
+                <div class="ico" data-i="bayar"></div>
+            </div>
+        </div>
+
+        <div class="grid dash">
+            <div>
+                <div class="card">
+                    <div class="card-head">
+                        <div>
+                            <h3>Ringkasan Kehadiran</h3>
+                            <p>Periode: Hari ini</p>
+                        </div><a class="btn sm" style="height:38px" href="kehadiran.html">Lihat Rekap &rarr;</a>
+                    </div>
+                    <div class="recap">
+                        <div class="hadir"><small>Hadir</small><strong>108</strong><span>90.0%</span></div>
+                        <div class="izin"><small>Izin</small><strong>5</strong><span>4.2%</span></div>
+                        <div class="sakit"><small>Sakit</small><strong>4</strong><span>3.3%</span></div>
+                        <div class="alfa"><small>Alfa</small><strong>3</strong><span>2.5%</span></div>
+                    </div>
+                    <div class="bar"><i style="width:90%;background:#176B51"></i><i
+                            style="width:4.2%;background:#6B6014"></i><i style="width:3.3%;background:#154668"></i><i
+                            style="width:2.5%;background:#6B1418"></i></div>
+                    <div class="legend">
+                        <div><span><i class="dot" style="background:#176B51"></i>Hadir (108)</span><span><i class="dot"
+                                    style="background:#6B6014"></i>Izin (5)</span><span><i class="dot"
+                                    style="background:#154668"></i>Sakit (4)</span><span><i class="dot"
+                                    style="background:#6B1418"></i>Alfa (3)</span></div>
+                        <div>Total 120 Santri</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:16px;padding:0;overflow:hidden">
+                    <div class="card-head" style="padding:22px 22px 0">
+                        <div>
+                            <h3>Pembelajaran Al-Qur'an</h3>
+                            <p>Ringkasan aktivitas halaqah membaca dan setoran hafalan santri.</p>
+                        </div><a class="btn sm" style="height:38px" href="pembelajaran.html">Lihat Riwayat &rarr;</a>
+                    </div>
+                    <table class="tbl" style="border-radius:0">
+                        <thead>
+                            <tr>
+                                <th>Nama Santri</th>
+                                <th>Jenis Kegiatan</th>
+                                <th>Capaian</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-head">
+                        <div>
+                            <h3>Pembayaran Bulanan</h3>
+                            <p>Periode: November 2026</p>
+                        </div>
+                    </div>
+                    <div class="pay-box">
+                        <div><small>Status Pelunasan Syahriah</small><br><strong>102 <span>/ 120 Santri</span></strong>
+                        </div>
+                        <div class="ring">85%</div>
+                    </div>
+                    <div class="pay-line"><span><i class="dot" style="background:#176B51"></i>Lunas</span><b>102 santri
+                            (85.0%)</b></div>
+                    <div class="progress" style="background:#F6D6D6"><i style="width:85%"></i></div>
+                    <div class="pay-line bad"><span><i class="dot" style="background:#6B1418"></i>Belum
+                            Dibayar</span><b>18 santri (15%)</b></div>
+                    <div class="progress" style="background:#E3F3EA"><i style="width:15%;background:#6B1418"></i></div>
+                </div>
+
+                <div class="card" style="margin-top:16px">
+                    <div class="card-head">
+                        <div>
+                            <h3>Pengumuman Terbaru</h3>
+                        </div>
+                    </div>
+                    <ul class="ann">
+                        <li>
+                            <div class="meta"><span>01 November 2026</span><span class="chip pub">Dipublikasikan</span>
+                            </div>
+                            <h4>Informasi Kegiatan Pondok</h4>
+                            <p>Agenda evaluasi tahfidz tengah semester dan jadwal kepulangan...</p>
+                        </li>
+                        <li>
+                            <div class="meta"><span>30 Oktober 2026</span><span class="chip pub">Dipublikasikan</span>
+                            </div>
+                            <h4>Pengingat Pembayaran Bulanan</h4>
+                            <p>Pemberitahuan batas akhir administrasi syahriah bulan berjalan</p>
+                        </li>
+                        <li>
+                            <div class="meta"><span>28 Oktober 2026</span><span class="chip draft">Draft</span></div>
+                            <h4>Jadwal Kegiatan Pembelajaran</h4>
+                            <p>Jadwal halaqah dan kajian kitab pekan depan</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
+        var D = [['Ahmad Fauzan', '20240101', 'Membaca', 'Surah Al-Baqarah', 'Ayat 52 - 75 \u2022 Juz 1', '02 Nov 2026', 'Mengulang'],
+        ['Muhammad Rizky', '20240108', 'Hafalan', 'Surah An-Naba', 'Ayat 1 - 40 \u2022 Juz 30', '02 Nov 2026', 'Lancar'],
+        ['Siti Aisyah', '20240142', 'Hafalan', 'Surah Ar-Rahman', 'Ayat 1- 78 \u2022 Juz 27', '02 Nov 2026', 'Mengulang'],
+        ['Zaidan Ali', '20240119', 'Membaca', 'Surah Ali \'Imran', 'Ayat 40 - 56 \u2022 Juz 3', '01 Nov 2026', 'Lancar']], h = '';
+        D.forEach(function (r) { h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td><span class="chip">' + r[2] + '</span></td><td><b style="font-size:12.5px">' + r[3] + '</b><br><small>' + r[4] + '</small></td><td>' + r[5] + '</td><td><span class="chip">' + r[6] + '</span></td></tr>' });
+        document.getElementById('rows').innerHTML = h;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Pengajuan Aktivasi | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="akun" data-crumb="Pengelolaan Akun / Pengajuan Aktivasi / Detail">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Detail &amp; Verifikasi Pengajuan</h2>
+                <p>Periksa kecocokan data pemohon dengan database sebelum akses akun diberikan.</p>
+            </div><a class="btn" href="pengajuan-aktivasi.html"><span data-i="back"></span> Kembali</a>
+        </div>
+        <div class="card profile">
+            <div class="av"><span id="ini"></span></div>
+            <div class="who">
+                <h2 id="pn"></h2><span id="pst"></span>
+                <div class="meta" id="pref"></div>
+                <div class="meta" id="pwkt"></div>
+                <div class="tags" id="ptags"></div>
+            </div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px;align-items:start">
+            <div class="card">
+                <h3 class="t">Data Pemohon</h3>
+                <div id="dp" style="display:grid;gap:10px"></div>
+            </div>
+            <div class="card">
+                <h3 class="t" id="dtTitle">Data Santri di Database</h3>
+                <div id="dt" style="display:grid;gap:10px"></div>
+            </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+            <h3 class="t">Hasil Pemeriksaan Otomatis</h3>
+            <div class="checks" id="checks"></div>
+            <div id="call"></div>
+        </div>
+        <div class="card" style="margin-top:16px" id="decCard"></div>
+
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script>
+
+        var p = findPengajuan(new URLSearchParams(location.search).get('ref')), checks = periksa(p), blocked = checks.some(function (c) { return c.s === 'fail'; });
+        function row(a, b) { return '<div class="info-row"><span>' + a + '</span><b>' + b + '</b></div>'; }
+        function render() {
+            p = findPengajuan(p.ref);
+            document.getElementById('ini').textContent = inisial(p.nama.replace(/^Ustadzah? /, ''));
+            document.getElementById('pn').textContent = p.nama;
+            document.getElementById('pst').innerHTML = akunChip(p.status).replace('chip st', 'chip st small');
+            document.getElementById('pref').textContent = 'No. Referensi: ' + p.ref;
+            document.getElementById('pwkt').textContent = 'Diajukan ' + tglPanjang(p.waktu.slice(0, 10)) + ' \u2022 ' + jam(p.waktu);
+            document.getElementById('ptags').innerHTML = '<span class="tag">' + (p.tipe === 'wali' ? 'Wali Santri' : 'Asatidz') + '</span><span class="tag">' + p.hub + '</span>';
+            var dp = row('Nama Lengkap', p.nama) + row('Nomor WhatsApp', '<span class="mono">' + p.wa + '</span>');
+            dp += p.tipe === 'wali' ? row('Hubungan Wali', p.hub) + row('NISN Diajukan', '<span class="mono">' + p.nisn + '</span>') : row('Email', p.email) + row('NIY Diajukan', '<span class="mono">' + p.niy + '</span>');
+            document.getElementById('dp').innerHTML = dp;
+            var s = p.tipe === 'wali' ? santriByNisn(p.nisn) : null, a = p.tipe === 'asatidz' ? asatidzByNiy(p.niy) : null, dt;
+            document.getElementById('dtTitle').textContent = p.tipe === 'wali' ? 'Data Santri di Database' : 'Data Asatidz di Database';
+            if (p.tipe === 'wali') dt = s ? row('Nama Santri', s.nama) + row('NIS / NISN', '<span class="mono">' + s.nis + ' / ' + s.nisn + '</span>') + row('Kamar / Asrama', s.kamar) + row('Status Santri', s.status) : '<div class="callout fail" style="margin:0">NISN tidak ditemukan di database santri.</div>';
+            else dt = a ? row('Nama', a.nama) + row('NIY', '<span class="mono">' + a.niy + '</span>') + row('Jabatan', a.jabatan) + row('Halaqah', a.halaqah) : '<div class="callout fail" style="margin:0">NIY tidak ditemukan di data asatidz.</div>';
+            document.getElementById('dt').innerHTML = dt;
+            var ic = { ok: 'check', fail: 'xcircle', warn: 'warn' };
+            document.getElementById('checks').innerHTML = checks.map(function (c) { return '<div class="check ' + c.s + '"><div class="ic" data-i="' + ic[c.s] + '"></div><div><b>' + c.t + '</b><span>' + c.d + '</span></div></div>'; }).join('');
+            document.getElementById('call').innerHTML = blocked ? '<div class="callout fail">Pengajuan tidak dapat disetujui selama ada pemeriksaan yang gagal. Anda masih dapat menolaknya dengan alasan.</div>' : '<div class="callout ok">Semua pemeriksaan wajib lolos. Pengajuan siap disetujui.</div>';
+            var dc = document.getElementById('decCard');
+            if (p.status === 'Menunggu Verifikasi') {
+                dc.innerHTML = '<h3 class="t">Keputusan Verifikasi</h3><p style="font-size:13px">Setelah disetujui, pemohon dapat langsung masuk memakai kata sandi yang dibuat saat pengajuan. Pemohon diberi tahu lewat WhatsApp.</p><div class="decision"><button class="btn danger" id="bTolak" type="button"><span data-i="xcircle"></span> Tolak Pengajuan</button><button class="btn" id="bSetuju" type="button" ' + (blocked ? 'disabled' : '') + '><span data-i="shield"></span> Setujui &amp; Aktifkan Akun</button></div>';
+            } else {
+                var o = p.putus || {};
+                dc.innerHTML = '<h3 class="t">Keputusan Verifikasi</h3><div style="display:grid;gap:10px">' + row('Hasil Keputusan', akunChip(p.status)) + row('Diputuskan Pada', o.waktu ? tglPanjang(o.waktu.slice(0, 10)) + ' \u2022 ' + jam(o.waktu) : '-') + row('Diputuskan Oleh', 'Administrator') + row('Catatan', o.catatan || '-') + '</div>';
+            }
+            fillIcons();
+            var bs = document.getElementById('bSetuju'), bt = document.getElementById('bTolak');
+            if (bs) bs.onclick = function () { modal('setuju'); }; if (bt) bt.onclick = function () { modal('tolak'); };
+        }
+        function modal(kind) {
+            var m = document.getElementById('mdl'), d = document.getElementById('dlg'), ok = kind === 'setuju';
+            d.innerHTML = '<h3>' + (ok ? 'Setujui Pengajuan?' : 'Tolak Pengajuan?') + '</h3><p class="sub">' + (ok ? 'Akun ' + p.nama + ' akan diaktifkan dan dapat mengakses portal.' : 'Berikan alasan agar pemohon tahu apa yang perlu diperbaiki.') + '</p>' +
+                '<label class="label" for="cat">Catatan' + (ok ? ' (opsional)' : ' <i>*</i>') + '</label><textarea id="cat" class="input" placeholder="' + (ok ? 'Contoh: Data sesuai dokumen pendaftaran.' : 'Contoh: NISN tidak sesuai dengan data pondok.') + '"></textarea><div id="ce"></div>' +
+                '<div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn' + (ok ? '' : ' danger') + '" type="button" id="mo">' + (ok ? 'Ya, Setujui' : 'Ya, Tolak') + '</button></div>';
+            m.classList.add('open'); document.getElementById('cat').focus();
+            document.getElementById('mb').onclick = function () { m.classList.remove('open'); };
+            document.getElementById('mo').onclick = function () {
+                var c = document.getElementById('cat').value.trim();
+                if (!ok && !c) { document.getElementById('ce').innerHTML = '<p class="err">Alasan penolakan wajib diisi.</p>'; return; }
+                var now = new Date(), pad = function (n) { return String(n).padStart(2, '0'); };
+                savePutusan(p.ref, { status: ok ? 'Disetujui' : 'Ditolak', putus: { waktu: now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) + 'T' + pad(now.getHours()) + ':' + pad(now.getMinutes()), catatan: c } });
+                m.classList.remove('open'); toast(ok ? 'Pengajuan disetujui, akun diaktifkan' : 'Pengajuan ditolak'); render();
+            };
+        }
+        document.getElementById('mdl').onclick = function (e) { if (e.target.id === 'mdl') e.target.classList.remove('open'); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('mdl').classList.remove('open'); });
+        render();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Data Santri | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="santri" data-crumb="Data Santri / Detail Data Santri">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Detail Data Santri</h2>
+                <p>Lihat informasi lengkap santri beserta rekap kehadiran, pembelajaran, dan pembayaran.</p>
+            </div><a class="btn" href="data-santri.html"><span data-i="back"></span> Kembali</a>
+        </div>
+
+        <div class="card profile">
+            <div class="av"><span id="ini"></span><i data-i="cap"></i></div>
+            <div class="who">
+                <h2 id="pnama"></h2><span id="pst"></span>
+                <div class="meta" id="pnis"></div>
+                <div class="meta" id="pdaftar"></div>
+                <div class="tags"><span class="tag"><span data-i="room"></span><span id="pkamar"></span></span><span
+                        class="tag"><span data-i="users"></span><span id="phalaqah"></span></span></div>
+            </div>
+            <button class="btn sm2" type="button" onclick="window.print()"><span data-i="print"></span> Cetak</button>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+            <h3 class="t">Informasi Santri</h3>
+            <div class="info-grid">
+                <div class="info-row"><span>Nomor Induk Santri (NIS)</span><b id="i1"></b></div>
+                <div class="info-row"><span>Nama Lengkap</span><b id="i2"></b></div>
+                <div class="info-row"><span>Jenis Kelamin</span><b id="i3"></b></div>
+                <div class="info-row"><span>Tanggal Lahir</span><b id="i4"></b></div>
+                <div class="info-row"><span>Alamat Domisili</span><b id="i5"></b></div>
+                <div class="info-row"><span>Status Santri</span><b id="i6"></b></div>
+                <div class="info-row"><span>Tanggal Terdaftar</span><b id="i7"></b></div>
+                <div class="info-row"><span>Hubungan Akun Wali</span><b><span data-i="check"></span><span
+                            id="i8"></span></b></div>
+            </div>
+        </div>
+
+        <div class="stats3">
+            <div class="s3">
+                <div class="top">
+                    <div><small>Kehadiran Bulan Ini</small><strong>92%</strong>
+                        <p>23 dari 25 kegiatan tercatat hadir</p>
+                    </div>
+                    <div class="ico" data-i="usercheck"></div>
+                </div>
+                <div>
+                    <div class="prog"><i style="width:92%"></i></div>
+                    <div class="scale"><span>0%</span><span>Presensi Halaqah &amp; Asrama</span><span>100%</span></div>
+                </div>
+            </div>
+            <div class="s3">
+                <div class="top">
+                    <div><small>Catatan Pembelajaran</small><strong>12</strong>
+                        <p>Catatan mengaji bulan ini</p>
+                    </div>
+                    <div class="ico" data-i="quran"></div>
+                </div>
+                <div class="box">Terakhir :<br>Surah Al-Baqarah &nbsp;|&nbsp; Ayat 52 - 75 &bull; Juz 1</div>
+            </div>
+            <div class="s3">
+                <div class="top">
+                    <div><small>Status Pembayaran</small><strong>LUNAS</strong>
+                        <p>Periode November 2026</p>
+                    </div>
+                    <div class="ico" data-i="money"></div>
+                </div>
+                <div class="box">Tgl: 02/11/2026</div>
+            </div>
+        </div>
+
+        <div class="grid detail">
+            <div>
+                <div class="card flush">
+                    <div class="card-head" style="border:0;padding:22px 24px 14px">
+                        <div>
+                            <h3>Riwayat Kehadiran</h3>
+                            <p>Catatan kehadiran dari semua kegiatan</p>
+                        </div><a class="btn sm2" href="kehadiran.html">Lihat Rekap <span data-i="arrow"></span></a>
+                    </div>
+                    <table class="tbl alt1 plain-head">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Kegiatan</th>
+                                <th>Status</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>14 Jan 2024</td>
+                                <td class="l">Halaqah Pagi</td>
+                                <td><span class="chip st">Hadir</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>13 Jan 2024</td>
+                                <td class="l">Halaqah Malam</td>
+                                <td><span class="chip st">Hadir</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>13 Jan 2024</td>
+                                <td class="l">Halaqah Pagi</td>
+                                <td><span class="chip st mut">Izin</span></td>
+                                <td>Izin keperluan keluarga</td>
+                            </tr>
+                            <tr>
+                                <td>12 Jan 2024</td>
+                                <td class="l">Ngaji Kitab</td>
+                                <td><span class="chip st">Hadir</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>12 Jan 2024</td>
+                                <td class="l">Halaqah Pagi</td>
+                                <td><span class="chip st">Hadir</span></td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card flush">
+                    <div class="card-head" style="border:0;padding:22px 24px 14px">
+                        <div>
+                            <h3>Riwayat Pembelajaran Al-Qur'an</h3>
+                            <p>Catatan aktivitas membaca dan hafalan santri</p>
+                        </div><a class="btn sm2" href="pembelajaran.html">Lihat Riwayat <span data-i="arrow"></span></a>
+                    </div>
+                    <table class="tbl alt1 plain-head">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jenis Kegiatan</th>
+                                <th>Capaian</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02 Nov 2026</td>
+                                <td><span class="chip">Membaca</span></td>
+                                <td><b>Surah Al-Baqarah</b><br><small>Ayat 52 - 75 &bull; Juz 1</small></td>
+                                <td><span class="chip sm">Mengulang</span></td>
+                            </tr>
+                            <tr>
+                                <td>02 Nov 2026</td>
+                                <td><span class="chip">Hafalan</span></td>
+                                <td><b>Surah An-Naba</b><br><small>Ayat 1 - 40 &bull; Juz 30</small></td>
+                                <td><span class="chip sm">Lancar</span></td>
+                            </tr>
+                            <tr>
+                                <td>02 Nov 2026</td>
+                                <td><span class="chip">Hafalan</span></td>
+                                <td><b>Surah Ar-Rahman</b><br><small>Ayat 1- 78 &bull; Juz 27</small></td>
+                                <td><span class="chip sm">Mengulang</span></td>
+                            </tr>
+                            <tr>
+                                <td>01 Nov 2026</td>
+                                <td><span class="chip">Membaca</span></td>
+                                <td><b>Surah Ali 'Imran</b><br><small>Ayat 40 - 56 &bull; Juz 3</small></td>
+                                <td><span class="chip sm">Lancar</span></td>
+                            </tr>
+                            <tr>
+                                <td>01 Nov 2026</td>
+                                <td><span class="chip">Hafalan</span></td>
+                                <td><b>Surah Yasin</b><br><small>Ayat 1 - 83 &bull; Juz 23</small></td>
+                                <td><span class="chip sm">Lancar</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <h3 class="t" style="margin-bottom:2px">Informasi Pembayaran</h3>
+                    <p style="font-size:12px;margin-bottom:12px">Periode: November 2026</p>
+                    <div class="pay-detail">
+                        <div class="r"><span>Nominal Tagihan Syahriah</span><b>Rp500.000</b></div>
+                        <div class="r"><span>Total Terbayar</span><b>Rp500.000</b></div>
+                        <div class="r"><span><b style="font-size:12.5px;font-weight:600">Status
+                                    Pembayaran:</b></span><span class="lunas"><span data-i="check"></span>LUNAS</span>
+                        </div>
+                        <div class="in">
+                            <div class="r"><span>Metode:</span><b>Transfer Bank Manual</b></div>
+                            <div class="r"><span>Waktu Bayar:</span><b>02 Nov 2026 &bull; 09:15 WIB</b></div>
+                            <div class="r"><span>No. Kwitansi:</span><b style="font-family:monospace">KW-202611-0014</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center"><a class="btn sm2" href="pembayaran.html">Lihat Riwayat <span
+                                data-i="arrow"></span></a></div>
+                </div>
+                <div class="card">
+                    <h3 class="t">Data Akun Wali Santri</h3>
+                    <div class="wali">
+                        <div class="ico" data-i="user"></div>
+                        <div><b id="wn"></b><span id="wh"></span></div>
+                    </div>
+                    <div class="kv"><span>Kontak WhatsApp</span><b id="ww"></b></div>
+                    <div class="kv"><span>Status Akses Aplikasi</span><span class="chip st">Aktif</span></div>
+                    <div class="kv"><span>Tanggal Aktivasi Akun</span><b>14 Januari 2024</b></div>
+                    <div class="center"><button class="btn sm2" type="button"
+                            onclick="toast('Tautan reset kredensial dikirim (contoh)')"><span data-i="reset"></span>
+                            Reset Kredensial</button></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script>
+
+        var S = getSantri(); window.ORIG_NIS = S.nis;
+        document.getElementById('ini').textContent = inisial(S.nama);
+        document.getElementById('pnama').textContent = S.nama;
+        document.getElementById('pst').innerHTML = statusChip(S.status).replace('chip st', 'chip st small');
+        document.getElementById('pnis').textContent = 'NIS: ' + S.nis;
+        document.getElementById('pdaftar').textContent = 'Terdaftar sejak ' + tglPanjang(S.daftar);
+        document.getElementById('pkamar').textContent = S.kamar;
+        document.getElementById('phalaqah').textContent = S.halaqah;
+
+        document.getElementById('i1').textContent = S.nis; document.getElementById('i2').textContent = S.nama;
+        document.getElementById('i3').textContent = S.jk === 'L' ? 'Laki-laki' : 'Perempuan';
+        document.getElementById('i4').textContent = tglPanjang(S.lahir) + ' (' + umur(S.lahir) + ' tahun)';
+        document.getElementById('i5').textContent = S.kota;
+        document.getElementById('i6').textContent = S.status === 'Aktif' ? 'Aktif (Terdaftar & Mengikuti Kegiatan)' : S.status;
+        document.getElementById('i7').textContent = tglPanjang(S.daftar);
+        document.getElementById('i8').textContent = S.wali + ' (' + S.hub + ')';
+        document.getElementById('wn').textContent = S.wali; document.getElementById('wh').textContent = S.hub; document.getElementById('ww').textContent = S.wa;
+        fillIcons();
+
+    </script>
+</body>
+
+</html>

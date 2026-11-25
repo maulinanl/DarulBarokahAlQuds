@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Akun Pengguna | Darul Barokah Al - Quds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="akun" data-crumb="Pengelolaan Akun / Form Akun">
+  <main id="app" class="content">
+
+    <div class="page-head">
+      <div>
+        <h2 id="ttl"></h2>
+        <p id="sub"></p>
+      </div><a class="btn" id="back" href="pengelolaan-akun.html"><span data-i="back"></span> Kembali</a>
+    </div>
+    <form class="card" id="f" novalidate>
+      <div class="section">
+        <div class="section-title">
+          <div class="letter">A</div>
+          <div>
+            <h3>Identitas Pengguna</h3>
+            <p>Data dasar pemilik akun yang akan masuk ke sistem</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div><label class="label" for="peran">Peran Akun <i>*</i></label>
+            <div class="field"><span class="fi" data-i="users"></span><select id="peran" class="input">
+                <option value="asatidz">Asatidz (Ustadz/Ustadzah)</option>
+                <option value="wali">Wali Santri</option>
+              </select></div>
+          </div>
+          <div><label class="label" for="nama">Nama Lengkap <i>*</i></label>
+            <div class="field"><span class="fi" data-i="user"></span><input id="nama" class="input"
+                placeholder="Masukkan nama lengkap"></div>
+          </div>
+          <div><label class="label" for="wa">Nomor WhatsApp <i>*</i></label>
+            <div class="field"><span class="fi" data-i="chat"></span><input id="wa" class="input"
+                placeholder="Contoh: 0812-3456-7890" inputmode="tel"></div>
+            <p class="hint">Dipakai untuk notifikasi hasil verifikasi dan pengingat.</p>
+          </div>
+          <div data-role="asatidz"><label class="label" for="email">Email <i>*</i></label>
+            <div class="field"><span class="fi" data-i="mail"></span><input id="email" type="email" class="input"
+                placeholder="nama@darulbarokah.id"></div>
+          </div>
+          <div data-role="wali"><label class="label" for="emailw">Email</label>
+            <div class="field"><span class="fi" data-i="mail"></span><input id="emailw" type="email" class="input"
+                placeholder="Opsional"></div>
+          </div>
+          <div data-role="asatidz"><label class="label" for="niy">NIY (Nomor Induk Yayasan) <i>*</i></label>
+            <div class="field"><span class="fi" data-i="idcard"></span><input id="niy" class="input"
+                placeholder="Contoh: 20010021" inputmode="numeric"></div>
+          </div>
+          <div data-role="asatidz"><label class="label" for="jk">Jenis Kelamin <i>*</i></label>
+            <div class="field"><span class="fi" data-i="gender"></span><select id="jk" class="input">
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="L">Laki - Laki</option>
+                <option value="P">Perempuan</option>
+              </select></div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title">
+          <div class="letter">B</div>
+          <div>
+            <h3 id="bTitle"></h3>
+            <p id="bSub"></p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div data-role="asatidz"><label class="label" for="jabatan">Jabatan <i>*</i></label><select id="jabatan"
+              class="input plain">
+              <option value="">Pilih Jabatan</option>
+              <option>Pengampu Tahfidz</option>
+              <option>Pengampu Tahsin</option>
+              <option>Pengampu Kajian Kitab</option>
+            </select></div>
+          <div data-role="asatidz"><label class="label" for="halaqah">Halaqah Binaan <i>*</i></label><select
+              id="halaqah" class="input plain">
+              <option value="">Pilih Halaqah</option>
+              <option>Halaqah Ustadz Ridwan</option>
+              <option>Halaqah Ustadzah Salma</option>
+              <option>Halaqah Ustadz Hasan</option>
+            </select></div>
+          <div data-role="wali"><label class="label" for="santri">Santri Terkait <i>*</i></label><select id="santri"
+              class="input plain"></select>
+            <p class="hint">Satu akun wali terhubung ke satu santri.</p>
+          </div>
+          <div data-role="wali"><label class="label" for="hub">Hubungan dengan Santri <i>*</i></label><select id="hub"
+              class="input plain">
+              <option value="">Pilih hubungan</option>
+              <option>Ayah Kandung</option>
+              <option>Ibu Kandung</option>
+              <option>Wali / Kerabat</option>
+            </select></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title">
+          <div class="letter">C</div>
+          <div>
+            <h3>Akses &amp; Status Akun</h3>
+            <p>Kredensial awal dan status hak akses ke sistem</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div id="pwBox"><label class="label" for="pass">Kata Sandi Sementara <i>*</i></label>
+            <div class="pwrow">
+              <div class="field"><span class="fi" data-i="key"></span><input id="pass" class="input"
+                  placeholder="Minimal 8 karakter"></div><button class="btn outline" type="button" id="gen"
+                style="height:42px">Buat Otomatis</button>
+            </div><label class="chk"><input type="checkbox" id="ganti" checked> Wajib ganti kata sandi saat login
+              pertama</label>
+          </div>
+          <div><label class="label" for="status">Status Akun <i>*</i></label>
+            <div class="field"><span class="fi"><i class="dot"></i></span><select id="status" class="input">
+                <option value="Aktif">Aktif (Dapat Mengakses Sistem)</option>
+                <option value="Nonaktif">Nonaktif (Login Ditangguhkan)</option>
+              </select></div>
+            <p class="hint" id="stHint">Akun nonaktif tidak dapat login, tetapi datanya tetap tersimpan.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-foot">
+        <div class="upd" id="updBox"><button class="btn outline sm2" type="button" id="reset" style="display:none"><span
+              data-i="key"></span> Reset Kata Sandi</button></div>
+        <div class="form-actions"><a class="btn outline" id="batal" href="pengelolaan-akun.html">Batal</a><button
+            class="btn" type="submit"><span data-i="save"></span> Simpan Akun</button></div>
+      </div>
+    </form>
+  </main>
+
+  <script src="dashboard.js"></script>
+  <script src="santri-data.js"></script>
+  <script src="akun-data.js"></script>
+  <script>
+
+    var qs = new URLSearchParams(location.search), role = qs.get('role') === 'wali' ? 'wali' : 'asatidz', id = qs.get('id'), edit = !!id, rec = null;
+    if (edit) rec = role === 'asatidz' ? asatidzByNiy(id) : WALI.filter(function (w) { return w.nis === id; })[0];
+    var $ = function (i) { return document.getElementById(i); };
+    $('santri').innerHTML = '<option value="">Pilih santri</option>' + SANTRI.map(function (s) { return '<option value="' + s.nis + '">' + s.nis + ' \u2014 ' + s.nama + '</option>'; }).join('');
+    function applyRole() {
+      role = $('peran').value;
+      document.querySelectorAll('[data-role]').forEach(function (e) { e.style.display = e.dataset.role === role ? '' : 'none'; });
+      var a = role === 'asatidz';
+      $('ttl').textContent = (edit ? 'Edit Akun ' : 'Tambah Akun ') + (a ? 'Asatidz' : 'Wali Santri');
+      $('sub').textContent = edit ? 'Perbarui data, relasi, dan status akses akun pengguna.' : 'Buat akun baru agar pengguna dapat masuk ke sistem monitoring pondok pesantren.';
+      $('bTitle').textContent = a ? 'Penugasan Mengajar' : 'Relasi Santri';
+      $('bSub').textContent = a ? 'Jabatan dan kelompok halaqah yang dibina' : 'Santri yang dipantau melalui akun wali ini';
+      var t = a ? 'asatidz' : 'wali'; $('back').href = $('batal').href = 'pengelolaan-akun.html?tab=' + t;
+    }
+    $('peran').value = role; $('peran').onchange = applyRole;
+    if (edit && rec) {
+      $('peran').disabled = true; $('pwBox').style.display = 'none'; $('reset').style.display = '';
+      $('nama').value = rec.nama; $('wa').value = rec.wa; $('status').value = rec.status === 'Aktif' ? 'Aktif' : 'Nonaktif';
+      if (role === 'asatidz') { $('email').value = rec.email; $('niy').value = rec.niy; $('jk').value = rec.jk; $('jabatan').value = rec.jabatan; $('halaqah').value = rec.halaqah; $('niy').readOnly = true; }
+      else { $('santri').value = rec.nis; $('hub').value = rec.hub; }
+      $('updBox').insertAdjacentHTML('afterbegin', '<span data-i="hist"></span><span>Terdaftar: ' + tglPendek(role === 'asatidz' ? rec.daftar : rec.aktivasi) + ' \u2022 Oleh: <b>Administrator</b></span>');
+      $('reset').onclick = function () { toast('Tautan reset kata sandi dikirim lewat WhatsApp (contoh)'); };
+      $('updBox').appendChild($('reset'));
+    }
+    applyRole(); fillIcons();
+    $('gen').onclick = function () { var c = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789', s = ''; for (var i = 0; i < 10; i++) s += c[Math.floor(Math.random() * c.length)]; $('pass').value = s; $('pass').classList.remove('bad'); };
+    function val() {
+      var ok = true; document.querySelectorAll('.err').forEach(function (e) { e.remove(); }); document.querySelectorAll('.input.bad').forEach(function (e) { e.classList.remove('bad'); });
+      function bad(i, m) { var el = $(i); el.classList.add('bad'); var p = document.createElement('p'); p.className = 'err'; p.textContent = m; var host = el.closest('.pwrow') || el.closest('.field') || el; host.after(p); ok = false; }
+      var a = $('peran').value === 'asatidz';
+      if (!$('nama').value.trim()) bad('nama', 'Nama lengkap wajib diisi.');
+      if (!/^08[\d-]{8,13}$/.test($('wa').value.trim())) bad('wa', 'Nomor WhatsApp tidak valid (awali dengan 08).');
+      if (a) {
+        if (!/^\S+@\S+\.\S+$/.test($('email').value.trim())) bad('email', 'Email tidak valid.');
+        if (!/^\d{6,10}$/.test($('niy').value.trim())) bad('niy', 'NIY harus berupa angka 6\u201310 digit.');
+        else if (!edit && ASATIDZ.some(function (x) { return x.niy === $('niy').value.trim(); })) bad('niy', 'NIY sudah terdaftar.');
+        if (!$('jk').value) bad('jk', 'Pilih jenis kelamin.');
+        if (!$('jabatan').value) bad('jabatan', 'Pilih jabatan.');
+        if (!$('halaqah').value) bad('halaqah', 'Pilih halaqah binaan.');
+      } else {
+        if (!$('santri').value) bad('santri', 'Pilih santri terkait.');
+        if (!$('hub').value) bad('hub', 'Pilih hubungan dengan santri.');
+      }
+      if (!edit && $('pass').value.length < 8) bad('pass', 'Kata sandi minimal 8 karakter.');
+      return ok;
+    }
+    $('f').onsubmit = function (e) { e.preventDefault(); if (!val()) return; toast(edit ? 'Perubahan akun disimpan' : 'Akun berhasil dibuat'); setTimeout(function () { location.href = 'pengelolaan-akun.html?tab=' + $('peran').value; }, 900); };
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Santri | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="santri" data-crumb="Data Santri">
+    <main id="app" class="content">
+
+        <div class="page-head" style="margin-bottom:16px">
+            <div>
+                <h2>Data Santri</h2>
+                <p>Kelola informasi dan data santri yang terdaftar di pondok pesantren.</p>
+            </div>
+        </div>
+        <div class="stats three">
+            <div class="stat wide">
+                <div><small>TOTAL SANTRI</small>
+                    <div class="num"><strong>120</strong><em>Santri terdaftar</em></div>
+                </div>
+                <div class="ico" data-i="users"></div>
+            </div>
+            <div class="stat wide">
+                <div><small>SANTRI AKTIF</small>
+                    <div class="num"><strong>115</strong><em>Masih terdaftar aktif</em></div>
+                </div>
+                <div class="ico" data-i="usercheck"></div>
+            </div>
+            <div class="stat wide">
+                <div><small>SANTRI TIDAK AKTIF</small>
+                    <div class="num"><strong>5</strong><em>Tidak aktif / mutasi</em></div>
+                </div>
+                <div class="ico" data-i="userx"></div>
+            </div>
+        </div>
+        <div class="card flush">
+            <div class="card-head">
+                <div>
+                    <h3>Daftar Santri</h3>
+                    <p>Informasi santri yang tercatat dalam sistem monitoring pondok.</p>
+                </div>
+                <div class="head-actions">
+                    <button class="btn sm2" onclick="window.print()"><span data-i="print"></span> Cetak</button>
+                    <a class="btn sm2" href="data-santri-tambah.html"><span data-i="plus"></span> Tambah Santri</a>
+                </div>
+            </div>
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                        placeholder="Cari nama atau NIS santri..."></div>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
+                        <option value="">Semua Status</option>
+                        <option>Aktif</option>
+                        <option>Tidak Aktif</option>
+                        <option>Mutasi</option>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
+            </div>
+            <table class="tbl alt1">
+                <thead>
+                    <tr>
+                        <th style="width:60px">No.</th>
+                        <th>NIS</th>
+                        <th style="text-align:left">Nama Santri</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status</th>
+                        <th>Tanggal Terdaftar</th>
+                        <th style="width:70px">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script>
+
+        var P = 5, page = 1;
+        function list() {
+            var q = document.getElementById('q').value.toLowerCase(), s = document.getElementById('st').value;
+            return SANTRI.filter(function (x) { return (!q || x.nama.toLowerCase().indexOf(q) > -1 || x.nis.indexOf(q) > -1) && (!s || x.status === s); });
+        }
+        function draw() {
+            var d = list(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (x, i) {
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="nis">' + x.nis + '</td>' +
+                    '<td class="name"><a href="data-santri-detail.html?nis=' + x.nis + '">' + x.nama + '</a><small>' + x.kamar + '</small></td>' +
+                    '<td>' + (x.jk === 'L' ? 'Laki-laki' : 'Perempuan') + '</td><td>' + statusChip(x.status) + '</td><td>' + tglPendek(x.daftar) + '</td>' +
+                    '<td><a class="edit-btn" href="data-santri-edit.html?nis=' + x.nis + '" aria-label="Ubah ' + x.nama + '"><span data-i="edit"></span></a></td></tr>';
+            });
+            document.getElementById('rows').innerHTML = h || '<tr><td colspan="7">Data tidak ditemukan</td></tr>';
+            document.getElementById('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari 120 santri';
+            document.getElementById('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '–' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> santri' : 'Tidak ada data';
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            b += '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
+            document.getElementById('pages').innerHTML = b;
+            fillIcons();
+        }
+        document.getElementById('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        document.getElementById('q').oninput = function () { page = 1; draw(); };
+        document.getElementById('st').onchange = function () { page = 1; draw(); };
+        document.getElementById('reset').onclick = function () { document.getElementById('q').value = ''; document.getElementById('st').value = ''; page = 1; draw(); };
+        draw();
+
+    </script>
+</body>
+
+</html>
