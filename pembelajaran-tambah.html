@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Catatan Pembelajaran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pembelajaran" data-crumb="Pembelajaran Al-Qur'an / Tambah Catatan">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Tambah Catatan Pembelajaran</h2>
+                <p>Tambahkan catatan halaqah membaca atau setoran hafalan santri ke dalam sistem monitoring.</p>
+            </div>
+            <a class="btn" href="pembelajaran.html">&larr; Kembali</a>
+        </div>
+        <form class="card" id="f">
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Data Santri &amp; Kegiatan</h3>
+                        <p>Pilih santri dan jenis kegiatan pembelajaran</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="nis">Nomor Induk Santri (NIS) <i>*</i></label>
+                        <div class="field"><span data-i="santri"
+                                style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
+                                id="nis" class="input" placeholder="Contoh: 2024008" required></div>
+                        <p class="hint">Nama santri terisi otomatis sesuai NIS.</p>
+                    </div>
+                    <div><label class="label" for="tgl">Tanggal <i>*</i></label>
+                        <div class="field"><span data-i="cal"
+                                style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
+                                id="tgl" type="date" class="input" required></div>
+                    </div>
+                    <div class="full"><label class="label" for="jk">Jenis Kegiatan <i>*</i></label><select id="jk"
+                            class="input plain" required>
+                            <option value="">Pilih Jenis Kegiatan</option>
+                            <option>Membaca</option>
+                            <option>Hafalan</option>
+                        </select></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Capaian Pembelajaran</h3>
+                        <p>Surah dan rentang ayat yang dibaca atau disetorkan</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="sr">Surah <i>*</i></label>
+                        <div class="field"><span data-i="quran"
+                                style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
+                                id="sr" class="input" placeholder="Contoh: Al-Baqarah" required></div>
+                    </div>
+                    <div><label class="label" for="jz">Juz <i>*</i></label><input id="jz" type="number" min="1" max="30"
+                            class="input plain" placeholder="1 - 30" required></div>
+                    <div><label class="label" for="a1">Ayat Awal <i>*</i></label><input id="a1" type="number" min="1"
+                            class="input plain" placeholder="Contoh: 52" required></div>
+                    <div><label class="label" for="a2">Ayat Akhir <i>*</i></label><input id="a2" type="number" min="1"
+                            class="input plain" placeholder="Contoh: 75" required></div>
+                    <div class="full"><label class="label" for="cat">Catatan Ustadz/Ustadzah</label><textarea id="cat"
+                            class="input" placeholder="Contoh: Perlu memperbaiki tajwid pada hukum mad."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">C</div>
+                    <div>
+                        <h3>Status Capaian</h3>
+                        <p>Penilaian hasil bacaan atau setoran hafalan</p>
+                    </div>
+                </div>
+                <div style="max-width:420px"><label class="label" for="stt">Status <i>*</i></label><select id="stt"
+                        class="input plain" required>
+                        <option>Lancar</option>
+                        <option>Mengulang</option>
+                    </select>
+                    <p class="hint">Status "Mengulang" akan muncul pada daftar perlu perhatian di dashboard.</p>
+                </div>
+            </div>
+            <div class="form-actions"><a class="btn outline" href="pembelajaran.html">Batal</a><button class="btn"
+                    type="submit"><span data-i="quran"></span> Simpan Catatan</button></div>
+        </form>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
+        document.getElementById('tgl').valueAsDate = new Date();
+        document.getElementById('f').onsubmit = function (e) { e.preventDefault(); toast('Catatan berhasil disimpan'); setTimeout(function () { location.href = 'pembelajaran.html' }, 900) };
+    </script>
+</body>
+
+</html>

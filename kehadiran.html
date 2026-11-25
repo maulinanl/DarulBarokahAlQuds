@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kehadiran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="kehadiran" data-crumb="Monitoring Santri / Kehadiran">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Kehadiran Santri</h2>
+                <p>Pantau rekap kehadiran harian santri pada halaqah dan kegiatan pondok pesantren.</p>
+            </div>
+            <a class="btn" href="kehadiran-input.html"><span data-i="hadir"></span> Input Kehadiran</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div><small>Total Santri</small><strong>120</strong><em>Santri terdaftar</em></div>
+                <div class="ico" data-i="santri"></div>
+            </div>
+            <div class="stat">
+                <div><small>Hadir Hari Ini</small><strong>108</strong><em>Santri hadir di halaqah</em></div>
+                <div class="ico" data-i="hadir"></div>
+            </div>
+            <div class="stat">
+                <div><small>Izin &amp; Sakit</small><strong>9</strong><em>Santri berhalangan hadir</em></div>
+                <div class="ico" data-i="cal"></div>
+            </div>
+            <div class="stat">
+                <div><small>Alfa</small><strong>3</strong><em>Tanpa keterangan hari ini</em></div>
+                <div class="ico" data-i="bell"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-head">
+                <div>
+                    <h3>Ringkasan Kehadiran</h3>
+                    <p>Periode: Hari ini</p>
+                </div>
+                <button class="btn" onclick="toast('Rekap diunduh (contoh)')">Unduh Rekap <span data-i="out"
+                        style="transform:rotate(-90deg);display:inline-flex"></span></button>
+            </div>
+            <div class="recap">
+                <div class="hadir"><small>Hadir</small><strong>108</strong><span>90.0%</span></div>
+                <div class="izin"><small>Izin</small><strong>5</strong><span>4.2%</span></div>
+                <div class="sakit"><small>Sakit</small><strong>4</strong><span>3.3%</span></div>
+                <div class="alfa"><small>Alfa</small><strong>3</strong><span>2.5%</span></div>
+            </div>
+            <div class="bar"><i style="width:90%;background:#176B51"></i><i style="width:4.2%;background:#6B6014"></i><i
+                    style="width:3.3%;background:#154668"></i><i style="width:2.5%;background:#6B1418"></i></div>
+            <div class="legend">
+                <div><span><i class="dot" style="background:#176B51"></i>Hadir (108)</span><span><i class="dot"
+                            style="background:#6B6014"></i>Izin (5)</span><span><i class="dot"
+                            style="background:#154668"></i>Sakit (4)</span><span><i class="dot"
+                            style="background:#6B1418"></i>Alfa (3)</span></div>
+                <div>Total 120 Santri</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-head">
+                <div>
+                    <h3>Daftar Kehadiran</h3>
+                    <p>Catatan kehadiran santri berdasarkan tanggal dan kegiatan.</p>
+                </div>
+            </div>
+            <div class="toolbar">
+                <div class="grow"><label class="label" for="q">Cari Santri</label>
+                    <div class="field"><svg class="i" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="7" />
+                            <path d="M21 21l-4.3-4.3" />
+                        </svg><input id="q" class="input" placeholder="Nama atau NIS santri"></div>
+                </div>
+                <div style="width:200px"><label class="label" for="tgl">Tanggal</label>
+                    <div class="field"><span data-i="cal"
+                            style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
+                            id="tgl" type="date" class="input"></div>
+                </div>
+                <div style="width:200px"><label class="label" for="st">Status</label>
+                    <select id="st" class="input plain">
+                        <option value="">Semua Status</option>
+                        <option>Hadir</option>
+                        <option>Izin</option>
+                        <option>Sakit</option>
+                        <option>Alfa</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="tbl">
+                    <thead>
+                        <tr>
+                            <th>Nama Santri</th>
+                            <th>Kegiatan</th>
+                            <th>Tanggal</th>
+                            <th>Jam Masuk</th>
+                            <th>Status</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows"></tbody>
+                </table>
+            </div>
+            <div class="pager"><span id="info"></span>
+                <div class="pages"><button>&lsaquo;</button><button
+                        class="on">1</button><button>2</button><button>3</button><button>&rsaquo;</button></div>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
+        var D = [['Ahmad Fauzan', '20240101', 'Halaqah Subuh', '02 Nov 2026', '04:52', 'Hadir', '-'],
+        ['Muhammad Rizky', '20240108', 'Halaqah Subuh', '02 Nov 2026', '04:55', 'Hadir', '-'],
+        ['Siti Aisyah', '20240142', 'Halaqah Subuh', '02 Nov 2026', '-', 'Sakit', 'Demam, istirahat di asrama'],
+        ['Zaidan Ali', '20240119', 'Halaqah Subuh', '02 Nov 2026', '04:50', 'Hadir', '-'],
+        ['Fatimah Zahra', '20240131', 'Halaqah Subuh', '02 Nov 2026', '-', 'Izin', 'Pulang ke rumah (keluarga)'],
+        ['Umar Abdillah', '20240127', 'Halaqah Subuh', '02 Nov 2026', '-', 'Alfa', 'Tanpa keterangan'],
+        ['Aisyah Nur', '20240150', 'Halaqah Subuh', '02 Nov 2026', '04:58', 'Hadir', '-'],
+        ['Hasan Basri', '20240115', 'Halaqah Subuh', '02 Nov 2026', '04:53', 'Hadir', '-']];
+        function draw() {
+            var q = document.getElementById('q').value.toLowerCase(), s = document.getElementById('st').value, h = '', n = 0;
+            D.forEach(function (r) {
+                if ((q && (r[0].toLowerCase().indexOf(q) < 0 && r[1].indexOf(q) < 0)) || (s && r[5] !== s)) return; n++;
+                h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td><span class="chip ' + r[5].toLowerCase() + '">' + r[5] + '</span></td><td><small>' + r[6] + '</small></td></tr>'
+            });
+            document.getElementById('rows').innerHTML = h || '<tr><td colspan="6">Data tidak ditemukan</td></tr>';
+            document.getElementById('info').textContent = 'Menampilkan ' + n + ' dari 120 santri';
+        }
+        document.getElementById('q').oninput = draw; document.getElementById('st').onchange = draw; draw();
+    </script>
+</body>
+
+</html>

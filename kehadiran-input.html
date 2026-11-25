@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Kehadiran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="kehadiran" data-crumb="Kehadiran / Input Kehadiran">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Input Kehadiran Santri</h2>
+                <p>Catat kehadiran santri pada kegiatan pondok pesantren hari ini.</p>
+            </div>
+            <a class="btn" href="kehadiran.html">&larr; Kembali</a>
+        </div>
+        <form class="card" id="f">
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Informasi Kegiatan</h3>
+                        <p>Tentukan tanggal dan kegiatan yang dicatat kehadirannya</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="tgl">Tanggal <i>*</i></label>
+                        <div class="field"><span data-i="cal"
+                                style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
+                                id="tgl" type="date" class="input" required></div>
+                    </div>
+                    <div><label class="label" for="keg">Kegiatan <i>*</i></label><select id="keg" class="input plain"
+                            required>
+                            <option value="">Pilih Kegiatan</option>
+                            <option>Halaqah Subuh</option>
+                            <option>Halaqah Ba'da Maghrib</option>
+                            <option>Kajian Kitab</option>
+                            <option>Kegiatan Pondok Lainnya</option>
+                        </select>
+                        <p class="hint">Satu kegiatan dicatat satu kali per tanggal.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Daftar Kehadiran Santri</h3>
+                        <p>Pilih status kehadiran untuk setiap santri</p>
+                    </div>
+                </div>
+                <div style="margin-bottom:12px"><button type="button" class="btn outline sm" id="all">Tandai Semua
+                        Hadir</button></div>
+                <div class="table-wrap">
+                    <table class="tbl">
+                        <thead>
+                            <tr>
+                                <th>Nama Santri</th>
+                                <th>Status Kehadiran</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-actions"><a class="btn outline" href="kehadiran.html">Batal</a><button class="btn"
+                    type="submit"><span data-i="hadir"></span> Simpan Kehadiran</button></div>
+        </form>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
+        var S = [['Ahmad Fauzan', '20240101'], ['Muhammad Rizky', '20240108'], ['Siti Aisyah', '20240142'], ['Zaidan Ali', '20240119'], ['Fatimah Zahra', '20240131'], ['Umar Abdillah', '20240127']], st = ['Hadir', 'Izin', 'Sakit', 'Alfa'], h = '';
+        S.forEach(function (s, i) {
+            h += '<tr><td class="name">' + s[0] + '<small>' + s[1] + '</small></td><td><div class="seg">';
+            st.forEach(function (x) { h += '<input type="radio" name="s' + i + '" id="s' + i + x + '" value="' + x + '"' + (x === 'Hadir' ? ' checked' : '') + '><label class="l-' + x.toLowerCase() + '" for="s' + i + x + '">' + x + '</label>' });
+            h += '</div></td><td><input class="input plain" style="height:36px" placeholder="Opsional"></td></tr>'
+        });
+        document.getElementById('rows').innerHTML = h;
+        document.getElementById('all').onclick = function () { S.forEach(function (_, i) { document.getElementById('s' + i + 'Hadir').checked = true }) };
+        document.getElementById('tgl').valueAsDate = new Date();
+        document.getElementById('f').onsubmit = function (e) { e.preventDefault(); toast('Kehadiran berhasil disimpan'); setTimeout(function () { location.href = 'kehadiran.html' }, 900) };
+    </script>
+</body>
+
+</html>

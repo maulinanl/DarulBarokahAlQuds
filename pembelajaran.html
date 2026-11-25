@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembelajaran Al-Qur'an | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pembelajaran" data-crumb="Monitoring Santri / Pembelajaran Al-Qur'an">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pembelajaran Al-Qur'an</h2>
+                <p>Pantau aktivitas halaqah membaca dan setoran hafalan santri.</p>
+            </div>
+            <a class="btn" href="pembelajaran-tambah.html"><span data-i="quran"></span> Tambah Catatan</a>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <div><small>Catatan Pembelajaran</small><strong>36</strong><em>Catatan mengaji bulan ini</em></div>
+                <div class="ico" data-i="quran"></div>
+            </div>
+            <div class="stat">
+                <div><small>Setoran Hafalan</small><strong>21</strong><em>Setoran bulan ini</em></div>
+                <div class="ico" data-i="hadir"></div>
+            </div>
+            <div class="stat">
+                <div><small>Halaqah Membaca</small><strong>15</strong><em>Sesi membaca bulan ini</em></div>
+                <div class="ico" data-i="santri"></div>
+            </div>
+            <div class="stat">
+                <div><small>Perlu Mengulang</small><strong>7</strong><em>Santri berstatus mengulang</em></div>
+                <div class="ico" data-i="bell"></div>
+            </div>
+        </div>
+        <div class="grid two">
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h3>Riwayat Pembelajaran</h3>
+                        <p>Catatan aktivitas membaca dan hafalan santri.</p>
+                    </div>
+                </div>
+                <div class="toolbar">
+                    <div class="grow"><label class="label" for="q">Cari Santri</label>
+                        <div class="field"><svg class="i" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="M21 21l-4.3-4.3" />
+                            </svg><input id="q" class="input" placeholder="Nama atau NIS santri"></div>
+                    </div>
+                    <div style="width:170px"><label class="label" for="jk">Jenis Kegiatan</label><select id="jk"
+                            class="input plain">
+                            <option value="">Semua</option>
+                            <option>Membaca</option>
+                            <option>Hafalan</option>
+                        </select></div>
+                    <div style="width:170px"><label class="label" for="st">Status</label><select id="st"
+                            class="input plain">
+                            <option value="">Semua</option>
+                            <option>Lancar</option>
+                            <option>Mengulang</option>
+                        </select></div>
+                </div>
+                <div class="table-wrap">
+                    <table class="tbl">
+                        <thead>
+                            <tr>
+                                <th>Nama Santri</th>
+                                <th>Jenis Kegiatan</th>
+                                <th>Capaian</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+                <div class="pager"><span id="info"></span>
+                    <div class="pages"><button>&lsaquo;</button><button
+                            class="on">1</button><button>2</button><button>3</button><button>&rsaquo;</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <div>
+                        <h3>Capaian Terbaru</h3>
+                        <p>Progres hafalan santri</p>
+                    </div>
+                </div>
+                <ul class="mini-list">
+                    <li>
+                        <div class="row"><span>Muhammad Rizky</span><span>Juz 30</span></div><small>Surah
+                            An-Naba</small>
+                        <div class="progress"><i style="width:80%"></i></div>
+                    </li>
+                    <li>
+                        <div class="row"><span>Siti Aisyah</span><span>Juz 27</span></div><small>Surah Ar-Rahman</small>
+                        <div class="progress"><i style="width:55%"></i></div>
+                    </li>
+                    <li>
+                        <div class="row"><span>Zaidan Ali</span><span>Juz 3</span></div><small>Surah Ali 'Imran</small>
+                        <div class="progress"><i style="width:35%"></i></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
+        var D = [['Ahmad Fauzan', '20240101', 'Membaca', 'Surah Al-Baqarah', 'Ayat 52 - 75 \u2022 Juz 1', '02 Nov 2026', 'Mengulang'],
+        ['Muhammad Rizky', '20240108', 'Hafalan', 'Surah An-Naba', 'Ayat 1 - 40 \u2022 Juz 30', '02 Nov 2026', 'Lancar'],
+        ['Siti Aisyah', '20240142', 'Hafalan', 'Surah Ar-Rahman', 'Ayat 1- 78 \u2022 Juz 27', '02 Nov 2026', 'Mengulang'],
+        ['Zaidan Ali', '20240119', 'Membaca', 'Surah Ali \'Imran', 'Ayat 40 - 56 \u2022 Juz 3', '01 Nov 2026', 'Lancar'],
+        ['Fatimah Zahra', '20240131', 'Hafalan', 'Surah Al-Mulk', 'Ayat 1 - 30 \u2022 Juz 29', '01 Nov 2026', 'Lancar'],
+        ['Hasan Basri', '20240115', 'Membaca', 'Surah Yasin', 'Ayat 1 - 40 \u2022 Juz 22', '31 Okt 2026', 'Lancar']];
+        var ic = { e: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/>', d: '<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>' };
+        function draw() {
+            var q = document.getElementById('q').value.toLowerCase(), j = document.getElementById('jk').value, s = document.getElementById('st').value, h = '', n = 0;
+            D.forEach(function (r) {
+                if ((q && r[0].toLowerCase().indexOf(q) < 0 && r[1].indexOf(q) < 0) || (j && r[2] !== j) || (s && r[6] !== s)) return; n++;
+                h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td><span class="chip">' + r[2] + '</span></td><td><b style="font-size:12.5px">' + r[3] + '</b><br><small>' + r[4] + '</small></td><td>' + r[5] + '</td><td><span class="chip">' + r[6] + '</span></td><td><span class="act"><button class="icon-btn" aria-label="Ubah"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px">' + ic.e + '</svg></button><button class="icon-btn" aria-label="Hapus"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px">' + ic.d + '</svg></button></span></td></tr>'
+            });
+            document.getElementById('rows').innerHTML = h || '<tr><td colspan="6">Data tidak ditemukan</td></tr>'; document.getElementById('info').textContent = 'Menampilkan ' + n + ' dari 36 catatan';
+        }
+        ['q', 'jk', 'st'].forEach(function (i) { document.getElementById(i).oninput = draw }); draw();
+    </script>
+</body>
+
+</html>
