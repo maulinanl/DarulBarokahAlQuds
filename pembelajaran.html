@@ -21,118 +21,158 @@
                 <h2>Pembelajaran Al-Qur'an</h2>
                 <p>Pantau aktivitas halaqah membaca dan setoran hafalan santri.</p>
             </div>
-            <a class="btn" href="pembelajaran-tambah.html"><span data-i="quran"></span> Tambah Catatan</a>
+            <a class="btn" href="pembelajaran-tambah.html"><span data-i="plus"></span> Tambah Catatan</a>
         </div>
         <div class="stats">
-            <div class="stat">
-                <div><small>Catatan Pembelajaran</small><strong>36</strong><em>Catatan mengaji bulan ini</em></div>
+            <div class="stat wide c4">
+                <div><small>CATATAN PEMBELAJARAN</small>
+                    <div class="num"><strong id="s1"></strong></div><em>Catatan mengaji bulan ini</em>
+                </div>
                 <div class="ico" data-i="quran"></div>
             </div>
-            <div class="stat">
-                <div><small>Setoran Hafalan</small><strong>21</strong><em>Setoran bulan ini</em></div>
+            <div class="stat wide c4">
+                <div><small>SETORAN HAFALAN</small>
+                    <div class="num"><strong id="s2"></strong></div><em>Setoran bulan ini</em>
+                </div>
                 <div class="ico" data-i="hadir"></div>
             </div>
-            <div class="stat">
-                <div><small>Halaqah Membaca</small><strong>15</strong><em>Sesi membaca bulan ini</em></div>
-                <div class="ico" data-i="santri"></div>
+            <div class="stat wide c4">
+                <div><small>HALAQAH MEMBACA</small>
+                    <div class="num"><strong id="s3"></strong></div><em>Sesi membaca bulan ini</em>
+                </div>
+                <div class="ico" data-i="users"></div>
             </div>
-            <div class="stat">
-                <div><small>Perlu Mengulang</small><strong>7</strong><em>Santri berstatus mengulang</em></div>
-                <div class="ico" data-i="bell"></div>
+            <div class="stat wide c4">
+                <div><small>PERLU MENGULANG</small>
+                    <div class="num"><strong id="s4"></strong></div><em>Santri berstatus mengulang</em>
+                </div>
+                <div class="ico" data-i="warn"></div>
             </div>
         </div>
-        <div class="grid two">
-            <div class="card">
-                <div class="card-head">
-                    <div>
-                        <h3>Riwayat Pembelajaran</h3>
-                        <p>Catatan aktivitas membaca dan hafalan santri.</p>
-                    </div>
-                </div>
-                <div class="toolbar">
-                    <div class="grow"><label class="label" for="q">Cari Santri</label>
-                        <div class="field"><svg class="i" viewBox="0 0 24 24">
-                                <circle cx="11" cy="11" r="7" />
-                                <path d="M21 21l-4.3-4.3" />
-                            </svg><input id="q" class="input" placeholder="Nama atau NIS santri"></div>
-                    </div>
-                    <div style="width:170px"><label class="label" for="jk">Jenis Kegiatan</label><select id="jk"
-                            class="input plain">
-                            <option value="">Semua</option>
-                            <option>Membaca</option>
-                            <option>Hafalan</option>
-                        </select></div>
-                    <div style="width:170px"><label class="label" for="st">Status</label><select id="st"
-                            class="input plain">
-                            <option value="">Semua</option>
-                            <option>Lancar</option>
-                            <option>Mengulang</option>
-                        </select></div>
-                </div>
-                <div class="table-wrap">
-                    <table class="tbl">
-                        <thead>
-                            <tr>
-                                <th>Nama Santri</th>
-                                <th>Jenis Kegiatan</th>
-                                <th>Capaian</th>
-                                <th>Tanggal</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="rows"></tbody>
-                    </table>
-                </div>
-                <div class="pager"><span id="info"></span>
-                    <div class="pages"><button>&lsaquo;</button><button
-                            class="on">1</button><button>2</button><button>3</button><button>&rsaquo;</button></div>
+        <div class="card">
+            <div class="card-head">
+                <div>
+                    <h3>Capaian Hafalan Terbaru</h3>
+                    <p>Setoran hafalan terakhir tiap santri beserta progres surahnya.</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-head">
-                    <div>
-                        <h3>Capaian Terbaru</h3>
-                        <p>Progres hafalan santri</p>
-                    </div>
+            <div class="mini-grid" id="cap"></div>
+        </div>
+        <div class="card flush" style="margin-top:16px">
+            <div class="card-head">
+                <div>
+                    <h3>Riwayat Pembelajaran</h3>
+                    <p>Catatan aktivitas membaca dan hafalan santri.</p>
                 </div>
-                <ul class="mini-list">
-                    <li>
-                        <div class="row"><span>Muhammad Rizky</span><span>Juz 30</span></div><small>Surah
-                            An-Naba</small>
-                        <div class="progress"><i style="width:80%"></i></div>
-                    </li>
-                    <li>
-                        <div class="row"><span>Siti Aisyah</span><span>Juz 27</span></div><small>Surah Ar-Rahman</small>
-                        <div class="progress"><i style="width:55%"></i></div>
-                    </li>
-                    <li>
-                        <div class="row"><span>Zaidan Ali</span><span>Juz 3</span></div><small>Surah Ali 'Imran</small>
-                        <div class="progress"><i style="width:35%"></i></div>
-                    </li>
-                </ul>
+                <div class="head-actions"><button class="btn sm2" onclick="window.print()"><span data-i="print"></span>
+                        Cetak</button><a class="btn sm2" href="pembelajaran-tambah.html"><span data-i="plus"></span>
+                        Tambah Catatan</a></div>
             </div>
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                        placeholder="Cari nama atau NIS santri..."></div>
+                <label class="pill"><span data-i="cal"></span>Periode: <select id="per">
+                        <option value="">Semua</option>
+                        <option value="bulan">Bulan ini</option>
+                        <option value="7">7 hari terakhir</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Jenis: <select id="jk">
+                        <option value="">Semua</option>
+                        <option>Membaca</option>
+                        <option>Hafalan</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
+                        <option value="">Semua</option>
+                        <option>Lancar</option>
+                        <option>Mengulang</option>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
+            </div>
+            <table class="tbl alt1">
+                <thead>
+                    <tr>
+                        <th style="width:56px">No.</th>
+                        <th style="text-align:left">Nama Santri</th>
+                        <th>Jenis Kegiatan</th>
+                        <th>Capaian</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th style="width:80px">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
+            </div>
+        </div>
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
         </div>
     </main>
     <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
     <script>
-        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
-        var D = [['Ahmad Fauzan', '20240101', 'Membaca', 'Surah Al-Baqarah', 'Ayat 52 - 75 \u2022 Juz 1', '02 Nov 2026', 'Mengulang'],
-        ['Muhammad Rizky', '20240108', 'Hafalan', 'Surah An-Naba', 'Ayat 1 - 40 \u2022 Juz 30', '02 Nov 2026', 'Lancar'],
-        ['Siti Aisyah', '20240142', 'Hafalan', 'Surah Ar-Rahman', 'Ayat 1- 78 \u2022 Juz 27', '02 Nov 2026', 'Mengulang'],
-        ['Zaidan Ali', '20240119', 'Membaca', 'Surah Ali \'Imran', 'Ayat 40 - 56 \u2022 Juz 3', '01 Nov 2026', 'Lancar'],
-        ['Fatimah Zahra', '20240131', 'Hafalan', 'Surah Al-Mulk', 'Ayat 1 - 30 \u2022 Juz 29', '01 Nov 2026', 'Lancar'],
-        ['Hasan Basri', '20240115', 'Membaca', 'Surah Yasin', 'Ayat 1 - 40 \u2022 Juz 22', '31 Okt 2026', 'Lancar']];
-        var ic = { e: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/>', d: '<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>' };
-        function draw() {
-            var q = document.getElementById('q').value.toLowerCase(), j = document.getElementById('jk').value, s = document.getElementById('st').value, h = '', n = 0;
-            D.forEach(function (r) {
-                if ((q && r[0].toLowerCase().indexOf(q) < 0 && r[1].indexOf(q) < 0) || (j && r[2] !== j) || (s && r[6] !== s)) return; n++;
-                h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td><span class="chip">' + r[2] + '</span></td><td><b style="font-size:12.5px">' + r[3] + '</b><br><small>' + r[4] + '</small></td><td>' + r[5] + '</td><td><span class="chip">' + r[6] + '</span></td><td><span class="act"><button class="icon-btn" aria-label="Ubah"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px">' + ic.e + '</svg></button><button class="icon-btn" aria-label="Hapus"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px">' + ic.d + '</svg></button></span></td></tr>'
-            });
-            document.getElementById('rows').innerHTML = h || '<tr><td colspan="6">Data tidak ditemukan</td></tr>'; document.getElementById('info').textContent = 'Menampilkan ' + n + ' dari 36 catatan';
+        var $ = function (i) { return document.getElementById(i); };
+        function pager(el, page, pages) {
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            el.innerHTML = b + '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
         }
-        ['q', 'jk', 'st'].forEach(function (i) { document.getElementById(i).oninput = draw }); draw();
+
+        var P = 6, page = 1, qs = new URLSearchParams(location.search);
+        if (qs.get('nis')) $('q').value = qs.get('nis');
+        function nm(r) { return (santriByNis(r.nis) || { nama: r.nis }).nama; }
+        function sorted() { return getPembelajaran().slice().sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : b.id - a.id; }); }
+        function rows() {
+            var q = $('q').value.toLowerCase(), j = $('jk').value, s = $('st').value, per = $('per').value, t = todayIso(), bulan = t.slice(0, 7), min7 = addDays(t, -6);
+            return sorted().filter(function (r) {
+                return (!q || (nm(r) + ' ' + r.nis).toLowerCase().indexOf(q) > -1) && (!j || r.jenis === j) && (!s || r.status === s) &&
+                    (!per || (per === 'bulan' ? r.tgl.slice(0, 7) === bulan : r.tgl >= min7));
+            });
+        }
+        function stats() {
+            var all = getPembelajaran(), b = todayIso().slice(0, 7), m = all.filter(function (r) { return r.tgl.slice(0, 7) === b; }), last = {};
+            sorted().forEach(function (r) { if (!last[r.nis]) last[r.nis] = r; });
+            $('s1').textContent = m.length; $('s2').textContent = m.filter(function (r) { return r.jenis === 'Hafalan'; }).length; $('s3').textContent = m.filter(function (r) { return r.jenis === 'Membaca'; }).length;
+            $('s4').textContent = Object.keys(last).filter(function (n) { return last[n].status === 'Mengulang'; }).length;
+            var seen = {}, c = '';
+            sorted().filter(function (r) { return r.jenis === 'Hafalan'; }).forEach(function (r) {
+                if (seen[r.nis] || Object.keys(seen).length >= 4) return; seen[r.nis] = 1; var tot = SURAH[r.surah - 1][1];
+                c += '<div class="cap"><div class="row"><span>' + nm(r) + '</span><span>Juz ' + r.juz + '</span></div><small>' + 'Surah ' + surahNama(r.surah) + ' \u2022 ayat ' + r.a1 + '-' + r.a2 + ' dari ' + tot + '</small><div class="progress"><i style="width:' + Math.min(100, Math.round(r.a2 * 100 / tot)) + '%"></i></div></div>';
+            });
+            $('cap').innerHTML = c || '<p class="empty" style="grid-column:1/-1">Belum ada setoran hafalan.</p>';
+        }
+        function draw() {
+            stats();
+            var d = rows(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (r, i) {
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="name"><a href="data-santri-detail.html?nis=' + r.nis + '">' + nm(r) + '</a><small>' + r.nis + '</small></td><td><span class="chip">' + r.jenis + '</span></td>' +
+                    '<td><b style="font-size:13px">Surah ' + surahNama(r.surah) + '</b><br><small>' + capaianText(r) + '</small></td><td>' + tglPendek(r.tgl) + '</td><td><span class="chip">' + r.status + '</span></td>' +
+                    '<td><span class="row-acts"><a class="edit-btn" href="pembelajaran-edit.html?id=' + r.id + '" aria-label="Ubah catatan ' + nm(r) + '"><span data-i="edit"></span></a><button class="del-btn" type="button" data-del="' + r.id + '" aria-label="Hapus catatan ' + nm(r) + '"><span data-i="close"></span></button></span></td></tr>';
+            });
+            $('rows').innerHTML = h || '<tr><td colspan="7" class="empty">Belum ada catatan untuk filter ini. <a href="pembelajaran-tambah.html" style="color:var(--c-primary);font-weight:700">Tambah catatan</a></td></tr>';
+            $('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + getPembelajaran().length + '</b> catatan';
+            $('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '\u2013' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> catatan' : 'Tidak ada data';
+            pager($('pages'), page, pages); fillIcons();
+        }
+        $('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        ['q', 'per', 'jk', 'st'].forEach(function (i) { $(i).oninput = function () { page = 1; draw(); }; });
+        $('reset').onclick = function () { ['q', 'per', 'jk', 'st'].forEach(function (i) { $(i).value = ''; }); page = 1; draw(); };
+        $('rows').onclick = function (e) {
+            var b = e.target.closest('[data-del]'); if (!b) return; var id = +b.dataset.del, r = getPembelajaran().filter(function (x) { return x.id === id; })[0];
+            $('dlg').innerHTML = '<h3>Hapus Catatan?</h3><p class="sub">Catatan ' + r.jenis.toLowerCase() + ' ' + nm(r) + ' (Surah ' + surahNama(r.surah) + ', ' + tglPendek(r.tgl) + ') akan dihapus dan tidak dapat dikembalikan.</p><div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn danger" type="button" id="mo">Ya, Hapus</button></div>';
+            $('mdl').classList.add('open'); $('mb').onclick = function () { $('mdl').classList.remove('open'); };
+            $('mo').onclick = function () { deletePembelajaran(id); $('mdl').classList.remove('open'); toast('Catatan dihapus'); draw(); };
+        };
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') e.target.classList.remove('open'); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') $('mdl').classList.remove('open'); });
+        draw();
+
     </script>
 </body>
 

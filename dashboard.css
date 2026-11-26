@@ -2295,3 +2295,456 @@ button.pill:hover {
 .grid>.card+.card {
     margin-top: 0;
 }
+
+/* ==========================================================================
+   Monitoring: Kehadiran & Pembelajaran (penyeragaman dengan pola Data Santri)
+   ========================================================================== */
+.chip.st.sakit {
+    background: var(--c-sakit-bg);
+    color: var(--c-sakit);
+}
+
+.callout.warn {
+    background: #FFF3D6;
+    color: #8A5A00;
+}
+
+.pill input[type="date"] {
+    background: none;
+    border: 0;
+    font: inherit;
+    font-weight: 700;
+    color: var(--c-primary-dark);
+    outline: none;
+    cursor: pointer;
+}
+
+.del-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--c-alfa-bg);
+    color: var(--c-alfa);
+    display: inline-grid;
+    place-items: center;
+    border: 0;
+    cursor: pointer;
+}
+
+.del-btn svg.i {
+    width: 13px;
+    height: 13px;
+}
+
+.del-btn:hover {
+    background: var(--c-danger);
+    color: #fff;
+}
+
+.row-acts {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.input.time {
+    width: 104px;
+    height: 34px;
+    padding: 0 8px;
+    font-size: 13px;
+}
+
+.input.small {
+    height: 34px;
+    font-size: 13px;
+}
+
+.live {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.live .chip {
+    min-width: 0;
+    padding: 4px 12px;
+}
+
+.tbl.plain-head td .seg label {
+    padding: 4px 11px;
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+}
+
+.mini-grid .cap {
+    background: var(--c-chip);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.cap .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.cap small {
+    font-size: 11.5px;
+    display: block;
+    margin-top: 2px;
+}
+
+.empty {
+    padding: 28px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.nisinfo {
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nisinfo.ok {
+    background: var(--c-hadir-bg);
+    color: var(--c-primary-dark);
+}
+
+.nisinfo.bad {
+    background: #FBE9E7;
+    color: var(--c-danger);
+}
+
+.nisinfo svg.i {
+    width: 15px;
+    height: 15px;
+}
+
+/* Perbaikan: toolbar filter yang penuh dibungkus ke baris berikutnya; label kartu statistik tidak menabrak ikon */
+.toolbar2 {
+    flex-wrap: wrap;
+}
+
+.toolbar2 .search {
+    min-width: 240px;
+}
+
+.stat.wide.c4 small {
+    font-size: 11.5px;
+    letter-spacing: 0;
+}
+
+.stat.wide.c4 .ico {
+    margin-left: 8px;
+}
+
+/* ==========================================================================
+   Tab sidebar bisa dibuka-tutup + animasi
+   ========================================================================== */
+.nav-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: background .2s, color .2s;
+}
+
+.nav-title:hover {
+    background: rgba(23, 107, 81, .08);
+    color: var(--c-primary);
+}
+
+.nav-title .i {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+    transform: rotate(-90deg);
+}
+
+.nav-group.open .nav-title .i {
+    transform: rotate(0deg);
+}
+
+/* buka-tutup halus: tinggi dianimasikan lewat grid rows 0fr -> 1fr */
+.nav-items {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows .4s cubic-bezier(.4, 0, .2, 1), opacity .3s ease, visibility 0s .4s;
+}
+
+.nav-group.open .nav-items {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s, 0s, 0s;
+}
+
+.nav-items-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* item masuk satu per satu saat grup dibuka */
+.nav-item {
+    transform: translateX(-12px);
+    opacity: 0;
+    transition: background .2s, color .2s, transform .35s ease, opacity .35s ease;
+}
+
+.nav-group.open .nav-item {
+    transform: none;
+    opacity: 1;
+    transition-delay: 0s, 0s, calc(var(--d, 0ms) * .5), calc(var(--d, 0ms) * .5);
+}
+
+.nav-group.open .nav-item:hover {
+    transform: translateX(4px);
+    transition-delay: 0s;
+}
+
+.nav-bottom .nav-item {
+    transform: none;
+    opacity: 1;
+}
+
+.nav-bottom .nav-item:hover {
+    transform: translateX(4px);
+}
+
+/* animasi masuk konten dashboard */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.anim-ready .banner,
+.anim-ready .stat,
+.anim-ready .card {
+    animation: fadeUp .55s cubic-bezier(.2, .7, .2, 1) backwards;
+}
+
+.anim-ready .stat:nth-child(1) {
+    animation-delay: .08s;
+}
+
+.anim-ready .stat:nth-child(2) {
+    animation-delay: .16s;
+}
+
+.anim-ready .stat:nth-child(3) {
+    animation-delay: .24s;
+}
+
+.anim-ready .stat:nth-child(4) {
+    animation-delay: .32s;
+}
+
+.anim-ready .dash>div:nth-child(1) .card:nth-child(1) {
+    animation-delay: .38s;
+}
+
+.anim-ready .dash>div:nth-child(1) .card:nth-child(2) {
+    animation-delay: .46s;
+}
+
+.anim-ready .dash>div:nth-child(2) .card:nth-child(1) {
+    animation-delay: .42s;
+}
+
+.anim-ready .dash>div:nth-child(2) .card:nth-child(2) {
+    animation-delay: .50s;
+}
+
+.stat,
+.dash .card {
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.stat:hover,
+.dash .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(23, 107, 81, .15);
+}
+
+@media (max-width: 860px) {
+    .nav-title .i {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-items,
+    .nav-item,
+    .nav-title .i,
+    .anim-ready .banner,
+    .anim-ready .stat,
+    .anim-ready .card {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* ==========================================================================
+   Sidebar bisa ditutup ke kiri + kartu dashboard bisa dilipat
+   ========================================================================== */
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.side-toggle,
+.card-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0;
+    cursor: pointer;
+    color: var(--c-primary);
+    transition: background .2s, color .2s, transform .2s;
+}
+
+.side-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(23, 107, 81, .1);
+}
+
+.side-toggle:hover {
+    background: var(--c-primary);
+    color: #fff;
+}
+
+.side-toggle:active {
+    transform: scale(.92);
+}
+
+.side-toggle .i,
+.card-toggle .i {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sidebar {
+    transition: transform .4s cubic-bezier(.4, 0, .2, 1), opacity .3s ease;
+}
+
+.main {
+    transition: margin-left .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+.side-hidden .sidebar {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.side-hidden .main {
+    margin-left: 0;
+}
+
+/* kartu dashboard */
+.card-toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(23, 107, 81, .1);
+}
+
+.card-toggle:hover {
+    background: var(--c-primary);
+    color: #fff;
+}
+
+.card-toggle .i {
+    width: 18px;
+    height: 18px;
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.card.collapsed .card-toggle .i {
+    transform: rotate(-180deg);
+}
+
+.card-body {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows .4s cubic-bezier(.4, 0, .2, 1), opacity .3s ease;
+}
+
+.card-body-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.card.collapsed .card-body {
+    grid-template-rows: 0fr;
+    opacity: 0;
+}
+
+.card .card-head {
+    transition: margin-bottom .4s ease;
+}
+
+.card.collapsed .card-head {
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 860px) {
+    .side-hidden .sidebar {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sidebar,
+    .main,
+    .card-body,
+    .card-toggle .i {
+        transition: none !important;
+    }
+}

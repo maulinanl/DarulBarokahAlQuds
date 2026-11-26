@@ -2,6 +2,7 @@
    Setiap halaman cukup mengisi <body data-page="..." data-title="..." data-crumb="...">. */
 (function () {
     var I = {
+        menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
         dashboard: '<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',
         santri: '<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
         akun: '<circle cx="10" cy="8" r="4"/><path d="M2 21a8 8 0 0116 0"/><circle cx="19" cy="17" r="2"/>',
@@ -55,12 +56,18 @@
 
     var b = document.body, page = b.dataset.page || '';
     var side = '<aside class="sidebar"><div class="brand"><img src="assets/logo.png" alt="Logo"><div><small>Pondok Pesantren</small><strong>DARUL BAROKAH AL - QUDS</strong></div></div>';
-    nav.forEach(function (g) {
-        side += '<div class="nav-group"><div class="nav-title">' + g[0] + '</div>';
-        g[1].forEach(function (n) {
-            side += '<a class="nav-item' + (n[0] === page ? ' active' : '') + '" href="' + n[2] + '">' + icon(n[3]) + n[1] + '</a>';
+    var store = {};
+    try { store = JSON.parse(localStorage.getItem('navOpen') || '{}'); } catch (e) { }
+    nav.forEach(function (g, gi) {
+        var hasActive = g[1].some(function (n) { return n[0] === page; });
+        var open = hasActive || store[g[0]] !== false;
+        side += '<div class="nav-group' + (open ? ' open' : '') + '" data-group="' + g[0] + '">' +
+            '<button type="button" class="nav-title" aria-expanded="' + open + '"><span>' + g[0] + '</span>' + icon('chev') + '</button>' +
+            '<div class="nav-items"><div class="nav-items-inner">';
+        g[1].forEach(function (n, ni) {
+            side += '<a class="nav-item' + (n[0] === page ? ' active' : '') + '" style="--d:' + (gi * 90 + ni * 60) + 'ms" href="' + n[2] + '">' + icon(n[3]) + n[1] + '</a>';
         });
-        side += '</div>';
+        side += '</div></div></div>';
     });
     side += '<div class="nav-bottom"><a class="nav-item" href="pengaturan-profil.html">' + icon('setting') + 'Pengaturan Profil</a><a class="nav-item logout" href="index.html">' + icon('out') + 'Keluar</a></div></aside>';
 
@@ -73,7 +80,7 @@
     var crumb = (b.dataset.crumb || '').split('/').map(function (s) { return s.trim(); });
     var crumbHtml = crumb.map(function (c, i) { return i === crumb.length - 1 ? '<b>' + c + '</b>' : c; }).join(' / ');
 
-    var top = '<header class="topbar"><div><h1>Dashboard Administrator</h1><div class="crumb">' + crumbHtml + '</div></div>' +
+    var top = '<header class="topbar"><div class="top-left"><button type="button" class="side-toggle" aria-label="Buka/tutup menu samping" title="Buka/tutup menu">' + icon('menu') + '</button><div><h1>Dashboard Administrator</h1><div class="crumb">' + crumbHtml + '</div></div></div>' +
         '<div class="topbar-right"><span class="date-pill">' + icon('cal') + tgl + '</span>' +
         '<button class="bell" aria-label="Notifikasi">' + icon('bell') + '</button>' +
         '<div class="user"><div class="avatar">AD</div><div><b>Administrator</b><span>Administrator</span></div>' + icon('chev') + '</div></div></header>';
@@ -82,11 +89,71 @@
     var wrap = document.createElement('div');
     wrap.innerHTML = side;
     b.insertBefore(wrap.firstChild, b.firstChild);
+    document.querySelectorAll('.nav-group .nav-title').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var grp = btn.parentNode, open = !grp.classList.contains('open');
+            grp.classList.toggle('open', open);
+            btn.setAttribute('aria-expanded', open);
+            store[grp.dataset.group] = open;
+            try { localStorage.setItem('navOpen', JSON.stringify(store)); } catch (e) { }
+        });
+    });
+    document.body.classList.add('anim-ready');
+
     var mainEl = document.createElement('div');
     mainEl.className = 'main';
     mainEl.innerHTML = top;
     main.parentNode.insertBefore(mainEl, main);
     mainEl.appendChild(main);
+
+    /* tutup/buka seluruh sidebar ke kiri */
+    var sideKey = 'sideHidden';
+    function setSide(hidden) {
+        b.classList.toggle('side-hidden', hidden);
+        try { localStorage.setItem(sideKey, hidden ? '1' : '0'); } catch (e) { }
+    }
+    var saved = null;
+    try { saved = localStorage.getItem(sideKey); } catch (e) { }
+    if (saved === '1') {
+        b.classList.add('side-hidden');
+    }
+    mainEl.querySelector('.side-toggle').addEventListener('click', function () {
+        setSide(!b.classList.contains('side-hidden'));
+    });
+
+    /* kartu di dashboard bisa dibuka-tutup */
+    if (page === 'dashboard') {
+        var cStore = {};
+        try { cStore = JSON.parse(localStorage.getItem('cardOpen') || '{}'); } catch (e) { }
+        document.querySelectorAll('.dash .card').forEach(function (card) {
+            var head = card.querySelector('.card-head');
+            if (!head) return;
+            var key = (head.querySelector('h3') || {}).textContent || '';
+            var body = document.createElement('div');
+            body.className = 'card-body';
+            var inner = document.createElement('div');
+            inner.className = 'card-body-inner';
+            Array.prototype.slice.call(card.children).forEach(function (c) { if (c !== head) inner.appendChild(c); });
+            body.appendChild(inner);
+            card.appendChild(body);
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'card-toggle';
+            btn.setAttribute('aria-label', 'Buka/tutup ' + key);
+            btn.innerHTML = icon('chev');
+            head.appendChild(btn);
+            var open = cStore[key] !== false;
+            card.classList.toggle('collapsed', !open);
+            btn.setAttribute('aria-expanded', open);
+            btn.addEventListener('click', function () {
+                var nowOpen = card.classList.contains('collapsed');
+                card.classList.toggle('collapsed', !nowOpen);
+                btn.setAttribute('aria-expanded', nowOpen);
+                cStore[key] = nowOpen;
+                try { localStorage.setItem('cardOpen', JSON.stringify(cStore)); } catch (e) { }
+            });
+        });
+    }
 
     window.fillIcons = function (root) { (root || document).querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i); }); };
     window.fillIcons();

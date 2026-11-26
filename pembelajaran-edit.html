@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Catatan Pembelajaran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pembelajaran" data-crumb="Pembelajaran Al-Qur'an / Edit Catatan">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Edit Catatan Pembelajaran</h2>
+                <p>Perbarui catatan halaqah membaca atau setoran hafalan santri.</p>
+            </div><a class="btn" href="pembelajaran.html"><span data-i="back"></span> Kembali</a>
+        </div>
+
+        <form class="card" id="f" novalidate>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Data Santri &amp; Kegiatan</h3>
+                        <p>Pilih santri, tanggal, dan jenis kegiatan pembelajaran</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="nis">Nomor Induk Santri (NIS) <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="idcard"></span><input id="nis" class="input"
+                                placeholder="Contoh: 2024001" inputmode="numeric" maxlength="7" autocomplete="off">
+                        </div>
+                        <div id="nisInfo"></div>
+                    </div>
+                    <div><label class="label" for="tgl">Tanggal <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="cal"></span><input id="tgl" type="date"
+                                class="input"></div>
+                    </div>
+                    <div><label class="label" for="jenis">Jenis Kegiatan <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="quran"></span><select id="jenis" class="input">
+                                <option value="">Pilih Jenis Kegiatan</option>
+                                <option>Membaca</option>
+                                <option>Hafalan</option>
+                            </select></div>
+                    </div>
+                    <div><label class="label" for="niy">Ustadz/Ustadzah Pencatat <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="user"></span><select id="niy"
+                                class="input"></select></div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Capaian Pembelajaran</h3>
+                        <p>Surah dan rentang ayat yang dibaca atau disetorkan</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="surah">Surah <i>*</i></label><select id="surah"
+                            class="input plain"></select>
+                        <p class="hint" id="surahHint">Pilih surah untuk melihat jumlah ayatnya.</p>
+                    </div>
+                    <div><label class="label" for="juz">Juz <i>*</i></label><input id="juz" type="number" min="1"
+                            max="30" class="input plain" placeholder="1 - 30">
+                        <p class="hint">Terisi otomatis sesuai awal surah, dapat diubah.</p>
+                    </div>
+                    <div><label class="label" for="a1">Ayat Awal <i>*</i></label><input id="a1" type="number" min="1"
+                            class="input plain" placeholder="Contoh: 52"></div>
+                    <div><label class="label" for="a2">Ayat Akhir <i>*</i></label><input id="a2" type="number" min="1"
+                            class="input plain" placeholder="Contoh: 75"></div>
+                    <div class="full"><label class="label" for="cat">Catatan Ustadz/Ustadzah</label><textarea id="cat"
+                            class="input" placeholder="Contoh: Perlu memperbaiki tajwid pada hukum mad."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">C</div>
+                    <div>
+                        <h3>Status Capaian</h3>
+                        <p>Penilaian hasil bacaan atau setoran hafalan</p>
+                    </div>
+                </div>
+                <div style="max-width:416px"><label class="label" for="status">Status <i>*</i></label><select
+                        id="status" class="input plain">
+                        <option>Lancar</option>
+                        <option>Mengulang</option>
+                    </select>
+                    <p class="hint">Status "Mengulang" dihitung pada kartu "Perlu Mengulang" di halaman pembelajaran.
+                    </p>
+                </div>
+            </div>
+            <div class="form-foot">
+                <div class="upd"><button class="btn danger sm2" type="button" id="hapus"><span data-i="close"></span>
+                        Hapus Catatan</button></div>
+                <div class="form-actions"><a class="btn outline" href="pembelajaran.html">Batal</a><button class="btn"
+                        type="submit"><span data-i="save"></span> Simpan Catatan</button></div>
+            </div>
+        </form>
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+
+        var qs = new URLSearchParams(location.search), EDIT = true, rec = null, juzManual = false, niyOk = false;
+        if (EDIT) rec = getPembelajaran().filter(function (r) { return String(r.id) === qs.get('id'); })[0];
+        if (EDIT && !rec) { toast('Catatan tidak ditemukan'); setTimeout(function () { location.href = 'pembelajaran.html'; }, 900); }
+        $('surah').innerHTML = '<option value="">Pilih Surah</option>' + SURAH.map(function (s, i) { return '<option value="' + (i + 1) + '">' + (i + 1) + '. ' + s[0] + '</option>'; }).join('');
+        $('niy').innerHTML = '<option value="">Pilih Ustadz/Ustadzah</option>' + ASATIDZ.filter(function (a) { return a.status === 'Aktif'; }).map(function (a) { return '<option value="' + a.niy + '">' + a.nama + '</option>'; }).join('');
+        $('tgl').value = todayIso(); $('tgl').max = todayIso();
+        function nisCheck() {
+            var v = $('nis').value.trim(), el = $('nisInfo'); el.innerHTML = ''; if (v.length < 7) return null;
+            var s = santriByNis(v);
+            if (!s) { el.innerHTML = '<div class="nisinfo bad"><span data-i="xcircle"></span>NIS tidak ditemukan di data santri.</div>'; fillIcons(); return null; }
+            if (s.status !== 'Aktif') { el.innerHTML = '<div class="nisinfo bad"><span data-i="xcircle"></span>' + s.nama + ' berstatus ' + s.status + ' dan tidak dapat dicatat.</div>'; fillIcons(); return null; }
+            el.innerHTML = '<div class="nisinfo ok"><span data-i="check"></span>' + s.nama + ' \u2022 ' + s.kamar + '</div>'; fillIcons(); return s;
+        }
+        function surahSync() {
+            var n = +$('surah').value; if (!n) { $('surahHint').textContent = 'Pilih surah untuk melihat jumlah ayatnya.'; return; }
+            $('surahHint').textContent = 'Surah ' + SURAH[n - 1][0] + ' memiliki ' + SURAH[n - 1][1] + ' ayat.'; $('a2').max = SURAH[n - 1][1];
+            if (!juzManual) $('juz').value = SURAH[n - 1][2];
+        }
+        $('nis').oninput = nisCheck; $('surah').onchange = surahSync; $('juz').oninput = function () { juzManual = true; };
+        if (rec) {
+            $('nis').value = rec.nis; $('tgl').value = rec.tgl; $('jenis').value = rec.jenis; $('niy').value = rec.niy; $('surah').value = rec.surah;
+            $('a1').value = rec.a1; $('a2').value = rec.a2; $('cat').value = rec.catatan || ''; $('status').value = rec.status; juzManual = true; surahSync(); $('juz').value = rec.juz;
+            $('nis').readOnly = true; nisCheck();
+        }
+        fillIcons();
+        function val() {
+            var ok = true; document.querySelectorAll('.err').forEach(function (e) { e.remove(); }); document.querySelectorAll('.input.bad').forEach(function (e) { e.classList.remove('bad'); });
+            function bad(id, m) { var el = $(id); el.classList.add('bad'); var p = document.createElement('p'); p.className = 'err'; p.textContent = m; (el.closest('.field') || el).after(p); ok = false; }
+            if (!nisCheck()) bad('nis', $('nis').value.trim().length < 7 ? 'Masukkan NIS 7 digit santri aktif.' : 'NIS tidak valid atau santri tidak aktif.');
+            if (!$('tgl').value) bad('tgl', 'Tanggal wajib diisi.'); else if ($('tgl').value > todayIso()) bad('tgl', 'Tanggal tidak boleh di masa depan.');
+            if (!$('jenis').value) bad('jenis', 'Pilih jenis kegiatan.');
+            if (!$('niy').value) bad('niy', 'Pilih ustadz/ustadzah pencatat.');
+            var n = +$('surah').value, a1 = +$('a1').value, a2 = +$('a2').value, j = +$('juz').value;
+            if (!n) bad('surah', 'Pilih surah.');
+            if (!(j >= 1 && j <= 30)) bad('juz', 'Juz harus antara 1 dan 30.');
+            if (!(a1 >= 1)) bad('a1', 'Ayat awal wajib diisi.');
+            if (!(a2 >= 1)) bad('a2', 'Ayat akhir wajib diisi.');
+            else if (a1 >= 1 && a2 < a1) bad('a2', 'Ayat akhir tidak boleh lebih kecil dari ayat awal.');
+            else if (n && a2 > SURAH[n - 1][1]) bad('a2', 'Surah ' + SURAH[n - 1][0] + ' hanya memiliki ' + SURAH[n - 1][1] + ' ayat.');
+            return ok;
+        }
+        $('f').onsubmit = function (e) {
+            e.preventDefault(); if (!val()) return;
+            savePembelajaran({ id: rec ? rec.id : 0, tgl: $('tgl').value, nis: $('nis').value.trim(), jenis: $('jenis').value, surah: +$('surah').value, a1: +$('a1').value, a2: +$('a2').value, juz: +$('juz').value, status: $('status').value, catatan: $('cat').value.trim(), niy: $('niy').value });
+            toast(EDIT ? 'Perubahan catatan disimpan' : 'Catatan berhasil disimpan'); setTimeout(function () { location.href = 'pembelajaran.html'; }, 800);
+        };
+        if ($('hapus')) $('hapus').onclick = function () {
+            $('dlg').innerHTML = '<h3>Hapus Catatan?</h3><p class="sub">Catatan ini akan dihapus dan tidak dapat dikembalikan.</p><div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn danger" type="button" id="mo">Ya, Hapus</button></div>';
+            $('mdl').classList.add('open'); $('mb').onclick = function () { $('mdl').classList.remove('open'); };
+            $('mo').onclick = function () { deletePembelajaran(rec.id); toast('Catatan dihapus'); setTimeout(function () { location.href = 'pembelajaran.html'; }, 700); };
+        };
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') e.target.classList.remove('open'); };
+
+    </script>
+</body>
+
+</html>

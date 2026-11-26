@@ -19,11 +19,10 @@
         <div class="page-head">
             <div>
                 <h2>Input Kehadiran Santri</h2>
-                <p>Catat kehadiran santri pada kegiatan pondok pesantren hari ini.</p>
-            </div>
-            <a class="btn" href="kehadiran.html">&larr; Kembali</a>
+                <p>Catat kehadiran santri pada kegiatan pondok pesantren.</p>
+            </div><a class="btn" href="kehadiran.html"><span data-i="back"></span> Kembali</a>
         </div>
-        <form class="card" id="f">
+        <form class="card" id="f" novalidate>
             <div class="section">
                 <div class="section-title">
                     <div class="letter">A</div>
@@ -34,62 +33,99 @@
                 </div>
                 <div class="form-grid">
                     <div><label class="label" for="tgl">Tanggal <i>*</i></label>
-                        <div class="field"><span data-i="cal"
-                                style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
-                                id="tgl" type="date" class="input" required></div>
+                        <div class="field"><span class="fi" data-i="cal"></span><input id="tgl" type="date"
+                                class="input"></div>
                     </div>
-                    <div><label class="label" for="keg">Kegiatan <i>*</i></label><select id="keg" class="input plain"
-                            required>
-                            <option value="">Pilih Kegiatan</option>
-                            <option>Halaqah Subuh</option>
-                            <option>Halaqah Ba'da Maghrib</option>
-                            <option>Kajian Kitab</option>
-                            <option>Kegiatan Pondok Lainnya</option>
-                        </select>
-                        <p class="hint">Satu kegiatan dicatat satu kali per tanggal.</p>
+                    <div><label class="label" for="keg">Kegiatan <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="hadir"></span><select id="keg"
+                                class="input"></select></div>
                     </div>
                 </div>
+                <div id="dup"></div>
             </div>
             <div class="section">
                 <div class="section-title">
                     <div class="letter">B</div>
                     <div>
                         <h3>Daftar Kehadiran Santri</h3>
-                        <p>Pilih status kehadiran untuk setiap santri</p>
+                        <p>Pilih status kehadiran untuk setiap santri aktif</p>
                     </div>
                 </div>
-                <div style="margin-bottom:12px"><button type="button" class="btn outline sm" id="all">Tandai Semua
-                        Hadir</button></div>
+                <div class="live" id="live"></div>
+                <div class="toolbar2" style="padding:0 0 14px">
+                    <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                            placeholder="Cari nama santri atau kamar..."></div><button type="button"
+                        class="btn outline sm2" id="all"><span data-i="check"></span> Tandai Semua Hadir</button>
+                </div>
                 <div class="table-wrap">
-                    <table class="tbl">
+                    <table class="tbl plain-head">
                         <thead>
                             <tr>
-                                <th>Nama Santri</th>
+                                <th style="text-align:left">Nama Santri</th>
                                 <th>Status Kehadiran</th>
-                                <th>Keterangan</th>
+                                <th>Jam Masuk</th>
+                                <th style="text-align:left">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody id="rows"></tbody>
                     </table>
                 </div>
+                <div id="err"></div>
             </div>
             <div class="form-actions"><a class="btn outline" href="kehadiran.html">Batal</a><button class="btn"
-                    type="submit"><span data-i="hadir"></span> Simpan Kehadiran</button></div>
+                    type="submit"><span data-i="save"></span> Simpan Kehadiran</button></div>
         </form>
     </main>
     <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
     <script>
-        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
-        var S = [['Ahmad Fauzan', '20240101'], ['Muhammad Rizky', '20240108'], ['Siti Aisyah', '20240142'], ['Zaidan Ali', '20240119'], ['Fatimah Zahra', '20240131'], ['Umar Abdillah', '20240127']], st = ['Hadir', 'Izin', 'Sakit', 'Alfa'], h = '';
-        S.forEach(function (s, i) {
-            h += '<tr><td class="name">' + s[0] + '<small>' + s[1] + '</small></td><td><div class="seg">';
-            st.forEach(function (x) { h += '<input type="radio" name="s' + i + '" id="s' + i + x + '" value="' + x + '"' + (x === 'Hadir' ? ' checked' : '') + '><label class="l-' + x.toLowerCase() + '" for="s' + i + x + '">' + x + '</label>' });
-            h += '</div></td><td><input class="input plain" style="height:36px" placeholder="Opsional"></td></tr>'
-        });
-        document.getElementById('rows').innerHTML = h;
-        document.getElementById('all').onclick = function () { S.forEach(function (_, i) { document.getElementById('s' + i + 'Hadir').checked = true }) };
-        document.getElementById('tgl').valueAsDate = new Date();
-        document.getElementById('f').onsubmit = function (e) { e.preventDefault(); toast('Kehadiran berhasil disimpan'); setTimeout(function () { location.href = 'kehadiran.html' }, 900) };
+        var $ = function (i) { return document.getElementById(i); };
+
+        var SA = SANTRI.filter(function (s) { return s.status === 'Aktif'; }), st = {}, bad = {};
+        KEGIATAN.forEach(function (k) { $('keg').insertAdjacentHTML('beforeend', '<option value="' + k.id + '">' + k.nama + ' (' + k.jam + ')</option>'); });
+        $('tgl').value = todayIso(); $('tgl').max = todayIso();
+        function init() {
+            var t = $('tgl').value, k = $('keg').value, ex = {}, n = 0; bad = {};
+            getKehadiran().forEach(function (r) { if (r.tgl === t && r.keg === k) { ex[r.nis] = r; n++; } });
+            st = {}; SA.forEach(function (s) { var r = ex[s.nis]; st[s.nis] = r ? { status: r.status, jam: r.jam || '', ket: r.ket || '' } : { status: 'Hadir', jam: kegJam(k), ket: '' }; });
+            $('dup').innerHTML = n ? '<div class="callout warn">Kehadiran ' + kegNama(k) + ' pada ' + tglPanjang(t) + ' sudah tercatat (' + n + ' santri). Menyimpan akan memperbarui catatan tersebut.</div>' : '';
+            render();
+        }
+        function counters() {
+            var c = { Hadir: 0, Izin: 0, Sakit: 0, Alfa: 0 }; SA.forEach(function (s) { c[st[s.nis].status]++; });
+            $('live').innerHTML = '<b style="font-size:12.5px;margin-right:4px">Ringkasan:</b>' + STATUS_KH.map(function (s) { return khChip(s).replace('</span>', ' ' + c[s] + '</span>'); }).join('') + '<span style="font-size:12px;margin-left:4px">dari ' + SA.length + ' santri aktif</span>';
+        }
+        function render() {
+            var q = $('q').value.toLowerCase(), h = '';
+            SA.filter(function (s) { return !q || (s.nama + ' ' + s.kamar + ' ' + s.nis).toLowerCase().indexOf(q) > -1; }).forEach(function (s) {
+                var v = st[s.nis]; h += '<tr data-nis="' + s.nis + '"><td class="name l">' + s.nama + '<small>' + s.nis + ' \u2022 ' + s.kamar + '</small></td><td><div class="seg">';
+                STATUS_KH.forEach(function (x) { h += '<input type="radio" name="s' + s.nis + '" id="s' + s.nis + x + '" value="' + x + '"' + (v.status === x ? ' checked' : '') + '><label class="l-' + x.toLowerCase() + '" for="s' + s.nis + x + '">' + x + '</label>'; });
+                h += '</div></td><td><input type="time" class="input time" data-f="jam" value="' + (v.status === 'Hadir' ? v.jam : '') + '" ' + (v.status === 'Hadir' ? '' : 'disabled') + '></td>' +
+                    '<td><input class="input small plain' + (bad[s.nis] ? ' bad' : '') + '" data-f="ket" value="' + v.ket.replace(/"/g, '&quot;') + '" placeholder="' + (v.status === 'Izin' || v.status === 'Sakit' ? 'Wajib diisi' : 'Opsional') + '" ' + (v.status === 'Hadir' ? 'disabled' : '') + '></td></tr>';
+            });
+            $('rows').innerHTML = h || '<tr><td colspan="4" class="empty">Santri tidak ditemukan</td></tr>'; counters(); fillIcons();
+        }
+        $('rows').onchange = function (e) {
+            var tr = e.target.closest('tr'), n = tr && tr.dataset.nis; if (!n) return;
+            if (e.target.type === 'radio') { st[n].status = e.target.value; if (e.target.value === 'Hadir') { st[n].ket = ''; st[n].jam = st[n].jam || kegJam($('keg').value); } else st[n].jam = ''; delete bad[n]; render(); }
+            else if (e.target.dataset.f === 'jam') st[n].jam = e.target.value;
+        };
+        $('rows').oninput = function (e) { var tr = e.target.closest('tr'), n = tr && tr.dataset.nis; if (n && e.target.dataset.f === 'ket') { st[n].ket = e.target.value; if (e.target.value.trim()) { delete bad[n]; e.target.classList.remove('bad'); } } };
+        $('all').onclick = function () { SA.forEach(function (s) { st[s.nis] = { status: 'Hadir', jam: kegJam($('keg').value), ket: '' }; }); bad = {}; render(); };
+        $('q').oninput = render; $('tgl').onchange = $('keg').onchange = init;
+        $('f').onsubmit = function (e) {
+            e.preventDefault(); $('err').innerHTML = ''; bad = {};
+            if (!$('tgl').value) { $('err').innerHTML = '<div class="callout fail">Tanggal wajib diisi.</div>'; return; }
+            SA.forEach(function (s) { var v = st[s.nis]; if ((v.status === 'Izin' || v.status === 'Sakit') && !v.ket.trim()) bad[s.nis] = 1; });
+            if (Object.keys(bad).length) { $('q').value = ''; render(); $('err').innerHTML = '<div class="callout fail">Keterangan wajib diisi untuk ' + Object.keys(bad).length + ' santri berstatus izin/sakit.</div>'; return; }
+            var t = $('tgl').value, k = $('keg').value;
+            upsertKehadiran(SA.map(function (s) { var v = st[s.nis]; return { id: t + '|' + k + '|' + s.nis, tgl: t, keg: k, nis: s.nis, status: v.status, jam: v.status === 'Hadir' ? v.jam : '', ket: v.status === 'Hadir' ? '' : v.ket.trim() }; }));
+            toast('Kehadiran berhasil disimpan'); setTimeout(function () { location.href = 'kehadiran.html?tgl=' + t + '&keg=' + k; }, 800);
+        };
+        init();
+
     </script>
 </body>
 

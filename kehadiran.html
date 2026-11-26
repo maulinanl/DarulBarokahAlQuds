@@ -23,123 +23,183 @@
             </div>
             <a class="btn" href="kehadiran-input.html"><span data-i="hadir"></span> Input Kehadiran</a>
         </div>
-
         <div class="stats">
-            <div class="stat">
-                <div><small>Total Santri</small><strong>120</strong><em>Santri terdaftar</em></div>
-                <div class="ico" data-i="santri"></div>
+            <div class="stat wide c4">
+                <div><small>SANTRI AKTIF</small>
+                    <div class="num"><strong id="sTot"></strong></div><em>Santri terdaftar aktif</em>
+                </div>
+                <div class="ico" data-i="users"></div>
             </div>
-            <div class="stat">
-                <div><small>Hadir Hari Ini</small><strong>108</strong><em>Santri hadir di halaqah</em></div>
-                <div class="ico" data-i="hadir"></div>
+            <div class="stat wide c4">
+                <div><small>HADIR</small>
+                    <div class="num"><strong id="sH"></strong></div><em>Kehadiran tercatat</em>
+                </div>
+                <div class="ico" data-i="usercheck"></div>
             </div>
-            <div class="stat">
-                <div><small>Izin &amp; Sakit</small><strong>9</strong><em>Santri berhalangan hadir</em></div>
+            <div class="stat wide c4">
+                <div><small>IZIN &amp; SAKIT</small>
+                    <div class="num"><strong id="sIS"></strong></div><em>Santri berhalangan hadir</em>
+                </div>
                 <div class="ico" data-i="cal"></div>
             </div>
-            <div class="stat">
-                <div><small>Alfa</small><strong>3</strong><em>Tanpa keterangan hari ini</em></div>
-                <div class="ico" data-i="bell"></div>
+            <div class="stat wide c4">
+                <div><small>ALFA</small>
+                    <div class="num"><strong id="sA"></strong></div><em>Tanpa keterangan</em>
+                </div>
+                <div class="ico" data-i="warn"></div>
             </div>
         </div>
-
         <div class="card">
             <div class="card-head">
                 <div>
                     <h3>Ringkasan Kehadiran</h3>
-                    <p>Periode: Hari ini</p>
+                    <p id="periode"></p>
                 </div>
-                <button class="btn" onclick="toast('Rekap diunduh (contoh)')">Unduh Rekap <span data-i="out"
-                        style="transform:rotate(-90deg);display:inline-flex"></span></button>
+                <button class="btn sm2" id="unduh" type="button">Unduh Rekap <span data-i="arrow"
+                        style="transform:rotate(90deg);display:inline-flex"></span></button>
             </div>
             <div class="recap">
-                <div class="hadir"><small>Hadir</small><strong>108</strong><span>90.0%</span></div>
-                <div class="izin"><small>Izin</small><strong>5</strong><span>4.2%</span></div>
-                <div class="sakit"><small>Sakit</small><strong>4</strong><span>3.3%</span></div>
-                <div class="alfa"><small>Alfa</small><strong>3</strong><span>2.5%</span></div>
+                <div class="hadir"><small>Hadir</small><strong id="cH">0</strong><span id="pH"></span></div>
+                <div class="izin"><small>Izin</small><strong id="cI">0</strong><span id="pI"></span></div>
+                <div class="sakit"><small>Sakit</small><strong id="cS">0</strong><span id="pS"></span></div>
+                <div class="alfa"><small>Alfa</small><strong id="cA">0</strong><span id="pA"></span></div>
             </div>
-            <div class="bar"><i style="width:90%;background:#176B51"></i><i style="width:4.2%;background:#6B6014"></i><i
-                    style="width:3.3%;background:#154668"></i><i style="width:2.5%;background:#6B1418"></i></div>
+            <div class="bar" id="bar"></div>
             <div class="legend">
-                <div><span><i class="dot" style="background:#176B51"></i>Hadir (108)</span><span><i class="dot"
-                            style="background:#6B6014"></i>Izin (5)</span><span><i class="dot"
-                            style="background:#154668"></i>Sakit (4)</span><span><i class="dot"
-                            style="background:#6B1418"></i>Alfa (3)</span></div>
-                <div>Total 120 Santri</div>
+                <div id="lg"></div>
+                <div id="lt"></div>
             </div>
         </div>
-
-        <div class="card">
+        <div class="card flush" style="margin-top:16px">
             <div class="card-head">
                 <div>
                     <h3>Daftar Kehadiran</h3>
                     <p>Catatan kehadiran santri berdasarkan tanggal dan kegiatan.</p>
                 </div>
+                <div class="head-actions"><button class="btn sm2" onclick="window.print()"><span data-i="print"></span>
+                        Cetak</button></div>
             </div>
-            <div class="toolbar">
-                <div class="grow"><label class="label" for="q">Cari Santri</label>
-                    <div class="field"><svg class="i" viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="7" />
-                            <path d="M21 21l-4.3-4.3" />
-                        </svg><input id="q" class="input" placeholder="Nama atau NIS santri"></div>
-                </div>
-                <div style="width:200px"><label class="label" for="tgl">Tanggal</label>
-                    <div class="field"><span data-i="cal"
-                            style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-primary-dark);display:flex"></span><input
-                            id="tgl" type="date" class="input"></div>
-                </div>
-                <div style="width:200px"><label class="label" for="st">Status</label>
-                    <select id="st" class="input plain">
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                        placeholder="Cari nama atau NIS santri..."></div>
+                <label class="pill"><span data-i="cal"></span>Tanggal: <input id="tgl" type="date"></label>
+                <label class="pill"><span data-i="filter"></span>Kegiatan: <select id="keg">
+                        <option value="">Semua</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
                         <option value="">Semua Status</option>
                         <option>Hadir</option>
                         <option>Izin</option>
                         <option>Sakit</option>
                         <option>Alfa</option>
-                    </select>
-                </div>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
             </div>
-            <div class="table-wrap">
-                <table class="tbl">
-                    <thead>
-                        <tr>
-                            <th>Nama Santri</th>
-                            <th>Kegiatan</th>
-                            <th>Tanggal</th>
-                            <th>Jam Masuk</th>
-                            <th>Status</th>
-                            <th>Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody id="rows"></tbody>
-                </table>
+            <table class="tbl alt1">
+                <thead>
+                    <tr>
+                        <th style="width:56px">No.</th>
+                        <th style="text-align:left">Nama Santri</th>
+                        <th>Kegiatan</th>
+                        <th>Tanggal</th>
+                        <th>Jam Masuk</th>
+                        <th>Status</th>
+                        <th>Keterangan</th>
+                        <th style="width:60px">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
             </div>
-            <div class="pager"><span id="info"></span>
-                <div class="pages"><button>&lsaquo;</button><button
-                        class="on">1</button><button>2</button><button>3</button><button>&rsaquo;</button></div>
-            </div>
+        </div>
+
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
         </div>
     </main>
     <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
     <script>
-        document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
-        var D = [['Ahmad Fauzan', '20240101', 'Halaqah Subuh', '02 Nov 2026', '04:52', 'Hadir', '-'],
-        ['Muhammad Rizky', '20240108', 'Halaqah Subuh', '02 Nov 2026', '04:55', 'Hadir', '-'],
-        ['Siti Aisyah', '20240142', 'Halaqah Subuh', '02 Nov 2026', '-', 'Sakit', 'Demam, istirahat di asrama'],
-        ['Zaidan Ali', '20240119', 'Halaqah Subuh', '02 Nov 2026', '04:50', 'Hadir', '-'],
-        ['Fatimah Zahra', '20240131', 'Halaqah Subuh', '02 Nov 2026', '-', 'Izin', 'Pulang ke rumah (keluarga)'],
-        ['Umar Abdillah', '20240127', 'Halaqah Subuh', '02 Nov 2026', '-', 'Alfa', 'Tanpa keterangan'],
-        ['Aisyah Nur', '20240150', 'Halaqah Subuh', '02 Nov 2026', '04:58', 'Hadir', '-'],
-        ['Hasan Basri', '20240115', 'Halaqah Subuh', '02 Nov 2026', '04:53', 'Hadir', '-']];
-        function draw() {
-            var q = document.getElementById('q').value.toLowerCase(), s = document.getElementById('st').value, h = '', n = 0;
-            D.forEach(function (r) {
-                if ((q && (r[0].toLowerCase().indexOf(q) < 0 && r[1].indexOf(q) < 0)) || (s && r[5] !== s)) return; n++;
-                h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td><span class="chip ' + r[5].toLowerCase() + '">' + r[5] + '</span></td><td><small>' + r[6] + '</small></td></tr>'
-            });
-            document.getElementById('rows').innerHTML = h || '<tr><td colspan="6">Data tidak ditemukan</td></tr>';
-            document.getElementById('info').textContent = 'Menampilkan ' + n + ' dari 120 santri';
+        var $ = function (i) { return document.getElementById(i); };
+        function pager(el, page, pages) {
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            el.innerHTML = b + '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
         }
-        document.getElementById('q').oninput = draw; document.getElementById('st').onchange = draw; draw();
+
+        var P = 8, page = 1, qs = new URLSearchParams(location.search), edId = null;
+        KEGIATAN.forEach(function (k) { $('keg').insertAdjacentHTML('beforeend', '<option value="' + k.id + '">' + k.nama + '</option>'); });
+        $('tgl').value = qs.has('tgl') ? qs.get('tgl') : (qs.get('nis') ? '' : todayIso());
+        if (qs.get('keg')) $('keg').value = qs.get('keg');
+        if (qs.get('nis')) $('q').value = qs.get('nis');
+        function base() { var t = $('tgl').value, k = $('keg').value; return getKehadiran().filter(function (r) { return (!t || r.tgl === t) && (!k || r.keg === k); }); }
+        function nm(r) { return (santriByNis(r.nis) || { nama: r.nis }).nama; }
+        function rows() {
+            var q = $('q').value.toLowerCase(), s = $('st').value, ko = KEGIATAN.map(function (k) { return k.id; });
+            return base().filter(function (r) { return (!q || (nm(r) + ' ' + r.nis).toLowerCase().indexOf(q) > -1) && (!s || r.status === s); })
+                .sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : ko.indexOf(a.keg) - ko.indexOf(b.keg) || nm(a).localeCompare(nm(b)); });
+        }
+        function summary() {
+            var b = base(), c = { Hadir: 0, Izin: 0, Sakit: 0, Alfa: 0 }; b.forEach(function (r) { c[r.status]++; });
+            var tot = b.length, pc = function (n) { return tot ? (n * 100 / tot).toFixed(1) + '%' : '0%'; }, col = { Hadir: '#176B51', Izin: '#6B6014', Sakit: '#154668', Alfa: '#6B1418' };
+            $('sTot').textContent = SANTRI.filter(function (s) { return s.status === 'Aktif'; }).length; $('sH').textContent = c.Hadir; $('sIS').textContent = c.Izin + c.Sakit; $('sA').textContent = c.Alfa;
+            $('cH').textContent = c.Hadir; $('cI').textContent = c.Izin; $('cS').textContent = c.Sakit; $('cA').textContent = c.Alfa;
+            $('pH').textContent = pc(c.Hadir); $('pI').textContent = pc(c.Izin); $('pS').textContent = pc(c.Sakit); $('pA').textContent = pc(c.Alfa);
+            $('bar').innerHTML = STATUS_KH.map(function (s) { return '<i style="width:' + (tot ? c[s] * 100 / tot : 0) + '%;background:' + col[s] + '"></i>'; }).join('');
+            $('lg').innerHTML = STATUS_KH.map(function (s) { return '<span><i class="dot" style="background:' + col[s] + '"></i>' + s + ' (' + c[s] + ')</span>'; }).join('');
+            $('lt').textContent = 'Total ' + tot + ' catatan';
+            $('periode').textContent = 'Periode: ' + ($('tgl').value ? tglPanjang($('tgl').value) : 'Semua tanggal') + ' \u2022 ' + ($('keg').value ? kegNama($('keg').value) : 'Semua kegiatan');
+        }
+        function draw() {
+            summary();
+            var d = rows(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (r, i) {
+                var s = santriByNis(r.nis) || {};
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="name"><a href="data-santri-detail.html?nis=' + r.nis + '">' + nm(r) + '</a><small>' + r.nis + '</small></td><td>' + kegNama(r.keg) + '</td><td>' + tglPendek(r.tgl) + '</td><td>' + (r.jam || '-') + '</td><td>' + khChip(r.status) + '</td><td><small>' + (r.ket || '-') + '</small></td>' +
+                    '<td><button class="edit-btn" type="button" data-edit="' + r.id + '" aria-label="Ubah kehadiran ' + nm(r) + '"><span data-i="edit"></span></button></td></tr>';
+            });
+            $('rows').innerHTML = h || '<tr><td colspan="8" class="empty">Belum ada data kehadiran untuk filter ini. <a href="kehadiran-input.html" style="color:var(--c-primary);font-weight:700">Input kehadiran</a></td></tr>';
+            $('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + getKehadiran().length + '</b> catatan';
+            $('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '\u2013' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> catatan' : 'Tidak ada data';
+            pager($('pages'), page, pages); fillIcons();
+        }
+        $('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        ['q', 'tgl', 'keg', 'st'].forEach(function (i) { $(i).oninput = function () { page = 1; draw(); }; });
+        $('reset').onclick = function () { $('q').value = ''; $('keg').value = ''; $('st').value = ''; $('tgl').value = todayIso(); page = 1; draw(); };
+        $('unduh').onclick = function () {
+            var d = rows(); if (!d.length) { toast('Tidak ada data untuk diunduh'); return; }
+            var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+            var csv = '\ufeffNama,NIS,Kegiatan,Tanggal,Jam Masuk,Status,Keterangan\n' + d.map(function (r) { return [nm(r), r.nis, kegNama(r.keg), r.tgl, r.jam, r.status, r.ket].map(q).join(','); }).join('\n');
+            var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'rekap-kehadiran-' + ($('tgl').value || 'semua') + '.csv'; a.click(); toast('Rekap diunduh (' + d.length + ' catatan)');
+        };
+        /* Ubah catatan */
+        $('rows').onclick = function (e) {
+            var b = e.target.closest('[data-edit]'); if (!b) return; edId = b.dataset.edit;
+            var r = getKehadiran().filter(function (x) { return x.id === edId; })[0], h = '<h3>Ubah Kehadiran</h3><p class="sub">' + nm(r) + ' \u2022 ' + kegNama(r.keg) + ' \u2022 ' + tglPanjang(r.tgl) + '</p><label class="label">Status Kehadiran</label><div class="seg" id="mseg">';
+            STATUS_KH.forEach(function (s) { h += '<input type="radio" name="ms" id="m' + s + '" value="' + s + '"' + (r.status === s ? ' checked' : '') + '><label class="l-' + s.toLowerCase() + '" for="m' + s + '">' + s + '</label>'; });
+            h += '</div><div id="jamBox" style="margin-top:14px"><label class="label" for="mj">Jam Masuk</label><input id="mj" type="time" class="input plain" value="' + (r.jam || kegJam(r.keg)) + '"></div><div style="margin-top:14px"><label class="label" for="mk">Keterangan <span id="req"></span></label><input id="mk" class="input plain" value="' + (r.ket || '') + '" placeholder="Contoh: Izin keperluan keluarga"></div><div id="me"></div>' +
+                '<div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn" type="button" id="mo">Simpan</button></div>';
+            $('dlg').innerHTML = h; $('mdl').classList.add('open');
+            function sync() { var v = document.querySelector('input[name=ms]:checked').value; $('jamBox').style.display = v === 'Hadir' ? '' : 'none'; $('req').innerHTML = (v === 'Izin' || v === 'Sakit') ? '<i style="color:var(--c-danger);font-style:normal">*</i>' : ''; }
+            $('mseg').onchange = sync; sync();
+            $('mb').onclick = function () { $('mdl').classList.remove('open'); };
+            $('mo').onclick = function () {
+                var v = document.querySelector('input[name=ms]:checked').value, k = $('mk').value.trim();
+                if ((v === 'Izin' || v === 'Sakit') && !k) { $('me').innerHTML = '<p class="err">Keterangan wajib diisi untuk izin atau sakit.</p>'; return; }
+                r.status = v; r.jam = v === 'Hadir' ? $('mj').value : ''; r.ket = v === 'Hadir' ? '' : k; upsertKehadiran([r]);
+                $('mdl').classList.remove('open'); toast('Kehadiran diperbarui'); draw();
+            };
+        };
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') e.target.classList.remove('open'); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') $('mdl').classList.remove('open'); });
+        draw();
+
     </script>
 </body>
 

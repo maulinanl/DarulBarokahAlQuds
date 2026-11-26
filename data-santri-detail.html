@@ -53,24 +53,24 @@
         <div class="stats3">
             <div class="s3">
                 <div class="top">
-                    <div><small>Kehadiran Bulan Ini</small><strong>92%</strong>
-                        <p>23 dari 25 kegiatan tercatat hadir</p>
+                    <div><small>Kehadiran Bulan Ini</small><strong id="khPct">-</strong>
+                        <p id="khTxt"></p>
                     </div>
                     <div class="ico" data-i="usercheck"></div>
                 </div>
                 <div>
-                    <div class="prog"><i style="width:92%"></i></div>
+                    <div class="prog"><i id="khBar" style="width:0%"></i></div>
                     <div class="scale"><span>0%</span><span>Presensi Halaqah &amp; Asrama</span><span>100%</span></div>
                 </div>
             </div>
             <div class="s3">
                 <div class="top">
-                    <div><small>Catatan Pembelajaran</small><strong>12</strong>
+                    <div><small>Catatan Pembelajaran</small><strong id="pbN">-</strong>
                         <p>Catatan mengaji bulan ini</p>
                     </div>
                     <div class="ico" data-i="quran"></div>
                 </div>
-                <div class="box">Terakhir :<br>Surah Al-Baqarah &nbsp;|&nbsp; Ayat 52 - 75 &bull; Juz 1</div>
+                <div class="box" id="pbLast">Belum ada catatan</div>
             </div>
             <div class="s3">
                 <div class="top">
@@ -90,7 +90,8 @@
                         <div>
                             <h3>Riwayat Kehadiran</h3>
                             <p>Catatan kehadiran dari semua kegiatan</p>
-                        </div><a class="btn sm2" href="kehadiran.html">Lihat Rekap <span data-i="arrow"></span></a>
+                        </div><a class="btn sm2" id="lnkKh" href="kehadiran.html">Lihat Rekap <span
+                                data-i="arrow"></span></a>
                     </div>
                     <table class="tbl alt1 plain-head">
                         <thead>
@@ -101,38 +102,7 @@
                                 <th>Keterangan</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>14 Jan 2024</td>
-                                <td class="l">Halaqah Pagi</td>
-                                <td><span class="chip st">Hadir</span></td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>13 Jan 2024</td>
-                                <td class="l">Halaqah Malam</td>
-                                <td><span class="chip st">Hadir</span></td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>13 Jan 2024</td>
-                                <td class="l">Halaqah Pagi</td>
-                                <td><span class="chip st mut">Izin</span></td>
-                                <td>Izin keperluan keluarga</td>
-                            </tr>
-                            <tr>
-                                <td>12 Jan 2024</td>
-                                <td class="l">Ngaji Kitab</td>
-                                <td><span class="chip st">Hadir</span></td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>12 Jan 2024</td>
-                                <td class="l">Halaqah Pagi</td>
-                                <td><span class="chip st">Hadir</span></td>
-                                <td>-</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="khRows"></tbody>
                     </table>
                 </div>
                 <div class="card flush">
@@ -140,7 +110,8 @@
                         <div>
                             <h3>Riwayat Pembelajaran Al-Qur'an</h3>
                             <p>Catatan aktivitas membaca dan hafalan santri</p>
-                        </div><a class="btn sm2" href="pembelajaran.html">Lihat Riwayat <span data-i="arrow"></span></a>
+                        </div><a class="btn sm2" id="lnkPb" href="pembelajaran.html">Lihat Riwayat <span
+                                data-i="arrow"></span></a>
                     </div>
                     <table class="tbl alt1 plain-head">
                         <thead>
@@ -151,38 +122,7 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>02 Nov 2026</td>
-                                <td><span class="chip">Membaca</span></td>
-                                <td><b>Surah Al-Baqarah</b><br><small>Ayat 52 - 75 &bull; Juz 1</small></td>
-                                <td><span class="chip sm">Mengulang</span></td>
-                            </tr>
-                            <tr>
-                                <td>02 Nov 2026</td>
-                                <td><span class="chip">Hafalan</span></td>
-                                <td><b>Surah An-Naba</b><br><small>Ayat 1 - 40 &bull; Juz 30</small></td>
-                                <td><span class="chip sm">Lancar</span></td>
-                            </tr>
-                            <tr>
-                                <td>02 Nov 2026</td>
-                                <td><span class="chip">Hafalan</span></td>
-                                <td><b>Surah Ar-Rahman</b><br><small>Ayat 1- 78 &bull; Juz 27</small></td>
-                                <td><span class="chip sm">Mengulang</span></td>
-                            </tr>
-                            <tr>
-                                <td>01 Nov 2026</td>
-                                <td><span class="chip">Membaca</span></td>
-                                <td><b>Surah Ali 'Imran</b><br><small>Ayat 40 - 56 &bull; Juz 3</small></td>
-                                <td><span class="chip sm">Lancar</span></td>
-                            </tr>
-                            <tr>
-                                <td>01 Nov 2026</td>
-                                <td><span class="chip">Hafalan</span></td>
-                                <td><b>Surah Yasin</b><br><small>Ayat 1 - 83 &bull; Juz 23</small></td>
-                                <td><span class="chip sm">Lancar</span></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="pbRows"></tbody>
                     </table>
                 </div>
             </div>
@@ -224,6 +164,8 @@
     </main>
     <script src="dashboard.js"></script>
     <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
     <script>
 
         var S = getSantri(); window.ORIG_NIS = S.nis;
@@ -245,6 +187,19 @@
         document.getElementById('wn').textContent = S.wali; document.getElementById('wh').textContent = S.hub; document.getElementById('ww').textContent = S.wa;
         fillIcons();
 
+        /* ---- Ringkasan & riwayat dari data kehadiran / pembelajaran ---- */
+        (function () {
+            var nis = S.nis, bulan = todayIso().slice(0, 7), $ = function (i) { return document.getElementById(i); };
+            var kh = getKehadiran().filter(function (r) { return r.nis === nis; }).sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : 0; });
+            var kb = kh.filter(function (r) { return r.tgl.slice(0, 7) === bulan; }), hd = kb.filter(function (r) { return r.status === 'Hadir'; }).length, pct = kb.length ? Math.round(hd * 100 / kb.length) : 0;
+            $('khPct').textContent = kb.length ? pct + '%' : '-'; $('khTxt').textContent = kb.length ? hd + ' dari ' + kb.length + ' kegiatan tercatat hadir' : 'Belum ada kehadiran bulan ini'; $('khBar').style.width = pct + '%';
+            $('khRows').innerHTML = kh.slice(0, 5).map(function (r) { return '<tr><td>' + tglPendek(r.tgl) + '</td><td class="l">' + kegNama(r.keg) + '</td><td>' + khChip(r.status) + '</td><td>' + (r.ket || '-') + '</td></tr>'; }).join('') || '<tr><td colspan="4" class="empty">Belum ada riwayat kehadiran</td></tr>';
+            var pb = getPembelajaran().filter(function (r) { return r.nis === nis; }).sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : b.id - a.id; });
+            $('pbN').textContent = pb.filter(function (r) { return r.tgl.slice(0, 7) === bulan; }).length;
+            $('pbLast').innerHTML = pb[0] ? 'Terakhir :<br>Surah ' + surahNama(pb[0].surah) + ' &nbsp;|&nbsp; ' + capaianText(pb[0]) : 'Belum ada catatan';
+            $('pbRows').innerHTML = pb.slice(0, 5).map(function (r) { return '<tr><td>' + tglPendek(r.tgl) + '</td><td><span class="chip">' + r.jenis + '</span></td><td><b>Surah ' + surahNama(r.surah) + '</b><br><small>' + capaianText(r) + '</small></td><td><span class="chip sm">' + r.status + '</span></td></tr>'; }).join('') || '<tr><td colspan="4" class="empty">Belum ada catatan pembelajaran</td></tr>';
+            $('lnkKh').href = 'kehadiran.html?nis=' + nis; $('lnkPb').href = 'pembelajaran.html?nis=' + nis; fillIcons();
+        })();
     </script>
 </body>
 

@@ -141,13 +141,17 @@
         </div>
     </main>
     <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
     <script>
         document.querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i) });
-        var D = [['Ahmad Fauzan', '20240101', 'Membaca', 'Surah Al-Baqarah', 'Ayat 52 - 75 \u2022 Juz 1', '02 Nov 2026', 'Mengulang'],
-        ['Muhammad Rizky', '20240108', 'Hafalan', 'Surah An-Naba', 'Ayat 1 - 40 \u2022 Juz 30', '02 Nov 2026', 'Lancar'],
-        ['Siti Aisyah', '20240142', 'Hafalan', 'Surah Ar-Rahman', 'Ayat 1- 78 \u2022 Juz 27', '02 Nov 2026', 'Mengulang'],
-        ['Zaidan Ali', '20240119', 'Membaca', 'Surah Ali \'Imran', 'Ayat 40 - 56 \u2022 Juz 3', '01 Nov 2026', 'Lancar']], h = '';
-        D.forEach(function (r) { h += '<tr><td class="name">' + r[0] + '<small>' + r[1] + '</small></td><td><span class="chip">' + r[2] + '</span></td><td><b style="font-size:12.5px">' + r[3] + '</b><br><small>' + r[4] + '</small></td><td>' + r[5] + '</td><td><span class="chip">' + r[6] + '</span></td></tr>' });
+        var h = '', list = getPembelajaran().slice().sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : b.id - a.id; }).slice(0, 4);
+        list.forEach(function (r) {
+            var s = santriByNis(r.nis) || { nama: r.nis };
+            h += '<tr><td class="name"><a href="data-santri-detail.html?nis=' + r.nis + '">' + s.nama + '</a><small>' + r.nis + '</small></td><td><span class="chip">' + r.jenis + '</span></td><td><b style="font-size:12.5px">Surah ' + surahNama(r.surah) + '</b><br><small>' + capaianText(r) + '</small></td><td>' + tglPendek(r.tgl) + '</td><td><span class="chip">' + r.status + '</span></td></tr>';
+        });
+        if (!h) h = '<tr><td colspan="5" class="empty">Belum ada catatan pembelajaran</td></tr>';
         document.getElementById('rows').innerHTML = h;
     </script>
 </body>
