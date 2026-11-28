@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumuman | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pengumuman" data-crumb="Administrasi / Pengumuman">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pengumuman</h2>
+                <p>Kelola pengumuman untuk santri, wali santri, dan asatidz.</p>
+            </div>
+            <a class="btn" href="pengumuman-form.html"><span data-i="plus"></span> Buat Pengumuman</a>
+        </div>
+        <div class="stats">
+            <div class="stat wide c4">
+                <div><small>TOTAL PENGUMUMAN</small>
+                    <div class="num"><strong id="sT"></strong></div><em>Semua pengumuman</em>
+                </div>
+                <div class="ico" data-i="umum"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>TERBIT</small>
+                    <div class="num"><strong id="sP"></strong></div><em>Sudah dipublikasikan</em>
+                </div>
+                <div class="ico" data-i="check"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>DRAFT</small>
+                    <div class="num"><strong id="sD"></strong></div><em>Belum diterbitkan</em>
+                </div>
+                <div class="ico" data-i="edit"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>PENTING</small>
+                    <div class="num"><strong id="sI"></strong></div><em>Ditandai penting</em>
+                </div>
+                <div class="ico" data-i="warn"></div>
+            </div>
+        </div>
+        <div class="card flush">
+            <div class="card-head">
+                <div>
+                    <h3>Daftar Pengumuman</h3>
+                    <p>Pengumuman terbaru ditampilkan paling atas.</p>
+                </div>
+            </div>
+            <div class="toolbar2">
+                <div class="search"><span class="fi" data-i="search"></span><input id="q" class="input"
+                        placeholder="Cari judul atau isi pengumuman..."></div>
+                <label class="pill"><span data-i="filter"></span>Kategori: <select id="kat">
+                        <option value="">Semua</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Target: <select id="tg">
+                        <option value="">Semua</option>
+                    </select></label>
+                <label class="pill"><span data-i="filter"></span>Status: <select id="st">
+                        <option value="">Semua Status</option>
+                        <option>Terbit</option>
+                        <option>Draft</option>
+                    </select></label>
+                <button class="pill" id="reset" type="button"><span data-i="reset"></span>Reset Filter</button>
+                <span class="pill" id="count"></span>
+            </div>
+            <table class="tbl alt1">
+                <thead>
+                    <tr>
+                        <th style="width:56px">No.</th>
+                        <th style="text-align:left">Judul</th>
+                        <th>Kategori</th>
+                        <th>Target</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th style="width:130px">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <div class="tfoot"><span id="info"></span>
+                <div class="pages" id="pages"></div>
+            </div>
+        </div>
+
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script src="pengumuman-data.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        function pager(el, page, pages) {
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            el.innerHTML = b + '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
+        }
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+        var P = 8, page = 1;
+        KATEGORI_PGM.forEach(function (k) { $('kat').insertAdjacentHTML('beforeend', '<option>' + k + '</option>'); });
+        TARGET_PGM.forEach(function (k) { $('tg').insertAdjacentHTML('beforeend', '<option>' + k + '</option>'); });
+        function rows() {
+            var q = $('q').value.toLowerCase(), k = $('kat').value, t = $('tg').value, s = $('st').value;
+            return getPengumuman().filter(function (r) { return (!q || (r.judul + ' ' + r.isi).toLowerCase().indexOf(q) > -1) && (!k || r.kategori === k) && (!t || r.target === t) && (!s || r.status === s); })
+                .sort(function (a, b) { return a.tgl < b.tgl ? 1 : a.tgl > b.tgl ? -1 : b.id - a.id; });
+        }
+        function draw() {
+            var all = getPengumuman();
+            $('sT').textContent = all.length; $('sP').textContent = all.filter(function (r) { return r.status === 'Terbit'; }).length;
+            $('sD').textContent = all.filter(function (r) { return r.status === 'Draft'; }).length; $('sI').textContent = all.filter(function (r) { return r.penting; }).length;
+            var d = rows(), pages = Math.max(1, Math.ceil(d.length / P)); if (page > pages) page = pages;
+            var from = (page - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (r, i) {
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="name"><a href="#" data-det="' + r.id + '">' + esc(r.judul) + '</a>' + (r.penting ? ' <span class="chip st off" style="padding:2px 8px;font-size:11px">Penting</span>' : '') + '<small>' + esc(r.isi.length > 70 ? r.isi.slice(0, 70) + '…' : r.isi) + '</small></td><td>' + r.kategori + '</td><td>' + r.target + '</td><td>' + tglPendek(r.tgl) + '</td><td>' + pgmChip(r.status) + '</td>' +
+                    '<td><div class="row-acts"><a class="edit-btn" href="pengumuman-form.html?id=' + r.id + '" aria-label="Ubah ' + esc(r.judul) + '"><span data-i="edit"></span></a> <button class="del-btn" type="button" data-del="' + r.id + '" aria-label="Hapus ' + esc(r.judul) + '"><span data-i="close"></span></button></div></td></tr>';
+            });
+            $('rows').innerHTML = h || '<tr><td colspan="7" class="empty">Belum ada pengumuman untuk filter ini. <a href="pengumuman-form.html" style="color:var(--c-primary);font-weight:700">Buat pengumuman</a></td></tr>';
+            $('count').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + all.length + '</b> pengumuman';
+            $('info').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '–' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> pengumuman' : 'Tidak ada data';
+            pager($('pages'), page, pages); fillIcons();
+        }
+        $('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
+        ['q', 'kat', 'tg', 'st'].forEach(function (i) { $(i).oninput = function () { page = 1; draw(); }; });
+        $('reset').onclick = function () { $('q').value = ''; $('kat').value = ''; $('tg').value = ''; $('st').value = ''; page = 1; draw(); };
+        function close() { $('mdl').classList.remove('open'); }
+        function get(id) { return getPengumuman().filter(function (r) { return String(r.id) === String(id); })[0]; }
+        $('rows').onclick = function (e) {
+            var bd = e.target.closest('[data-det]'), bx = e.target.closest('[data-del]');
+            if (bd) {
+                e.preventDefault(); var r = get(bd.dataset.det);
+                $('dlg').innerHTML = '<h3>' + esc(r.judul) + '</h3><p class="sub">' + r.kategori + ' • untuk ' + r.target + ' • ' + tglPanjang(r.tgl) + '</p><p style="font-size:14px;line-height:1.6;margin:0">' + esc(r.isi) + '</p>' +
+                    '<div class="form-actions"><button class="btn outline" type="button" id="mt">' + (r.status === 'Terbit' ? 'Jadikan Draft' : 'Terbitkan') + '</button><button class="btn" type="button" id="mb">Tutup</button></div>';
+                $('mdl').classList.add('open'); $('mb').onclick = close;
+                $('mt').onclick = function () { r.status = r.status === 'Terbit' ? 'Draft' : 'Terbit'; savePengumuman(r); close(); toast(r.status === 'Terbit' ? 'Pengumuman diterbitkan' : 'Dijadikan draft'); draw(); }; return;
+            }
+            if (bx) {
+                var x = get(bx.dataset.del);
+                $('dlg').innerHTML = '<h3>Hapus Pengumuman?</h3><p class="sub">“' + esc(x.judul) + '” akan dihapus dan tidak dapat dikembalikan.</p><div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn danger" type="button" id="mo">Ya, Hapus</button></div>';
+                $('mdl').classList.add('open'); $('mb').onclick = close;
+                $('mo').onclick = function () { deletePengumuman(x.id); close(); toast('Pengumuman dihapus'); draw(); };
+            }
+        };
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') close(); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+        draw();
+    </script>
+</body>
+
+</html>

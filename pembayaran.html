@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pembayaran" data-crumb="Administrasi / Pembayaran">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pembayaran SPP</h2>
+                <p>Catat dan pantau pembayaran SPP santri secara manual (tunai atau transfer).</p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn outline" id="nominalBtn"
+                    type="button"><span data-i="edit"></span> Ubah Nominal</button><a class="btn"
+                    href="pembayaran-tagihan.html"><span data-i="plus"></span> Buat Tagihan</a></div>
+        </div>
+        <div class="stats">
+            <div class="stat wide c4">
+                <div><small>NOMINAL SPP / BULAN</small>
+                    <div class="num"><strong class="money" id="sN"></strong></div><em>Sama untuk semua santri</em>
+                </div>
+                <div class="ico" data-i="bayar"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>SUDAH BAYAR</small>
+                    <div class="num"><strong id="sL"></strong></div><em id="sLe"></em>
+                </div>
+                <div class="ico" data-i="check"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>BELUM BAYAR</small>
+                    <div class="num"><strong id="sB"></strong></div><em id="sBe"></em>
+                </div>
+                <div class="ico" data-i="hourglass"></div>
+            </div>
+            <div class="stat wide c4">
+                <div><small>SANTRI MENUNGGAK</small>
+                    <div class="num"><strong id="sM"></strong></div><em id="sMe"></em>
+                </div>
+                <div class="ico" data-i="warn"></div>
+            </div>
+        </div>
+
+        <div class="card flush">
+            <div class="card-head">
+                <div>
+                    <h3>Status Pembayaran</h3>
+                    <p>Pantau siapa yang sudah dan belum membayar, termasuk yang menunggak beberapa bulan.</p>
+                </div>
+                <div class="head-actions"><button class="btn sm2" id="unduh" type="button">Unduh Rekap <span
+                            data-i="arrow" style="transform:rotate(90deg);display:inline-flex"></span></button> <button
+                        class="btn sm2" onclick="window.print()"><span data-i="print"></span> Cetak</button></div>
+            </div>
+            <div class="tabs" id="tabs"><button data-t="santri" class="on">Per Santri</button><button
+                    data-t="tagihan">Per Tagihan</button></div>
+
+            <section id="tSantri">
+                <div class="toolbar2">
+                    <div class="search"><span class="fi" data-i="search"></span><input id="q1" class="input"
+                            placeholder="Cari nama atau NIS santri..."></div>
+                    <label class="pill"><span data-i="cal"></span>Tahun: <select id="thn"></select></label>
+                    <button class="pill" id="onlyBel" type="button" aria-pressed="false"><span
+                            data-i="warn"></span>Hanya yang belum lunas</button>
+                    <button class="pill" id="reset1" type="button"><span data-i="reset"></span>Reset Filter</button>
+                    <span class="pill" id="count1"></span>
+                </div>
+                <div class="mlegend">
+                    <div class="items"><span><i class="mcell ok">&#10003;</i>Lunas</span><span><i
+                                class="mcell bad">&times;</i>Belum bayar (lewat bulan)</span><span><i
+                                class="mcell wait">&times;</i>Bulan ini belum bayar</span><span><i
+                                class="mcell none">&ndash;</i>Belum ada tagihan</span></div>
+                    <div class="tip"><span data-i="eye"></span>Klik kotak bulan untuk catat bayar atau lihat bukti</div>
+                </div>
+                <table class="tbl alt1 matrix">
+                    <thead id="head1"></thead>
+                    <tbody id="rows1"></tbody>
+                </table>
+                <div class="tfoot"><span id="info1"></span>
+                    <div class="pages" id="pages1"></div>
+                </div>
+            </section>
+
+            <section id="tTagihan" hidden>
+                <div class="toolbar2">
+                    <div class="search"><span class="fi" data-i="search"></span><input id="q2" class="input"
+                            placeholder="Cari nama atau NIS santri..."></div>
+                    <label class="pill"><span data-i="cal"></span>Bulan: <select id="bln"></select></label>
+                    <label class="pill"><span data-i="filter"></span>Status: <select id="st2">
+                            <option value="">Semua Status</option>
+                            <option>Lunas</option>
+                            <option>Belum Bayar</option>
+                            <option>Menunggak</option>
+                        </select></label>
+                    <button class="pill" id="reset2" type="button"><span data-i="reset"></span>Reset Filter</button>
+                    <span class="pill" id="count2"></span>
+                </div>
+                <table class="tbl alt1">
+                    <thead>
+                        <tr>
+                            <th style="width:56px">No.</th>
+                            <th style="text-align:left">Nama Santri</th>
+                            <th>Bulan</th>
+                            <th>Nominal</th>
+                            <th>Status</th>
+                            <th>Tgl. Bayar</th>
+                            <th>Metode</th>
+                            <th style="width:150px">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows2"></tbody>
+                </table>
+                <div class="tfoot"><span id="info2"></span>
+                    <div class="pages" id="pages2"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="modal" id="mdl" role="dialog" aria-modal="true">
+            <div class="dlg" id="dlg"></div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script src="pembayaran-data.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        function pager(el, page, pages) {
+            var b = '<button ' + (page === 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&lsaquo; Sebelumnya</button>';
+            for (var i = 1; i <= pages; i++) b += '<button class="' + (i === page ? 'on' : '') + '" data-p="' + i + '">' + i + '</button>';
+            el.innerHTML = b + '<button ' + (page === pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">Selanjutnya &rsaquo;</button>';
+        }
+        var P = 8, pg1 = 1, pg2 = 1, tab = 'santri', open = null;
+        function nm(nis) { return (santriByNis(nis) || { nama: nis }).nama; }
+        function aktif() { return SANTRI.filter(function (s) { return s.status === 'Aktif' || getPembayaran().some(function (r) { return r.nis === s.nis; }); }); }
+        /* ---- ringkasan atas ---- */
+        function stats() {
+            var all = getPembayaran(), cur = all.filter(function (r) { return r.bulan === bulanIni(); }), lun = cur.filter(function (r) { return r.status === 'Lunas'; }), bel = cur.filter(function (r) { return r.status !== 'Lunas'; });
+            $('sN').textContent = rupiah(getNominal());
+            $('sL').textContent = lun.length + ' / ' + cur.length; $('sLe').textContent = cur.length ? 'Santri lunas ' + bulanLabel(bulanIni()) : 'Tagihan bulan ini belum dibuat';
+            $('sB').textContent = bel.length; $('sBe').textContent = rupiah(bel.reduce(function (t, r) { return t + r.nominal; }, 0)) + ' belum diterima';
+            var m = aktif().filter(function (s) { return rekapSantri(s.nis).past.length > 0; }).length; $('sM').textContent = m; $('sMe').textContent = 'Punya tagihan bulan lalu belum lunas';
+        }
+
+        /* ---- tab Per Santri ---- */
+        var SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], onlyBel = false;
+        function tahunList() { var set = {}; getPembayaran().forEach(function (r) { set[r.bulan.slice(0, 4)] = 1; }); set[bulanIni().slice(0, 4)] = 1; return Object.keys(set).sort().reverse(); }
+        function fillTahun() { var cur = $('thn').value || bulanIni().slice(0, 4); $('thn').innerHTML = tahunList().map(function (t) { return '<option>' + t + '</option>'; }).join(''); $('thn').value = cur; }
+        function rows1() {
+            var q = $('q1').value.toLowerCase(), y = $('thn').value;
+            return aktif().map(function (x) { var r = rekapSantri(x.nis), un = r.unpaid.filter(function (t) { return t.bulan.slice(0, 4) === y; }); return { s: x, r: r, un: un, total: un.reduce(function (t, z) { return t + z.nominal; }, 0), past: un.filter(function (t) { return t.bulan < bulanIni(); }).length }; })
+                .filter(function (o) { return (!q || (o.s.nama + ' ' + o.s.nis).toLowerCase().indexOf(q) > -1) && (!onlyBel || o.un.length); })
+                .sort(function (a, b) { return b.past - a.past || b.un.length - a.un.length || a.s.nama.localeCompare(b.s.nama); });
+        }
+        function cell(r, m) {
+            if (!r) return '<span class="mcell none" title="' + bulanLabel(m) + ': belum ada tagihan">&ndash;</span>';
+            var st = statusBayar(r), cls = st === 'Lunas' ? 'ok' : r.bulan < bulanIni() ? 'bad' : r.bulan === bulanIni() ? 'wait' : 'soon';
+            return '<button type="button" class="mcell ' + cls + '" data-cell="' + r.id + '" title="' + bulanLabel(r.bulan) + ': ' + (st === 'Lunas' ? 'Lunas, ' + tglPendek(r.tglBayar) : st) + ' \u2022 ' + rupiah(r.nominal) + '" aria-label="' + bulanLabel(r.bulan) + ' ' + st + '">' + (st === 'Lunas' ? '&#10003;' : cls === 'soon' ? '&middot;' : '&times;') + '</button>';
+        }
+        function draw1() {
+            var y = $('thn').value; $('head1').innerHTML = '<tr><th style="width:44px">No.</th><th style="text-align:left">Nama Santri</th>' + SHORT.map(function (m) { return '<th class="mth">' + m + '</th>'; }).join('') + '<th>Belum Dibayar</th><th style="width:150px">Aksi</th></tr>';
+            var d = rows1(), pages = Math.max(1, Math.ceil(d.length / P)); if (pg1 > pages) pg1 = pages; var from = (pg1 - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (o, i) {
+                var s = o.s, by = {}; o.r.all.forEach(function (x) { by[x.bulan] = x; });
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="name"><a href="data-santri-detail.html?nis=' + s.nis + '">' + s.nama + '</a><small>' + s.nis + '</small></td>' + SHORT.map(function (_, k) { var m = y + '-' + String(k + 1).padStart(2, '0'); return '<td class="mtd">' + cell(by[m], m) + '</td>'; }).join('') +
+                    '<td>' + (o.total ? '<b>' + rupiah(o.total) + '</b><small style="display:block">' + o.un.length + ' bulan</small>' : '<small>Lunas</small>') + '</td>' +
+                    '<td><div class="row-acts"><button class="btn sm2 outline" type="button" data-riw="' + s.nis + '">Rincian</button>' + (o.r.unpaid.length ? '<a class="btn sm2" target="_blank" rel="noopener" href="pembayaran-cetak.html?jenis=tagihan&nis=' + s.nis + '" title="Cetak tagihan">Cetak</a>' : '') + '</div></td></tr>';
+            });
+            $('rows1').innerHTML = h || '<tr><td colspan="16" class="empty">Tidak ada santri untuk filter ini.</td></tr>';
+            $('count1').innerHTML = 'Menampilkan <b>' + d.length + '</b> santri'; $('info1').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '\u2013' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> santri' : 'Tidak ada data';
+            pager($('pages1'), pg1, pages); fillIcons();
+        }
+
+        /* ---- tab Per Tagihan ---- */
+        function fillBulan() {
+            var ks = Object.keys(getPembayaran().reduce(function (o, r) { o[r.bulan] = 1; return o; }, {})).sort().reverse(), cur = $('bln').value || bulanIni();
+            $('bln').innerHTML = '<option value="">Semua Bulan</option>' + ks.map(function (k) { return '<option value="' + k + '">' + bulanLabel(k) + '</option>'; }).join(''); $('bln').value = ks.indexOf(cur) > -1 ? cur : '';
+        }
+        function rows2() {
+            var q = $('q2').value.toLowerCase(), s = $('st2').value, b = $('bln').value;
+            return getPembayaran().filter(function (r) { return (!b || r.bulan === b) && (!q || (nm(r.nis) + ' ' + r.nis).toLowerCase().indexOf(q) > -1) && (!s || statusBayar(r) === s); })
+                .sort(function (a, b) { return a.bulan < b.bulan ? 1 : a.bulan > b.bulan ? -1 : nm(a.nis).localeCompare(nm(b.nis)); });
+        }
+        function draw2() {
+            var d = rows2(), pages = Math.max(1, Math.ceil(d.length / P)); if (pg2 > pages) pg2 = pages; var from = (pg2 - 1) * P, cur = d.slice(from, from + P), h = '';
+            cur.forEach(function (r, i) {
+                h += '<tr><td>' + (from + i + 1) + '</td><td class="name"><a href="data-santri-detail.html?nis=' + r.nis + '">' + nm(r.nis) + '</a><small>' + r.nis + '</small></td><td>' + bulanLabel(r.bulan) + '</td><td>' + rupiah(r.nominal) + '</td><td>' + bayarChip(statusBayar(r)) + '</td><td>' + (r.tglBayar ? tglPendek(r.tglBayar) : '-') + '</td><td>' + (r.metode || '-') + '</td>' +
+                    '<td>' + (r.status === 'Lunas' ? '<a class="btn sm2 outline" target="_blank" rel="noopener" href="pembayaran-cetak.html?jenis=bukti&id=' + r.id + '">Cetak Bukti</a>' : '<button class="btn sm2" type="button" data-pay="' + r.id + '">Catat Bayar</button>') + '</td></tr>';
+            });
+            $('rows2').innerHTML = h || '<tr><td colspan="8" class="empty">Belum ada tagihan untuk filter ini. <a href="pembayaran-tagihan.html" style="color:var(--c-primary);font-weight:700">Buat tagihan</a></td></tr>';
+            $('count2').innerHTML = 'Menampilkan <b>' + d.length + '</b> dari <b>' + getPembayaran().length + '</b> tagihan'; $('info2').innerHTML = d.length ? 'Menampilkan <b>' + (from + 1) + '–' + (from + cur.length) + '</b> dari <b>' + d.length + '</b> tagihan' : 'Tidak ada data';
+            pager($('pages2'), pg2, pages); fillIcons();
+        }
+        function drawAll() { stats(); fillTahun(); fillBulan(); draw1(); draw2(); }
+
+        /* ---- tab, filter, paging ---- */
+        $('tabs').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; tab = b.dataset.t; document.querySelectorAll('#tabs button').forEach(function (x) { x.classList.toggle('on', x === b); }); $('tSantri').hidden = tab !== 'santri'; $('tTagihan').hidden = tab !== 'tagihan'; };
+        $('pages1').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { pg1 = +p.dataset.p; draw1(); } };
+        $('pages2').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { pg2 = +p.dataset.p; draw2(); } };
+        ['q1', 'thn'].forEach(function (i) { $(i).oninput = function () { pg1 = 1; draw1(); }; });
+        $('onlyBel').onclick = function () { onlyBel = !onlyBel; this.classList.toggle('on', onlyBel); this.setAttribute('aria-pressed', onlyBel); pg1 = 1; draw1(); };
+        ['q2', 'bln', 'st2'].forEach(function (i) { $(i).oninput = function () { pg2 = 1; draw2(); }; });
+        $('reset1').onclick = function () { $('q1').value = ''; $('thn').value = bulanIni().slice(0, 4); onlyBel = false; $('onlyBel').classList.remove('on'); $('onlyBel').setAttribute('aria-pressed', 'false'); pg1 = 1; draw1(); };
+        $('reset2').onclick = function () { $('q2').value = ''; $('st2').value = ''; $('bln').value = bulanIni(); if ($('bln').value !== bulanIni()) $('bln').value = ''; pg2 = 1; draw2(); };
+        function csv(name, head, rows) { var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }; var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + head + '\n' + rows.map(function (r) { return r.map(q).join(','); }).join('\n')], { type: 'text/csv;charset=utf-8' })); a.download = name; a.click(); }
+        $('unduh').onclick = function () {
+            if (tab === 'santri') {
+                var d = rows1(); if (!d.length) { toast('Tidak ada data untuk diunduh'); return; }
+                csv('rekap-pembayaran-' + $('thn').value + '.csv', 'Nama,NIS,Bulan Belum Bayar,Total Belum Dibayar', d.map(function (o) { return [o.s.nama, o.s.nis, o.un.map(function (r) { return bulanLabel(r.bulan); }).join('; '), o.total]; })); toast('Rekap diunduh (' + d.length + ' santri)');
+            }
+            else {
+                var t = rows2(); if (!t.length) { toast('Tidak ada data untuk diunduh'); return; }
+                csv('rekap-tagihan-' + ($('bln').value || 'semua') + '.csv', 'Nama,NIS,Bulan,Nominal,Status,Tanggal Bayar,Metode', t.map(function (r) { return [nm(r.nis), r.nis, bulanLabel(r.bulan), r.nominal, statusBayar(r), r.tglBayar, r.metode]; })); toast('Rekap diunduh (' + t.length + ' tagihan)');
+            }
+        };
+
+        /* ---- dialog ---- */
+        function close() { $('mdl').classList.remove('open'); $('dlg').classList.remove('wide'); open = null; }
+        function get(id) { return getPembayaran().filter(function (x) { return String(x.id) === String(id); })[0]; }
+        function riwayat(nis) {
+            open = nis; var s = santriByNis(nis) || { nama: nis }, r = rekapSantri(nis);
+            var h = '<h3>Rincian Pembayaran</h3><p class="sub">' + s.nama + ' • ' + nis + (r.total ? ' • Belum dibayar ' + rupiah(r.total) + ' (' + r.unpaid.length + ' bulan)' : ' • Semua tagihan lunas') + '</p>' +
+                '<div class="dlg-scroll"><table class="tbl alt1 mini"><thead><tr><th>Bulan</th><th>Nominal</th><th>Status</th><th>Tgl. Bayar</th><th>Metode</th><th>Aksi</th></tr></thead><tbody>';
+            r.all.slice().reverse().forEach(function (x) {
+                h += '<tr><td>' + bulanLabel(x.bulan) + '</td><td>' + rupiah(x.nominal) + '</td><td>' + bayarChip(statusBayar(x)) + '</td><td>' + (x.tglBayar ? tglPendek(x.tglBayar) : '-') + '</td><td>' + (x.metode || '-') + '</td><td>' +
+                    (x.status === 'Lunas' ? '<a class="btn sm2 outline" target="_blank" rel="noopener" href="pembayaran-cetak.html?jenis=bukti&id=' + x.id + '">Cetak Bukti</a> <button class="del-btn" type="button" data-batal="' + x.id + '" title="Batalkan pembayaran" aria-label="Batalkan pembayaran ' + bulanLabel(x.bulan) + '"><span data-i="reset"></span></button>' : '<button class="btn sm2" type="button" data-pay="' + x.id + '">Catat Bayar</button>') + '</td></tr>';
+            });
+            h += '</tbody></table></div><div class="form-actions"><button class="btn outline" type="button" id="mb">Tutup</button>' + (r.unpaid.length ? '<a class="btn" target="_blank" rel="noopener" href="pembayaran-cetak.html?jenis=tagihan&nis=' + nis + '"><span data-i="print"></span> Cetak Tagihan</a>' : '') + '</div>';
+            $('dlg').classList.add('wide'); $('dlg').innerHTML = h; $('mdl').classList.add('open'); $('mb').onclick = close; fillIcons();
+        }
+        function bayarDlg(id) {
+            var r = get(id), back = open; $('dlg').classList.remove('wide');
+            $('dlg').innerHTML = '<h3>Catat Pembayaran</h3><p class="sub">' + nm(r.nis) + ' • SPP ' + bulanLabel(r.bulan) + ' • ' + rupiah(r.nominal) + '</p>' +
+                '<label class="label" for="mt">Tanggal Bayar <i>*</i></label><input id="mt" type="date" class="input plain" value="' + todayIso() + '" max="' + todayIso() + '">' +
+                '<div style="margin-top:14px"><label class="label">Metode <i>*</i></label><div class="seg" id="mseg">' + METODE.map(function (m, i) { return '<input type="radio" name="mm" id="mm' + i + '" value="' + m + '"' + (i ? '' : ' checked') + '><label class="l-hadir" for="mm' + i + '">' + m + '</label>'; }).join('') + '</div></div>' +
+                '<div style="margin-top:14px"><label class="label" for="mc">Catatan</label><input id="mc" class="input plain" placeholder="Opsional, mis. nama pengirim atau nomor referensi transfer"></div><div id="me"></div>' +
+                '<div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn" type="button" id="mo">Simpan</button></div>';
+            $('mdl').classList.add('open'); $('mb').onclick = function () { back ? riwayat(back) : close(); };
+            $('mo').onclick = function () {
+                var t = $('mt').value; if (!t) { $('me').innerHTML = '<p class="err">Tanggal bayar wajib diisi.</p>'; return; } if (t > todayIso()) { $('me').innerHTML = '<p class="err">Tanggal tidak boleh di masa depan.</p>'; return; }
+                catatBayar(r.id, t, document.querySelector('input[name=mm]:checked').value, $('mc').value.trim()); toast('Pembayaran dicatat'); drawAll(); back ? riwayat(back) : close();
+            };
+        }
+        function nominalDlg() {
+            $('dlg').classList.remove('wide');
+            $('dlg').innerHTML = '<h3>Ubah Nominal SPP</h3><p class="sub">Nominal saat ini <b>' + rupiah(getNominal()) + '</b> per santri setiap bulan.</p>' +
+                '<label class="label" for="nn">Nominal Baru (Rp) <i>*</i></label><input id="nn" type="number" min="1000" step="1000" class="input plain" value="' + getNominal() + '">' +
+                '<div style="margin-top:14px"><label class="label" for="nb">Berlaku Mulai Bulan <i>*</i></label><input id="nb" type="month" class="input plain" value="' + bulanIni() + '"></div>' +
+                '<div class="callout warn" id="np"></div><div id="me"></div><div class="form-actions"><button class="btn outline" type="button" id="mb">Batal</button><button class="btn" type="button" id="mo">Simpan</button></div>';
+            $('mdl').classList.add('open'); $('mb').onclick = close;
+            function pv() {
+                var b = $('nb').value, n = +$('nn').value, c = getPembayaran().filter(function (r) { return r.status !== 'Lunas' && r.bulan >= b && r.nominal !== n; }).length;
+                $('np').textContent = 'Tagihan yang sudah lunas tidak berubah. ' + c + ' tagihan belum lunas mulai ' + (b ? bulanLabel(b) : 'bulan ini') + ' akan ikut diubah, dan tagihan baru memakai nominal ini.';
+            }
+            $('nn').oninput = pv; $('nb').oninput = pv; pv();
+            $('mo').onclick = function () {
+                var n = +$('nn').value, b = $('nb').value; if (!(n >= 1000)) { $('me').innerHTML = '<p class="err">Nominal minimal Rp 1.000.</p>'; return; } if (!b) { $('me').innerHTML = '<p class="err">Pilih bulan mulai berlaku.</p>'; return; }
+                var c = ubahNominal(n, b); close(); toast('Nominal SPP menjadi ' + rupiah(n) + (c ? ' (' + c + ' tagihan diperbarui)' : '')); drawAll();
+            };
+        }
+        $('nominalBtn').onclick = nominalDlg;
+        document.addEventListener('click', function (e) {
+            var ce = e.target.closest('[data-cell]'), rw = e.target.closest('[data-riw]'), py = e.target.closest('[data-pay]'), bt = e.target.closest('[data-batal]');
+            if (ce) { var cr = get(ce.dataset.cell); open = null; if (cr.status === 'Lunas') riwayat(cr.nis); else bayarDlg(cr.id); } else if (rw) riwayat(rw.dataset.riw); else if (py) bayarDlg(+py.dataset.pay);
+            else if (bt) {
+                var x = get(bt.dataset.batal), back = open; $('dlg').innerHTML = '<h3>Batalkan Pembayaran?</h3><p class="sub">Pembayaran SPP ' + bulanLabel(x.bulan) + ' atas nama ' + nm(x.nis) + ' akan dikembalikan menjadi belum bayar. Gunakan ini bila salah mencatat.</p><div class="form-actions"><button class="btn outline" type="button" id="mb">Tidak</button><button class="btn danger" type="button" id="mo">Ya, Batalkan</button></div>';
+                $('dlg').classList.remove('wide'); $('mb').onclick = function () { riwayat(back); }; $('mo').onclick = function () { batalkanBayar(x.id); toast('Pembayaran dibatalkan'); drawAll(); riwayat(back); };
+            }
+        });
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') close(); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+        drawAll();
+    </script>
+</body>
+
+</html>

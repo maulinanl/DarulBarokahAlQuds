@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Pengumuman | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pengumuman" data-crumb="Administrasi / Pengumuman / Form">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2 id="ttl">Buat Pengumuman</h2>
+                <p>Tulis pengumuman, tentukan target penerima, lalu terbitkan atau simpan sebagai draft.</p>
+            </div><a class="btn" href="pengumuman.html"><span data-i="back"></span> Kembali</a>
+        </div>
+
+        <form class="card" id="f" novalidate>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Isi Pengumuman</h3>
+                        <p>Judul dan isi yang akan dibaca penerima</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="full"><label class="label" for="judul">Judul <i>*</i></label><input id="judul"
+                            class="input plain" maxlength="100"
+                            placeholder="Contoh: Jadwal Ujian Tahfidz Semester Ganjil"></div>
+                    <div class="full"><label class="label" for="isi">Isi Pengumuman <i>*</i></label><textarea id="isi"
+                            class="input" maxlength="1000" placeholder="Tulis isi pengumuman di sini..."></textarea>
+                        <p class="hint" id="cnt">0 / 1000 karakter</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Pengaturan</h3>
+                        <p>Kategori, target penerima, dan status publikasi</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="kat">Kategori <i>*</i></label><select id="kat"
+                            class="input plain"></select></div>
+                    <div><label class="label" for="tg">Target Penerima <i>*</i></label><select id="tg"
+                            class="input plain"></select></div>
+                    <div><label class="label" for="tgl">Tanggal <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="cal"></span><input id="tgl" type="date"
+                                class="input"></div>
+                    </div>
+                    <div><label class="label">Status <i>*</i></label>
+                        <div class="seg" id="seg"><input type="radio" name="s" id="sT" value="Terbit" checked><label
+                                class="l-hadir" for="sT">Terbit</label><input type="radio" name="s" id="sD"
+                                value="Draft"><label class="l-izin" for="sD">Draft</label></div>
+                    </div>
+                    <div class="full"><label
+                            style="display:flex;gap:10px;align-items:center;font-size:13px;font-weight:700"><input
+                                type="checkbox" id="pen"> Tandai sebagai pengumuman penting</label></div>
+                </div>
+            </div>
+            <div class="form-foot">
+                <div class="upd"></div>
+                <div class="form-actions"><a class="btn outline" href="pengumuman.html">Batal</a><button class="btn"
+                        type="submit"><span data-i="save"></span> Simpan Pengumuman</button></div>
+            </div>
+        </form>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script src="pengumuman-data.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        var id = +new URLSearchParams(location.search).get('id') || 0, rec = null;
+        $('kat').innerHTML = KATEGORI_PGM.map(function (k) { return '<option>' + k + '</option>'; }).join('');
+        $('tg').innerHTML = TARGET_PGM.map(function (k) { return '<option>' + k + '</option>'; }).join('');
+        $('tgl').value = todayIso();
+        if (id) {
+            rec = getPengumuman().filter(function (r) { return r.id === id; })[0];
+            if (!rec) { toast('Pengumuman tidak ditemukan'); setTimeout(function () { location.href = 'pengumuman.html'; }, 900); }
+            else { $('ttl').textContent = 'Ubah Pengumuman'; $('judul').value = rec.judul; $('isi').value = rec.isi; $('kat').value = rec.kategori; $('tg').value = rec.target; $('tgl').value = rec.tgl; $('pen').checked = rec.penting; document.querySelector('input[name=s][value=' + rec.status + ']').checked = true; }
+        }
+        function cnt() { $('cnt').textContent = $('isi').value.length + ' / 1000 karakter'; } $('isi').oninput = cnt; cnt(); fillIcons();
+        $('f').onsubmit = function (e) {
+            e.preventDefault(); document.querySelectorAll('.err').forEach(function (x) { x.remove(); }); var ok = true;
+            function bad(i, m) { var el = $(i), p = document.createElement('p'); p.className = 'err'; p.textContent = m; (el.closest('.field') || el).after(p); ok = false; }
+            if (!$('judul').value.trim()) bad('judul', 'Judul wajib diisi.');
+            if (!$('isi').value.trim()) bad('isi', 'Isi pengumuman wajib diisi.'); else if ($('isi').value.trim().length < 10) bad('isi', 'Isi pengumuman minimal 10 karakter.');
+            if (!$('tgl').value) bad('tgl', 'Tanggal wajib diisi.');
+            if (!ok) return;
+            savePengumuman({ id: rec ? rec.id : 0, judul: $('judul').value.trim(), isi: $('isi').value.trim(), kategori: $('kat').value, target: $('tg').value, tgl: $('tgl').value, status: document.querySelector('input[name=s]:checked').value, penting: $('pen').checked });
+            toast(rec ? 'Perubahan disimpan' : 'Pengumuman disimpan'); setTimeout(function () { location.href = 'pengumuman.html'; }, 800);
+        };
+    </script>
+</body>
+
+</html>

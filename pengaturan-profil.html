@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengaturan Profil | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pengaturan" data-crumb="Pengaturan Profil">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Pengaturan Profil</h2>
+                <p>Kelola data akun administrator, kata sandi, dan tampilan dashboard.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="profile">
+                <div class="av" id="pAv">AD</div>
+                <div class="who">
+                    <h2 id="pNm">Administrator</h2>
+                    <div class="meta" id="pMeta"></div>
+                    <div class="tags"><span class="tag"><span data-i="shield"></span>Administrator</span><span
+                            class="tag"><span data-i="check"></span>Akun Aktif</span></div>
+                </div>
+            </div>
+        </div>
+
+        <form class="card" id="fp" novalidate style="margin-top:16px">
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Informasi Akun</h3>
+                        <p>Data yang tampil di pojok kanan atas dashboard</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="nama">Nama Lengkap <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="user"></span><input id="nama" class="input"
+                                maxlength="60" autocomplete="name"></div>
+                    </div>
+                    <div><label class="label" for="jab">Jabatan <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="idcard"></span><input id="jab" class="input"
+                                maxlength="40"></div>
+                    </div>
+                    <div><label class="label" for="email">Email <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="mail"></span><input id="email" type="email"
+                                class="input" autocomplete="email"></div>
+                    </div>
+                    <div><label class="label" for="hp">Nomor WhatsApp <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="chat"></span><input id="hp" class="input"
+                                inputmode="tel" placeholder="Contoh: 0812-3456-7890"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-foot">
+                <div class="upd"></div>
+                <div class="form-actions"><button class="btn outline" type="button" id="batalP">Batalkan
+                        Perubahan</button><button class="btn" type="submit"><span data-i="save"></span> Simpan
+                        Profil</button></div>
+            </div>
+        </form>
+
+        <form class="card" id="fk" novalidate style="margin-top:16px">
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">B</div>
+                    <div>
+                        <h3>Ganti Kata Sandi</h3>
+                        <p>Gunakan kata sandi yang kuat dan tidak dipakai di tempat lain</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="full" style="max-width:416px"><label class="label" for="lama">Kata Sandi Lama
+                            <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="key"></span><input id="lama" type="password"
+                                class="input" autocomplete="current-password"></div>
+                    </div>
+                    <div><label class="label" for="baru">Kata Sandi Baru <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="key"></span><input id="baru" type="password"
+                                class="input" placeholder="Minimal 8 karakter" autocomplete="new-password"></div>
+                        <p class="hint">Harus mengandung huruf dan angka.</p>
+                    </div>
+                    <div><label class="label" for="ulang">Ulangi Kata Sandi Baru <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="key"></span><input id="ulang" type="password"
+                                class="input" autocomplete="new-password"></div>
+                    </div>
+                    <div class="full"><label class="chk" style="margin:0"><input type="checkbox" id="lihat"> Tampilkan
+                            kata sandi</label></div>
+                </div>
+            </div>
+            <div class="form-foot">
+                <div class="upd"></div>
+                <div class="form-actions"><button class="btn" type="submit"><span data-i="save"></span> Ubah Kata
+                        Sandi</button></div>
+            </div>
+        </form>
+
+        <div class="card" style="margin-top:16px">
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">C</div>
+                    <div>
+                        <h3>Tampilan &amp; Notifikasi</h3>
+                        <p>Atur ulang preferensi yang tersimpan di browser ini</p>
+                    </div>
+                </div>
+                <div class="form-actions" style="justify-content:flex-start;gap:12px;flex-wrap:wrap;padding:0">
+                    <button class="btn outline" type="button" id="rTampil"><span data-i="reset"></span> Reset Tampilan
+                        Menu</button>
+                    <button class="btn outline" type="button" id="rNotif"><span data-i="bell"></span> Tandai Notifikasi
+                        Belum Dibaca</button>
+                </div>
+                <p class="hint" style="margin-top:12px">Reset tampilan mengembalikan menu samping ke kondisi terbuka.
+                </p>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        function paint() {
+            var p = getProfil();
+            $('nama').value = p.nama; $('jab').value = p.jabatan; $('email').value = p.email; $('hp').value = p.hp;
+            $('pNm').textContent = p.nama; var w = p.nama.trim().split(/\s+/); $('pAv').textContent = (w.length > 1 ? w[0][0] + w[1][0] : w[0].slice(0, 2)).toUpperCase();
+            $('pMeta').textContent = p.email + ' • ' + p.hp;
+        }
+        function clearErr(f) { f.querySelectorAll('.err').forEach(function (e) { e.remove(); }); f.querySelectorAll('.input.bad').forEach(function (e) { e.classList.remove('bad'); }); }
+        function bad(id, m) { var el = $(id); el.classList.add('bad'); var p = document.createElement('p'); p.className = 'err'; p.textContent = m; var h = el.closest('.field'); (h || el).after(p); }
+        paint(); fillIcons();
+        $('batalP').onclick = function () { clearErr($('fp')); paint(); toast('Perubahan dibatalkan'); };
+        $('fp').onsubmit = function (e) {
+            e.preventDefault(); clearErr($('fp')); var ok = true, n = $('nama').value.trim(), j = $('jab').value.trim(), em = $('email').value.trim(), hp = $('hp').value.trim();
+            if (n.length < 3) { bad('nama', 'Nama minimal 3 karakter.'); ok = false; }
+            if (!j) { bad('jab', 'Jabatan wajib diisi.'); ok = false; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { bad('email', 'Format email tidak valid.'); ok = false; }
+            if (!/^(\+62|62|0)8[0-9\- ]{8,13}$/.test(hp)) { bad('hp', 'Nomor WhatsApp tidak valid (contoh 0812-3456-7890).'); ok = false; }
+            if (!ok) return;
+            saveProfil({ nama: n, jabatan: j, email: em, hp: hp }); paint(); toast('Profil berhasil disimpan');
+        };
+        $('lihat').onchange = function () { ['lama', 'baru', 'ulang'].forEach(function (i) { $(i).type = $('lihat').checked ? 'text' : 'password'; }); };
+        $('fk').onsubmit = function (e) {
+            e.preventDefault(); clearErr($('fk')); var ok = true, l = $('lama').value, b = $('baru').value, u = $('ulang').value;
+            if (!l) { bad('lama', 'Kata sandi lama wajib diisi.'); ok = false; }
+            if (b.length < 8) { bad('baru', 'Kata sandi baru minimal 8 karakter.'); ok = false; }
+            else if (!/[A-Za-z]/.test(b) || !/[0-9]/.test(b)) { bad('baru', 'Harus mengandung huruf dan angka.'); ok = false; }
+            else if (b === l) { bad('baru', 'Kata sandi baru tidak boleh sama dengan yang lama.'); ok = false; }
+            if (u !== b) { bad('ulang', 'Konfirmasi kata sandi tidak cocok.'); ok = false; }
+            if (!ok) return;
+            $('fk').reset(); toast('Kata sandi diubah (contoh, belum terhubung ke server)');
+        };
+        $('rTampil').onclick = function () { try { ['navOpen', 'sideHidden', 'cardOpen'].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) { } toast('Tampilan direset. Muat ulang halaman untuk melihatnya.'); };
+        $('rNotif').onclick = function () { try { localStorage.removeItem('notifRead'); } catch (e) { } toast('Notifikasi ditandai belum dibaca'); setTimeout(function () { location.reload(); }, 700); };
+    </script>
+</body>
+
+</html>

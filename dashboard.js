@@ -1,6 +1,14 @@
 /* Shell dashboard bersama: sidebar + topbar. Dipakai semua halaman admin.
    Setiap halaman cukup mengisi <body data-page="..." data-title="..." data-crumb="...">. */
 (function () {
+    /* Pengecekan sesi admin (lihat auth.js). Bila belum login, alihkan ke halaman login. [BACKEND] ganti dengan cek ke server */
+    var sesi = null;
+    try { sesi = JSON.parse(localStorage.getItem('adminSesi') || 'null'); } catch (e) { }
+    if (!sesi || !sesi.user || sesi.user.role !== 'admin' || !(sesi.exp > Date.now())) {
+        document.documentElement.style.visibility = 'hidden';
+        location.replace('admin-login.html?next=' + encodeURIComponent(location.pathname.split('/').pop() + location.search));
+        return;
+    }
     var I = {
         menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
         dashboard: '<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',
@@ -69,7 +77,7 @@
         });
         side += '</div></div></div>';
     });
-    side += '<div class="nav-bottom"><a class="nav-item" href="pengaturan-profil.html">' + icon('setting') + 'Pengaturan Profil</a><a class="nav-item logout" href="index.html">' + icon('out') + 'Keluar</a></div></aside>';
+    side += '<div class="nav-bottom"><a class="nav-item' + (page === 'pengaturan' ? ' active' : '') + '" href="pengaturan-profil.html">' + icon('setting') + 'Pengaturan Profil</a><a class="nav-item logout" data-logout href="admin-login.html">' + icon('out') + 'Keluar</a></div></aside>';
 
     var hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
     var bln = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -80,10 +88,26 @@
     var crumb = (b.dataset.crumb || '').split('/').map(function (s) { return s.trim(); });
     var crumbHtml = crumb.map(function (c, i) { return i === crumb.length - 1 ? '<b>' + c + '</b>' : c; }).join(' / ');
 
+    /* profil administrator (disimpan di localStorage 'adminProfil'; ganti dengan backend nanti) */
+    var PROFIL0 = { nama: 'Administrator', email: 'admin@darulbarokah.id', hp: '0812-0000-0000', jabatan: 'Administrator' };
+    window.getProfil = function () { var p = {}; try { p = JSON.parse(localStorage.getItem('adminProfil') || '{}'); } catch (e) { } return Object.assign({}, PROFIL0, p); };
+    window.saveProfil = function (p) { try { localStorage.setItem('adminProfil', JSON.stringify(p)); } catch (e) { } paintProfil(); };
+    function ini(n) { var w = (n || 'A').trim().split(/\s+/); return (w.length > 1 ? w[0][0] + w[1][0] : w[0].slice(0, 2)).toUpperCase(); }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    var pf = window.getProfil();
+
     var top = '<header class="topbar"><div class="top-left"><button type="button" class="side-toggle" aria-label="Buka/tutup menu samping" title="Buka/tutup menu">' + icon('menu') + '</button><div><h1>Dashboard Administrator</h1><div class="crumb">' + crumbHtml + '</div></div></div>' +
         '<div class="topbar-right"><span class="date-pill">' + icon('cal') + tgl + '</span>' +
-        '<button class="bell" aria-label="Notifikasi">' + icon('bell') + '</button>' +
-        '<div class="user"><div class="avatar">AD</div><div><b>Administrator</b><span>Administrator</span></div>' + icon('chev') + '</div></div></header>';
+        '<div class="dd-wrap"><button type="button" class="bell" aria-label="Notifikasi" aria-haspopup="true" aria-expanded="false">' + icon('bell') + '</button>' +
+        '<div class="dd notif" id="ddNotif" hidden></div></div>' +
+        '<div class="dd-wrap"><button type="button" class="user" aria-haspopup="true" aria-expanded="false"><div class="avatar" id="tbAv">' + esc(ini(pf.nama)) + '</div><div><b id="tbNm">' + esc(pf.nama) + '</b><span id="tbRole">' + esc(pf.jabatan) + '</span></div>' + icon('chev') + '</button>' +
+        '<div class="dd menu" id="ddUser" hidden><div class="dd-head"><div class="avatar" id="ddAv">' + esc(ini(pf.nama)) + '</div><div><b id="ddNm">' + esc(pf.nama) + '</b><span id="ddEm">' + esc(pf.email) + '</span></div></div>' +
+        '<a class="dd-item" href="pengaturan-profil.html">' + icon('setting') + 'Pengaturan Profil</a>' +
+        '<a class="dd-item danger" data-logout href="admin-login.html">' + icon('out') + 'Keluar</a></div></div></div></header>';
+    function paintProfil() {
+        var p = window.getProfil(), set = function (id, v) { var e = document.getElementById(id); if (e) e.textContent = v; };
+        set('tbAv', ini(p.nama)); set('ddAv', ini(p.nama)); set('tbNm', p.nama); set('ddNm', p.nama); set('tbRole', p.jabatan); set('ddEm', p.email);
+    }
 
     var main = document.getElementById('app');
     var wrap = document.createElement('div');
@@ -121,39 +145,47 @@
         setSide(!b.classList.contains('side-hidden'));
     });
 
-    /* kartu di dashboard bisa dibuka-tutup */
-    if (page === 'dashboard') {
-        var cStore = {};
-        try { cStore = JSON.parse(localStorage.getItem('cardOpen') || '{}'); } catch (e) { }
-        document.querySelectorAll('.dash .card').forEach(function (card) {
-            var head = card.querySelector('.card-head');
-            if (!head) return;
-            var key = (head.querySelector('h3') || {}).textContent || '';
-            var body = document.createElement('div');
-            body.className = 'card-body';
-            var inner = document.createElement('div');
-            inner.className = 'card-body-inner';
-            Array.prototype.slice.call(card.children).forEach(function (c) { if (c !== head) inner.appendChild(c); });
-            body.appendChild(inner);
-            card.appendChild(body);
-            var btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'card-toggle';
-            btn.setAttribute('aria-label', 'Buka/tutup ' + key);
-            btn.innerHTML = icon('chev');
-            head.appendChild(btn);
-            var open = cStore[key] !== false;
-            card.classList.toggle('collapsed', !open);
-            btn.setAttribute('aria-expanded', open);
-            btn.addEventListener('click', function () {
-                var nowOpen = card.classList.contains('collapsed');
-                card.classList.toggle('collapsed', !nowOpen);
-                btn.setAttribute('aria-expanded', nowOpen);
-                cStore[key] = nowOpen;
-                try { localStorage.setItem('cardOpen', JSON.stringify(cStore)); } catch (e) { }
-            });
-        });
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-logout]')) { try { localStorage.removeItem('adminSesi'); } catch (x) { } } });
+
+    /* dropdown notifikasi + profil */
+    var bell = mainEl.querySelector('.bell'), usr = mainEl.querySelector('.user'), ddN = document.getElementById('ddNotif'), ddU = document.getElementById('ddUser');
+    function closeDD() { [[bell, ddN], [usr, ddU]].forEach(function (x) { x[1].hidden = true; x[0].setAttribute('aria-expanded', 'false'); }); }
+    function toggleDD(btn, dd) { var open = dd.hidden; closeDD(); if (open) { dd.hidden = false; btn.setAttribute('aria-expanded', 'true'); } }
+    usr.addEventListener('click', function (e) { e.stopPropagation(); toggleDD(usr, ddU); });
+    bell.addEventListener('click', function (e) { e.stopPropagation(); toggleDD(bell, ddN); renderNotif(); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.dd-wrap')) closeDD(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDD(); });
+
+    /* notifikasi dihitung dari data contoh; skrip data dimuat otomatis bila halaman belum memuatnya */
+    var DEPS = [['SANTRI', 'santri-data.js'], ['PENGAJUAN', 'akun-data.js'], ['getKehadiran', 'monitoring-data.js'], ['getPembayaran', 'pembayaran-data.js'], ['getPengumuman', 'pengumuman-data.js']];
+    function loadDeps(cb) {
+        var i = 0;
+        (function next() {
+            if (i >= DEPS.length) return cb();
+            var d = DEPS[i++]; if (window[d[0]]) return next();
+            var s = document.createElement('script'); s.src = d[1]; s.onload = next; s.onerror = next; document.head.appendChild(s);
+        })();
     }
+    function readSet() { try { return JSON.parse(localStorage.getItem('notifRead') || '[]'); } catch (e) { return []; } }
+    function notifs() {
+        var out = [];
+        try { var pj = getPengajuan().filter(function (p) { return p.status === 'Menunggu Verifikasi'; }).length; if (pj) out.push({ k: 'pj' + pj, ic: 'hourglass', t: pj + ' pengajuan aktivasi menunggu verifikasi', s: 'Tinjau dan setujui atau tolak pengajuan', h: 'pengajuan-aktivasi.html' }); } catch (e) { }
+        try { var tg = getPembayaran().filter(function (r) { return statusBayar(r) === 'Menunggak'; }).length; if (tg) out.push({ k: 'tg' + tg, ic: 'bayar', t: tg + ' tagihan SPP menunggak', s: 'Tagihan bulan lalu belum lunas', h: 'pembayaran.html' }); } catch (e) { }
+        try { var af = getKehadiran().filter(function (r) { return r.tgl === todayIso() && r.status === 'Alfa'; }).length; if (af) out.push({ k: 'af' + af + todayIso(), ic: 'warn', t: af + ' santri alfa hari ini', s: 'Lihat rekap kehadiran hari ini', h: 'kehadiran.html' }); } catch (e) { }
+        try { var dr = getPengumuman().filter(function (r) { return r.status === 'Draft'; }).length; if (dr) out.push({ k: 'dr' + dr, ic: 'umum', t: dr + ' pengumuman masih draft', s: 'Terbitkan agar dibaca penerima', h: 'pengumuman.html' }); } catch (e) { }
+        return out;
+    }
+    function badge() { var r = readSet(); bell.classList.toggle('has-new', notifs().some(function (n) { return r.indexOf(n.k) < 0; })); }
+    function renderNotif() {
+        var l = notifs(), r = readSet(), h = '<div class="dd-title"><b>Notifikasi</b>' + (l.length ? '<button type="button" class="dd-link" id="readAll">Tandai semua dibaca</button>' : '') + '</div>';
+        if (!l.length) h += '<div class="dd-empty">Tidak ada notifikasi baru.</div>';
+        l.forEach(function (n) { h += '<a class="dd-note' + (r.indexOf(n.k) < 0 ? ' unread' : '') + '" href="' + n.h + '" data-k="' + n.k + '"><span class="ni">' + icon(n.ic) + '</span><span><b>' + n.t + '</b><small>' + n.s + '</small></span></a>'; });
+        ddN.innerHTML = h;
+        var ra = document.getElementById('readAll');
+        if (ra) ra.addEventListener('click', function (e) { e.stopPropagation(); try { localStorage.setItem('notifRead', JSON.stringify(l.map(function (n) { return n.k; }))); } catch (x) { } badge(); renderNotif(); });
+        ddN.querySelectorAll('.dd-note').forEach(function (a) { a.addEventListener('click', function () { var s = readSet(); if (s.indexOf(a.dataset.k) < 0) s.push(a.dataset.k); try { localStorage.setItem('notifRead', JSON.stringify(s)); } catch (x) { } }); });
+    }
+    loadDeps(function () { badge(); });
 
     window.fillIcons = function (root) { (root || document).querySelectorAll('[data-i]').forEach(function (e) { e.innerHTML = icon(e.dataset.i); }); };
     window.fillIcons();

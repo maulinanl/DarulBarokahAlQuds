@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Cetak Pembayaran | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --p: #176B51;
+            --pd: #15573E;
+            --t: #163026;
+            --m: #55695F;
+            --l: #C9D8D0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #B9D4CB;
+            color: var(--t);
+            padding: 20px 12px 40px;
+        }
+
+        .bar {
+            max-width: 794px;
+            margin: 0 auto 14px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn {
+            height: 40px;
+            padding: 0 20px;
+            border-radius: 10px;
+            border: 1.5px solid var(--p);
+            background: var(--p);
+            color: #fff;
+            font: 600 13px inherit;
+            font-family: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn.o {
+            background: transparent;
+            color: var(--pd);
+        }
+
+        .paper {
+            max-width: 794px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 48px;
+            border-radius: 6px;
+            box-shadow: 0 20px 50px -24px rgba(10, 51, 36, .5);
+            position: relative;
+            min-height: 560px;
+        }
+
+        .kop {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 14px;
+            border-bottom: 3px double var(--pd);
+        }
+
+        .kop img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+
+        .kop small {
+            display: block;
+            font-size: 12px;
+            color: var(--m);
+        }
+
+        .kop strong {
+            font-size: 18px;
+            color: var(--pd);
+            letter-spacing: .02em;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 17px;
+            letter-spacing: .08em;
+            margin: 22px 0 4px;
+            color: var(--pd);
+        }
+
+        .no {
+            text-align: center;
+            font-size: 12.5px;
+            color: var(--m);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .info td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+
+        .info td:first-child {
+            width: 150px;
+            color: var(--m);
+        }
+
+        .info td:nth-child(2) {
+            width: 14px;
+        }
+
+        .rinci {
+            margin-top: 18px;
+        }
+
+        .rinci th {
+            background: var(--p);
+            color: #fff;
+            padding: 9px 10px;
+            text-align: left;
+            font-size: 12.5px;
+        }
+
+        .rinci td {
+            padding: 9px 10px;
+            border-bottom: 1px solid var(--l);
+        }
+
+        .rinci .r {
+            text-align: right;
+        }
+
+        .rinci tfoot td {
+            font-weight: 800;
+            border-top: 2px solid var(--pd);
+            border-bottom: 0;
+            background: #EAF0EC;
+        }
+
+        .box {
+            margin-top: 18px;
+            border: 1.5px solid var(--l);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 12.5px;
+            line-height: 1.6;
+        }
+
+        .box b {
+            color: var(--pd);
+        }
+
+        .ttd {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .ttd div {
+            width: 220px;
+        }
+
+        .ttd .sp {
+            height: 70px;
+        }
+
+        .ttd u {
+            font-weight: 700;
+        }
+
+        .stamp {
+            position: absolute;
+            right: 56px;
+            top: 190px;
+            transform: rotate(-12deg);
+            border: 4px solid var(--p);
+            color: var(--p);
+            font-weight: 800;
+            font-size: 30px;
+            letter-spacing: .12em;
+            padding: 4px 18px;
+            border-radius: 10px;
+            opacity: .55;
+        }
+
+        .terb {
+            font-style: italic;
+        }
+
+        .foot {
+            margin-top: 26px;
+            font-size: 11px;
+            color: var(--m);
+            text-align: center;
+        }
+
+        .amount {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--pd);
+            margin: 6px 0 2px;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .bar {
+                display: none;
+            }
+
+            .paper {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                max-width: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 18mm;
+            }
+
+            .rinci th,
+            .rinci tfoot td,
+            .stamp {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bar"><a class="btn o" href="pembayaran.html" id="kembali">&larr; Kembali</a><button class="btn"
+            type="button" onclick="window.print()">Cetak / Simpan PDF</button></div>
+    <div class="paper" id="doc"></div>
+    <script src="auth.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script src="pembayaran-data.js"></script>
+    <script>
+        if (!Auth.cekSesi()) { document.documentElement.style.visibility = 'hidden'; location.replace('admin-login.html?next=' + encodeURIComponent(location.pathname.split('/').pop() + location.search)); }
+        var qs = new URLSearchParams(location.search), jenis = qs.get('jenis'), doc = document.getElementById('doc');
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+        var kop = '<div class="kop"><img src="assets/logo.png" alt="Logo"><div><small>Pondok Pesantren</small><strong>DARUL BAROKAH AL - QUDS</strong></div></div>';
+        function info(rows) { return '<table class="info">' + rows.map(function (r) { return '<tr><td>' + r[0] + '</td><td>:</td><td>' + r[1] + '</td></tr>'; }).join('') + '</table>'; }
+        function gagal(m) { doc.innerHTML = kop + '<p style="margin-top:30px;text-align:center">' + m + '</p>'; }
+        if (jenis === 'bukti') {
+            var r = getPembayaran().filter(function (x) { return String(x.id) === qs.get('id'); })[0];
+            if (!r || r.status !== 'Lunas') gagal('Bukti pembayaran tidak ditemukan atau tagihan belum lunas.');
+            else {
+                var s = santriByNis(r.nis) || { nama: r.nis, wali: '-', kamar: '-' };
+                doc.innerHTML = kop + '<h1>BUKTI PEMBAYARAN SPP</h1><div class="no">No. ' + noKuitansi(r) + '</div><div class="stamp">LUNAS</div>' +
+                    info([['Telah diterima dari', esc(s.wali) + ' (' + esc(s.hub || 'Wali') + ')'], ['Nama santri', esc(s.nama)], ['NIS', r.nis], ['Kamar', esc(s.kamar)], ['Untuk pembayaran', 'SPP bulan ' + bulanLabel(r.bulan)], ['Metode pembayaran', r.metode], ['Tanggal pembayaran', tglPanjang(r.tglBayar)]].concat(r.catatan ? [['Catatan', esc(r.catatan)]] : [])) +
+                    '<div class="box"><div>Jumlah yang dibayarkan</div><div class="amount">' + rupiah(r.nominal) + '</div><div class="terb">Terbilang: ' + terbilang(r.nominal) + ' rupiah</div></div>' +
+                    '<div class="ttd"><div>' + tglPanjang(todayIso()) + '<br>Penerima / Bendahara<div class="sp"></div><u>( ........................................ )</u></div></div>' +
+                    '<div class="foot">Simpanlah bukti ini sebagai tanda pembayaran yang sah. Dicetak dari sistem administrasi pondok pada ' + tglPanjang(todayIso()) + '.</div>';
+                document.title = 'Bukti ' + noKuitansi(r);
+            }
+        } else {
+            var s2 = santriByNis(qs.get('nis')); if (!s2) gagal('Data santri tidak ditemukan.');
+            else {
+                var rk = rekapSantri(s2.nis);
+                if (!rk.unpaid.length) gagal(esc(s2.nama) + ' tidak memiliki tagihan yang belum dibayar.');
+                else {
+                    var no = 'TGH/' + todayIso().slice(0, 4) + '/' + todayIso().slice(5, 7) + '/' + s2.nis;
+                    doc.innerHTML = kop + '<h1>TAGIHAN PEMBAYARAN SPP</h1><div class="no">No. ' + no + ' &bull; Tanggal ' + tglPanjang(todayIso()) + '</div>' +
+                        info([['Kepada Yth. Wali dari', esc(s2.nama)], ['Nama wali', esc(s2.wali)], ['NIS', s2.nis], ['Kamar', esc(s2.kamar)]]) +
+                        '<table class="rinci"><thead><tr><th style="width:40px">No.</th><th>Keterangan</th><th>Status</th><th class="r">Nominal</th></tr></thead><tbody>' +
+                        rk.unpaid.map(function (x, i) { return '<tr><td>' + (i + 1) + '</td><td>SPP bulan ' + bulanLabel(x.bulan) + '</td><td>' + (statusBayar(x) === 'Menunggak' ? 'Menunggak' : 'Belum bayar') + '</td><td class="r">' + rupiah(x.nominal) + '</td></tr>'; }).join('') +
+                        '</tbody><tfoot><tr><td colspan="3">Total yang harus dibayar (' + rk.unpaid.length + ' bulan)</td><td class="r">' + rupiah(rk.total) + '</td></tr></tfoot></table>' +
+                        '<div class="box"><b>Cara pembayaran</b><br>1. Tunai: diserahkan langsung kepada bendahara pondok.<br>2. Transfer bank: ' + esc(REKENING.bank) + ' &bull; No. rek. <b>' + esc(REKENING.no) + '</b> a.n. ' + esc(REKENING.an) + '.<br>Setelah transfer, mohon tunjukkan bukti transfer kepada bendahara agar pembayaran dicatat dan bukti pembayaran diberikan.</div>' +
+                        '<div class="ttd"><div>' + tglPanjang(todayIso()) + '<br>Bendahara Pondok<div class="sp"></div><u>( ........................................ )</u></div></div>' +
+                        '<div class="foot">Mohon abaikan tagihan ini apabila pembayaran sudah dilakukan.</div>';
+                    document.title = 'Tagihan ' + s2.nama;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

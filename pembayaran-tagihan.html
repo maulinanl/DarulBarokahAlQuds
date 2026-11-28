@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Tagihan | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body data-page="pembayaran" data-crumb="Administrasi / Pembayaran / Buat Tagihan">
+    <main id="app" class="content">
+
+        <div class="page-head">
+            <div>
+                <h2>Buat Tagihan</h2>
+                <p>Buat tagihan pembayaran untuk seluruh santri aktif pada bulan tertentu.</p>
+            </div><a class="btn" href="pembayaran.html"><span data-i="back"></span> Kembali</a>
+        </div>
+
+        <form class="card" id="f" novalidate>
+            <div class="section">
+                <div class="section-title">
+                    <div class="letter">A</div>
+                    <div>
+                        <h3>Data Tagihan</h3>
+                        <p>Pilih bulan tagihan SPP untuk seluruh santri aktif</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div><label class="label" for="bulan">Bulan Tagihan <i>*</i></label>
+                        <div class="field"><span class="fi" data-i="cal"></span><input id="bulan" type="month"
+                                class="input"></div>
+                    </div>
+                    <div><label class="label">Nominal per Santri</label>
+                        <div class="field"><span class="fi" data-i="bayar"></span><input id="nom" class="input"
+                                readonly></div>
+                        <p class="hint">Nominal sama untuk semua santri. Ubah lewat tombol "Ubah Nominal" di halaman
+                            Pembayaran.</p>
+                    </div>
+                </div>
+                <div class="callout warn" id="prev"></div>
+            </div>
+            <div class="form-foot">
+                <div class="upd"></div>
+                <div class="form-actions"><a class="btn outline" href="pembayaran.html">Batal</a><button class="btn"
+                        type="submit"><span data-i="save"></span> Buat Tagihan</button></div>
+            </div>
+        </form>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="santri-data.js"></script>
+    <script src="akun-data.js"></script>
+    <script src="monitoring-data.js"></script>
+    <script src="pembayaran-data.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        $('bulan').value = bulanIni(); $('nom').value = rupiah(getNominal());
+        var akt = SANTRI.filter(function (s) { return s.status === 'Aktif'; }).length;
+        function prev() {
+            var b = $('bulan').value; if (!b) { $('prev').textContent = akt + ' santri aktif akan ditagih.'; return; }
+            var ada = getPembayaran().filter(function (r) { return r.bulan === b; }).length;
+            $('prev').textContent = ada ? ada + ' santri sudah punya tagihan ' + bulanLabel(b) + ' (dilewati). Sisanya akan dibuat.' : akt + ' santri aktif akan ditagih SPP ' + bulanLabel(b) + ' sebesar ' + rupiah(getNominal()) + '.';
+        }
+        $('bulan').oninput = prev; prev(); fillIcons();
+        $('f').onsubmit = function (e) {
+            e.preventDefault(); document.querySelectorAll('.err').forEach(function (x) { x.remove(); });
+            if (!$('bulan').value) { var p = document.createElement('p'); p.className = 'err'; p.textContent = 'Bulan tagihan wajib diisi.'; $('bulan').closest('.field').after(p); return; }
+            var n = buatTagihan($('bulan').value);
+            toast(n ? n + ' tagihan berhasil dibuat' : 'Semua santri sudah memiliki tagihan ini'); if (n) setTimeout(function () { location.href = 'pembayaran.html'; }, 800);
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Login Administrator | Darul Barokah Al - Quds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <style>
+        .lg-wrap {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px 16px;
+        }
+
+        .lg-card {
+            width: min(440px, 100%);
+            background: var(--c-surface);
+            border-radius: 20px;
+            padding: 34px 32px 28px;
+            box-shadow: 0 30px 70px -28px rgba(10, 51, 36, .55);
+        }
+
+        .lg-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .lg-brand img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        .lg-brand small,
+        .lg-brand strong {
+            display: block;
+        }
+
+        .lg-brand small {
+            font-size: 12px;
+            color: var(--c-muted);
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
+
+        .lg-brand strong {
+            font-size: 14px;
+            color: var(--c-primary);
+            font-weight: 700;
+        }
+
+        .lg-card h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--c-primary-dark);
+            text-align: center;
+        }
+
+        .lg-card .lead {
+            font-size: 13px;
+            text-align: center;
+            margin: 6px 0 22px;
+        }
+
+        .lg-card .row {
+            margin-bottom: 16px;
+        }
+
+        .lg-card .field .input {
+            padding-right: 46px;
+        }
+
+        .eye {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: 0;
+            background: none;
+            color: var(--c-primary-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+        }
+
+        .eye:hover {
+            background: rgba(23, 107, 81, .1);
+        }
+
+        .eye svg,
+        .lg-card .fi svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .lg-card .fi {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--c-primary-dark);
+            pointer-events: none;
+            display: grid;
+        }
+
+        .lg-card .btn.full {
+            width: 100%;
+            height: 48px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .lg-card .btn[disabled] {
+            opacity: .65;
+            cursor: not-allowed;
+        }
+
+        .lg-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+
+        .lg-links a,
+        .lg-links button {
+            color: var(--c-primary);
+            background: none;
+            border: 0;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 0;
+        }
+
+        .lg-links a:hover,
+        .lg-links button:hover {
+            text-decoration: underline;
+        }
+
+        .lg-alert {
+            border-radius: 10px;
+            padding: 11px 13px;
+            font-size: 12.5px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            background: #FBE9E7;
+            color: var(--c-danger);
+        }
+
+        .lg-demo {
+            margin-top: 18px;
+            border-top: 1px dashed #9CCDBA;
+            padding-top: 14px;
+            font-size: 11.5px;
+            color: var(--c-muted);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .lg-demo b {
+            color: var(--c-primary-dark);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lg-wrap">
+        <main class="lg-card">
+            <div class="lg-brand"><img src="assets/logo.png" alt="Logo">
+                <div><small>Pondok Pesantren</small><strong>DARUL BAROKAH AL - QUDS</strong></div>
+            </div>
+            <h1>Login Administrator</h1>
+            <p class="lead">Halaman ini khusus pengelola pondok. Wali santri dan ustadz/ustadzah masuk lewat website
+                utama.</p>
+            <form id="f" novalidate>
+                <div id="alert" role="alert" hidden></div>
+                <div class="row"><label class="label" for="email">Email <i>*</i></label>
+                    <div class="field"><span class="fi"><svg viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 7l9 6 9-6" />
+                            </svg></span><input id="email" type="email" class="input" autocomplete="username"
+                            placeholder="nama@darulbarokah.id"></div>
+                </div>
+                <div class="row"><label class="label" for="pw">Kata Sandi <i>*</i></label>
+                    <div class="field"><span class="fi"><svg viewBox="0 0 24 24">
+                                <circle cx="8" cy="15" r="4" />
+                                <path d="M11 12l9-9M16 7l3 3" />
+                            </svg></span><input id="pw" type="password" class="input" autocomplete="current-password"
+                            placeholder="Masukkan kata sandi"><button type="button" class="eye" id="eye"
+                            aria-label="Tampilkan kata sandi"><svg viewBox="0 0 24 24">
+                                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg></button></div>
+                </div>
+                <button class="btn full" type="submit" id="go">Masuk</button>
+            </form>
+            <div class="lg-links"><button type="button" id="lupa">Lupa kata sandi?</button><a href="index.html">&larr;
+                    Kembali ke website</a></div>
+            <div class="lg-demo">Mode contoh (belum terhubung server)<br>Email <b>admin@darulbarokah.id</b> &bull; Kata
+                sandi <b>Admin12345</b></div>
+        </main>
+    </div>
+    <div class="modal" id="mdl" role="dialog" aria-modal="true">
+        <div class="dlg" id="dlg"></div>
+    </div>
+    <script src="auth.js"></script>
+    <script>
+        var $ = function (i) { return document.getElementById(i); };
+        var next = (function () { var n = new URLSearchParams(location.search).get('next') || ''; return /^[\w\-]+\.html(\?[\w=&%\-.]*)?$/.test(n) ? n : 'dashboard.html'; })();
+        if (Auth.cekSesi()) location.replace(next);
+        function alertMsg(m) { var a = $('alert'); if (!m) { a.hidden = true; return; } a.className = 'lg-alert'; a.textContent = m; a.hidden = false; }
+        $('eye').onclick = function () { var t = $('pw').type === 'password'; $('pw').type = t ? 'text' : 'password'; this.setAttribute('aria-label', t ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'); };
+        $('f').onsubmit = function (e) {
+            e.preventDefault(); alertMsg(''); document.querySelectorAll('.err').forEach(function (x) { x.remove(); });
+            var em = $('email').value.trim(), pw = $('pw').value, ok = true;
+            function bad(id, m) { var p = document.createElement('p'); p.className = 'err'; p.textContent = m; $(id).closest('.field').after(p); ok = false; }
+            if (!em) bad('email', 'Email wajib diisi.'); else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) bad('email', 'Format email tidak valid.');
+            if (!pw) bad('pw', 'Kata sandi wajib diisi.');
+            if (!ok) return;
+            $('go').disabled = true; $('go').textContent = 'Memeriksa...';
+            Auth.login(em, pw).then(function () { location.replace(next); }, function (er) {
+                $('go').disabled = false; $('go').textContent = 'Masuk'; $('pw').value = '';
+                alertMsg(er.kode === 'LOCK' ? 'Terlalu banyak percobaan. Coba lagi dalam ' + er.sisa + ' detik.' : 'Email atau kata sandi salah.' + (er.sisaCoba > 0 && er.sisaCoba < 3 ? ' Sisa percobaan: ' + er.sisaCoba + '.' : ''));
+            });
+        };
+        function close() { $('mdl').classList.remove('open'); }
+        $('lupa').onclick = function () {
+            $('dlg').innerHTML = '<h3>Lupa Kata Sandi</h3><p class="sub">Masukkan email admin. Tautan untuk membuat kata sandi baru akan dikirim ke email tersebut.</p><label class="label" for="re">Email</label><input id="re" type="email" class="input plain" placeholder="nama@darulbarokah.id"><div id="rm"></div><div class="form-actions"><button class="btn outline" type="button" id="rb">Batal</button><button class="btn" type="button" id="ro">Kirim Tautan</button></div>';
+            $('mdl').classList.add('open'); $('rb').onclick = close;
+            $('ro').onclick = function () {
+                var v = $('re').value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $('rm').innerHTML = '<p class="err">Masukkan email yang valid.</p>'; return; }
+                /* [BACKEND] POST /auth/lupa-sandi {email}; selalu tampilkan pesan yang sama agar email tidak bisa ditebak */
+                $('dlg').innerHTML = '<h3>Periksa Email Anda</h3><p class="sub">Jika email terdaftar sebagai admin, tautan reset kata sandi akan dikirim. (Contoh tampilan, belum mengirim email.)</p><div class="form-actions"><button class="btn" type="button" id="rb2">Tutup</button></div>'; $('rb2').onclick = close;
+            };
+        };
+        $('mdl').onclick = function (e) { if (e.target.id === 'mdl') close(); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    </script>
+</body>
+
+</html>

@@ -53,12 +53,14 @@
             <div class="card-head">
                 <div>
                     <h3>Capaian Hafalan Terbaru</h3>
-                    <p>Setoran hafalan terakhir tiap santri beserta progres surahnya.</p>
-                </div>
+                    <p>Setoran hafalan terakhir dari santri yang baru menyetor.</p>
+                </div><button class="btn sm2" id="capAll" type="button">Lihat Semua <span
+                        data-i="arrow"></span></button>
             </div>
             <div class="mini-grid" id="cap"></div>
+            <div class="cap-more" id="capMore" hidden></div>
         </div>
-        <div class="card flush" style="margin-top:16px">
+        <div class="card flush" id="riwayat" style="margin-top:16px">
             <div class="card-head">
                 <div>
                     <h3>Riwayat Pembelajaran</h3>
@@ -139,11 +141,13 @@
             sorted().forEach(function (r) { if (!last[r.nis]) last[r.nis] = r; });
             $('s1').textContent = m.length; $('s2').textContent = m.filter(function (r) { return r.jenis === 'Hafalan'; }).length; $('s3').textContent = m.filter(function (r) { return r.jenis === 'Membaca'; }).length;
             $('s4').textContent = Object.keys(last).filter(function (n) { return last[n].status === 'Mengulang'; }).length;
-            var seen = {}, c = '';
-            sorted().filter(function (r) { return r.jenis === 'Hafalan'; }).forEach(function (r) {
-                if (seen[r.nis] || Object.keys(seen).length >= 4) return; seen[r.nis] = 1; var tot = SURAH[r.surah - 1][1];
-                c += '<div class="cap"><div class="row"><span>' + nm(r) + '</span><span>Juz ' + r.juz + '</span></div><small>' + 'Surah ' + surahNama(r.surah) + ' \u2022 ayat ' + r.a1 + '-' + r.a2 + ' dari ' + tot + '</small><div class="progress"><i style="width:' + Math.min(100, Math.round(r.a2 * 100 / tot)) + '%"></i></div></div>';
+            var seen = {}, c = '', n = 0, LIM = 6, hs = sorted().filter(function (r) { return r.jenis === 'Hafalan'; });
+            hs.forEach(function (r) {
+                if (seen[r.nis]) return; seen[r.nis] = 1; n++; if (n > LIM) return; var tot = SURAH[r.surah - 1][1], pct = Math.min(100, Math.round(r.a2 * 100 / tot));
+                c += '<div class="cap"><div class="row"><span class="nm">' + nm(r) + '</span><span class="juz">Juz ' + r.juz + '</span></div><small>Surah ' + surahNama(r.surah) + ' \u2022 ayat ' + r.a1 + '\u2013' + r.a2 + ' dari ' + tot + '</small>' +
+                    '<div class="pbar"><div class="progress"><i style="width:' + pct + '%"></i></div><b>' + pct + '%</b></div><div class="foot"><span>' + tglPendek(r.tgl) + '</span><span class="chip">' + r.status + '</span></div></div>';
             });
+            var more = $('capMore'); more.hidden = n <= LIM; if (n > LIM) more.textContent = 'Menampilkan ' + LIM + ' dari ' + n + ' santri yang pernah menyetor hafalan. Klik "Lihat Semua" untuk riwayat lengkap.';
             $('cap').innerHTML = c || '<p class="empty" style="grid-column:1/-1">Belum ada setoran hafalan.</p>';
         }
         function draw() {
@@ -162,6 +166,7 @@
         }
         $('pages').onclick = function (e) { var p = e.target.closest('button'); if (p && !p.disabled) { page = +p.dataset.p; draw(); } };
         ['q', 'per', 'jk', 'st'].forEach(function (i) { $(i).oninput = function () { page = 1; draw(); }; });
+        $('capAll').onclick = function () { ['q', 'per', 'st'].forEach(function (i) { $(i).value = ''; }); $('jk').value = 'Hafalan'; page = 1; draw(); $('riwayat').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
         $('reset').onclick = function () { ['q', 'per', 'jk', 'st'].forEach(function (i) { $(i).value = ''; }); page = 1; draw(); };
         $('rows').onclick = function (e) {
             var b = e.target.closest('[data-del]'); if (!b) return; var id = +b.dataset.del, r = getPembelajaran().filter(function (x) { return x.id === id; })[0];
